@@ -1,0 +1,1575 @@
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مختبر الوصفات | دليل تحضير المنظفات والعناية بالسيارات</title>
+<meta name="description" content="تجميع شامل لوصفات المنظفات المنزلية ومنتجات العناية بالسيارات مع نسب مئوية دقيقة وطريقة التحضير خطوة بخطوة.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Tajawal', 'system-ui', 'sans-serif'],
+          display: ['Cairo', 'Tajawal', 'sans-serif']
+        },
+        colors: {
+          forest: { 900:'#0B2621', 800:'#0F3730', 700:'#145145', 600:'#1B6B5B' },
+          mint:   { 400:'#4FD1B0', 300:'#7FE3C9', 200:'#B6F0E1' },
+          sand:   { 50:'#FCF8F2', 100:'#F6EEE2', 200:'#EBDCC6' },
+          clay:   { 500:'#C4563C', 600:'#A9422C' },
+          gold:   { 400:'#E9B44C', 500:'#D69A2B' }
+        },
+        boxShadow: {
+          soft: '0 18px 40px -18px rgba(11,38,33,.28)',
+          lift: '0 30px 70px -28px rgba(11,38,33,.45)'
+        }
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: #FCF8F2;
+    color: #0B2621;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: #4FD1B0; color: #0B2621; }
+
+  /* ---------- Scroll reveal ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity .85s cubic-bezier(.22,1,.36,1), transform .85s cubic-bezier(.22,1,.36,1);
+    transition-delay: var(--d, 0ms);
+    will-change: transform, opacity;
+  }
+  .reveal.in { opacity: 1; transform: none; }
+
+  .reveal-x {
+    opacity: 0;
+    transform: translateX(38px);
+    transition: opacity .9s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1);
+    transition-delay: var(--d, 0ms);
+  }
+  .reveal-x.in { opacity: 1; transform: none; }
+
+  /* ---------- Kinetic headline ---------- */
+  .word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(120%) rotate(4deg);
+    animation: wordUp .95s cubic-bezier(.19,1,.22,1) forwards;
+    animation-delay: calc(var(--i) * 95ms + 180ms);
+  }
+  @keyframes wordUp {
+    to { opacity: 1; transform: translateY(0) rotate(0); }
+  }
+  .word-mask { display: inline-block; overflow: hidden; padding-bottom: .12em; vertical-align: bottom; }
+
+  /* ---------- Liquid / sheen ---------- */
+  .sheen { position: relative; overflow: hidden; }
+  .sheen::after {
+    content: '';
+    position: absolute;
+    inset: -20% -60%;
+    background: linear-gradient(115deg, transparent 38%, rgba(255,255,255,.38) 50%, transparent 62%);
+    transform: translateX(-120%) skewX(-12deg);
+    transition: transform 1s cubic-bezier(.22,1,.36,1);
+    pointer-events: none;
+  }
+  .sheen:hover::after { transform: translateX(120%) skewX(-12deg); }
+
+  .gradient-text {
+    background: linear-gradient(100deg, #7FE3C9 0%, #4FD1B0 32%, #E9B44C 68%, #7FE3C9 100%);
+    background-size: 220% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: flow 9s ease-in-out infinite;
+  }
+  @keyframes flow {
+    0%,100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  /* ---------- Bubbles ---------- */
+  .bubble {
+    position: absolute;
+    bottom: -80px;
+    border-radius: 9999px;
+    background: radial-gradient(circle at 32% 28%, rgba(255,255,255,.55), rgba(255,255,255,.08) 62%, rgba(255,255,255,.03));
+    border: 1px solid rgba(255,255,255,.22);
+    animation: rise linear infinite;
+    pointer-events: none;
+  }
+  @keyframes rise {
+    0%   { transform: translate3d(0,0,0) scale(.6); opacity: 0; }
+    12%  { opacity: .85; }
+    100% { transform: translate3d(var(--dx, 20px), -118vh, 0) scale(1.15); opacity: 0; }
+  }
+
+  /* ---------- Marquee ---------- */
+  .marquee { display: flex; width: max-content; animation: slide 38s linear infinite; }
+  .marquee:hover { animation-play-state: paused; }
+  @keyframes slide {
+    from { transform: translateX(0); }
+    to   { transform: translateX(50%); }
+  }
+
+  /* ---------- Cards ---------- */
+  .card {
+    transition: transform .55s cubic-bezier(.22,1,.36,1), box-shadow .55s ease, border-color .4s ease;
+  }
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 38px 80px -30px rgba(11,38,33,.42);
+    border-color: rgba(79,209,176,.55);
+  }
+
+  .bar-fill {
+    height: 100%;
+    width: 0;
+    border-radius: 9999px;
+    background: linear-gradient(90deg, #1B6B5B, #4FD1B0);
+    transition: width 1.1s cubic-bezier(.22,1,.36,1);
+    transition-delay: var(--d, 0ms);
+  }
+  .bar-fill.gold { background: linear-gradient(90deg, #C4563C, #E9B44C); }
+
+  /* ---------- Nav ---------- */
+  .nav-link { position: relative; }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -7px;
+    right: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #4FD1B0, #E9B44C);
+    border-radius: 9999px;
+    transition: width .45s cubic-bezier(.22,1,.36,1);
+  }
+  .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+  /* ---------- Buttons ---------- */
+  .btn-magnetic {
+    transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease, background-color .35s ease, color .35s ease;
+    will-change: transform;
+  }
+
+  /* ---------- Modal ---------- */
+  .modal-backdrop {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .45s ease, visibility .45s ease;
+  }
+  .modal-backdrop.open { opacity: 1; visibility: visible; }
+  .modal-panel {
+    transform: translateY(38px) scale(.97);
+    opacity: 0;
+    transition: transform .55s cubic-bezier(.22,1,.36,1), opacity .45s ease;
+  }
+  .modal-backdrop.open .modal-panel { transform: none; opacity: 1; }
+
+  /* ---------- Accordion ---------- */
+  .acc-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows .5s cubic-bezier(.22,1,.36,1), opacity .4s ease;
+    opacity: 0;
+  }
+  .acc-item.open .acc-body { grid-template-rows: 1fr; opacity: 1; }
+  .acc-inner { overflow: hidden; }
+  .acc-item.open .acc-icon { transform: rotate(45deg); }
+  .acc-icon { transition: transform .45s cubic-bezier(.22,1,.36,1); }
+
+  /* ---------- Filter pills ---------- */
+  .pill {
+    transition: all .38s cubic-bezier(.22,1,.36,1);
+  }
+  .pill.active {
+    background: linear-gradient(135deg, #145145, #1B6B5B);
+    color: #fff;
+    box-shadow: 0 18px 36px -16px rgba(20,81,69,.65);
+    transform: translateY(-3px);
+  }
+
+  /* ---------- Steps timeline ---------- */
+  .step-dot::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 9999px;
+    background: rgba(79,209,176,.28);
+    transform: scale(0);
+    transition: transform .5s cubic-bezier(.22,1,.36,1);
+  }
+  .step:hover .step-dot::before { transform: scale(1); }
+
+  /* ---------- Progress bar top ---------- */
+  #scrollProgress {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(90deg, #E9B44C, #4FD1B0, #1B6B5B);
+    z-index: 90;
+    transition: width .12s linear;
+  }
+
+  /* ---------- Hero image fallback ---------- */
+  .img-fallback {
+    background-image: linear-gradient(135deg, #145145 0%, #1B6B5B 45%, #0B2621 100%);
+    background-size: cover;
+    background-position: center;
+  }
+
+  /* ---------- Floating chips ---------- */
+  .float-slow { animation: floaty 7s ease-in-out infinite; }
+  .float-slower { animation: floaty 10s ease-in-out infinite reverse; }
+  @keyframes floaty {
+    0%,100% { transform: translateY(0) rotate(0deg); }
+    50%     { transform: translateY(-16px) rotate(-1.2deg); }
+  }
+
+  /* ---------- Underline draw ---------- */
+  .draw-path {
+    stroke-dasharray: 620;
+    stroke-dashoffset: 620;
+    transition: stroke-dashoffset 1.4s cubic-bezier(.22,1,.36,1);
+  }
+  .in .draw-path, .draw-path.in { stroke-dashoffset: 0; }
+
+  /* scrollbar */
+  .thin-scroll::-webkit-scrollbar { width: 8px; height: 8px; }
+  .thin-scroll::-webkit-scrollbar-track { background: rgba(11,38,33,.06); border-radius: 999px; }
+  .thin-scroll::-webkit-scrollbar-thumb { background: rgba(27,107,91,.5); border-radius: 999px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: .001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: .18s !important;
+      scroll-behavior: auto !important;
+    }
+    .reveal, .reveal-x, .word { opacity: 1 !important; transform: none !important; }
+  }
+</style>
+</head>
+<body class="font-sans">
+
+<div id="scrollProgress"></div>
+
+<!-- ================= HEADER ================= -->
+<header id="header" class="fixed top-0 inset-x-0 z-50 transition-all duration-500">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div id="headerInner" class="flex items-center justify-between gap-4 py-5 transition-all duration-500">
+      <a href="#home" class="flex items-center gap-3 group">
+        <span class="relative w-11 h-11 rounded-2xl bg-gradient-to-br from-forest-700 to-mint-400 grid place-items-center shadow-soft overflow-hidden sheen">
+          <svg viewBox="0 0 24 24" class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 3h6M10 3v5.2L5.6 16A3.2 3.2 0 0 0 8.5 20.6h7A3.2 3.2 0 0 0 18.4 16L14 8.2V3"/>
+            <path d="M7.6 14.4h8.8"/>
+          </svg>
+        </span>
+        <span class="leading-tight">
+          <span id="brandText" class="block font-display font-900 text-lg text-white transition-colors duration-500" style="font-weight:900">مختبر الوصفات</span>
+          <span id="brandSub" class="block text-[11px] tracking-wide text-mint-200 transition-colors duration-500">دليل التحضير خطوة بخطوة</span>
+        </span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-8 text-[15px] font-medium">
+        <a href="#home" class="nav-link text-white/85 hover:text-white transition-colors">الرئيسية</a>
+        <a href="#categories" class="nav-link text-white/85 hover:text-white transition-colors">الأقسام</a>
+        <a href="#recipes" class="nav-link text-white/85 hover:text-white transition-colors">الوصفات</a>
+        <a href="#process" class="nav-link text-white/85 hover:text-white transition-colors">طريقة العمل</a>
+        <a href="#safety" class="nav-link text-white/85 hover:text-white transition-colors">السلامة</a>
+        <a href="#faq" class="nav-link text-white/85 hover:text-white transition-colors">أسئلة شائعة</a>
+      </nav>
+
+      <div class="flex items-center gap-2 sm:gap-3">
+        <a href="#recipes" class="btn-magnetic hidden sm:inline-flex items-center gap-2 rounded-full bg-white text-forest-800 px-5 py-2.5 text-sm font-bold shadow-soft hover:bg-mint-200">
+          استعرض الوصفات
+          <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        </a>
+        <button id="menuBtn" aria-label="القائمة" class="lg:hidden w-11 h-11 rounded-full bg-white/15 backdrop-blur border border-white/25 text-white grid place-items-center">
+          <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobileMenu" class="lg:hidden overflow-hidden max-h-0 transition-[max-height] duration-500 ease-out">
+    <div class="mx-4 mb-4 rounded-3xl bg-white shadow-lift border border-sand-200 p-5 space-y-1">
+      <a href="#home" class="mobile-link block px-4 py-3 rounded-2xl hover:bg-sand-100 font-medium">الرئيسية</a>
+      <a href="#categories" class="mobile-link block px-4 py-3 rounded-2xl hover:bg-sand-100 font-medium">الأقسام</a>
+      <a href="#recipes" class="mobile-link block px-4 py-3 rounded-2xl hover:bg-sand-100 font-medium">الوصفات</a>
+      <a href="#process" class="mobile-link block px-4 py-3 rounded-2xl hover:bg-sand-100 font-medium">طريقة العمل</a>
+      <a href="#safety" class="mobile-link block px-4 py-3 rounded-2xl hover:bg-sand-100 font-medium">السلامة</a>
+      <a href="#faq" class="mobile-link block px-4 py-3 rounded-2xl hover:bg-sand-100 font-medium">أسئلة شائعة</a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section id="home" class="relative min-h-[100svh] flex items-center overflow-hidden">
+  <!-- Background -->
+  <div class="absolute inset-0 img-fallback">
+    <img
+      src="https://images.unsplash.com/photo-1585421514738-01798e348b17?auto=format&fit=crop&w=1920&q=80"
+      alt="أدوات ومنتجات تنظيف"
+      class="w-full h-full object-cover"
+      onerror="this.style.display='none'">
+    <div class="absolute inset-0 bg-gradient-to-l from-forest-900/95 via-forest-900/80 to-forest-800/60"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_20%,rgba(79,209,176,.22),transparent_58%)]"></div>
+    <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-sand-50 to-transparent"></div>
+  </div>
+
+  <!-- Bubbles -->
+  <div id="bubbleField" class="absolute inset-0 overflow-hidden pointer-events-none"></div>
+
+  <!-- Content -->
+  <div class="relative z-10 w-full">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-32 pb-24 lg:pt-36 lg:pb-28">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+
+        <div class="lg:col-span-7">
+          <div class="inline-flex items-center gap-2.5 rounded-full border border-mint-300/35 bg-white/10 backdrop-blur-md px-4 py-2 text-mint-200 text-xs sm:text-sm font-medium reveal">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-mint-300 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-mint-300"></span>
+            </span>
+            32 وصفة موثّقة بنسب مئوية دقيقة
+          </div>
+
+          <h1 class="mt-7 font-display text-white leading-[1.18] text-[clamp(2.15rem,6.2vw,4.4rem)]" style="font-weight:900">
+            <span class="word-mask"><span class="word" style="--i:0">وصفات</span></span>
+            <span class="word-mask"><span class="word" style="--i:1">تحضير</span></span>
+            <span class="word-mask"><span class="word" style="--i:2">دقيقة</span></span>
+            <br>
+            <span class="word-mask"><span class="word gradient-text" style="--i:3">للمنظفات</span></span>
+            <span class="word-mask"><span class="word gradient-text" style="--i:4">والعناية</span></span>
+            <span class="word-mask"><span class="word gradient-text" style="--i:5">بالسيارات</span></span>
+          </h1>
+
+          <p class="mt-7 text-white/80 text-lg sm:text-xl leading-relaxed max-w-2xl reveal" style="--d:250ms">
+            مرجع عملي شامل يجمع المكوّنات بالنسبة المئوية الصحيحة، وترتيب الإضافة،
+            وتحذيرات السلامة لكل وصفة — من سائل غسل الأواني إلى مبرّد المحرك.
+          </p>
+
+          <div class="mt-9 flex flex-wrap items-center gap-4 reveal" style="--d:380ms">
+            <a href="#recipes" class="btn-magnetic magnetic inline-flex items-center gap-3 rounded-full bg-mint-400 text-forest-900 px-8 py-4 font-bold text-base sm:text-lg shadow-[0_22px_50px_-18px_rgba(79,209,176,.85)] hover:bg-mint-300">
+              ابدأ استكشاف الوصفات
+              <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+            </a>
+            <a href="#safety" class="btn-magnetic magnetic inline-flex items-center gap-3 rounded-full border border-white/25 bg-white/10 backdrop-blur px-8 py-4 font-bold text-white hover:bg-white/20">
+              إرشادات السلامة
+            </a>
+          </div>
+
+          <!-- Stats -->
+          <div class="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 max-w-3xl">
+            <div class="reveal rounded-2xl border border-white/12 bg-white/[.07] backdrop-blur-md p-4" style="--d:420ms">
+              <div class="text-3xl font-display text-mint-300" style="font-weight:900"><span class="counter" data-target="32">0</span></div>
+              <div class="text-white/65 text-xs mt-1">وصفة كاملة</div>
+            </div>
+            <div class="reveal rounded-2xl border border-white/12 bg-white/[.07] backdrop-blur-md p-4" style="--d:500ms">
+              <div class="text-3xl font-display text-mint-300" style="font-weight:900"><span class="counter" data-target="100">0</span><span class="text-lg">%</span></div>
+              <div class="text-white/65 text-xs mt-1">دقة النسب</div>
+            </div>
+            <div class="reveal rounded-2xl border border-white/12 bg-white/[.07] backdrop-blur-md p-4" style="--d:580ms">
+              <div class="text-3xl font-display text-mint-300" style="font-weight:900"><span class="counter" data-target="2">0</span></div>
+              <div class="text-white/65 text-xs mt-1">أقسام رئيسية</div>
+            </div>
+            <div class="reveal rounded-2xl border border-white/12 bg-white/[.07] backdrop-blur-md p-4" style="--d:660ms">
+              <div class="text-3xl font-display text-mint-300" style="font-weight:900"><span class="counter" data-target="18">0</span><span class="text-lg"> شهر</span></div>
+              <div class="text-white/65 text-xs mt-1">مدة الصلاحية</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating formula card -->
+        <div class="lg:col-span-5 hidden lg:block">
+          <div class="float-slow relative">
+            <div class="rounded-[2rem] bg-white/95 backdrop-blur-xl shadow-lift border border-white/60 p-7">
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-xs text-forest-600 font-bold tracking-wider">مثال تطبيقي</p>
+                  <h3 class="text-xl font-display text-forest-800 mt-1" style="font-weight:800">سائل غسل الأواني — جودة أعلى</h3>
+                </div>
+                <span class="w-12 h-12 rounded-2xl bg-mint-200 text-forest-700 grid place-items-center">
+                  <svg viewBox="0 0 24 24" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 3h8M9 3v4l-4 8a3 3 0 0 0 2.7 4.3h8.6A3 3 0 0 0 19 15l-4-8V3"/></svg>
+                </span>
+              </div>
+
+              <div class="mt-6 space-y-4">
+                <div>
+                  <div class="flex justify-between text-sm mb-2"><span class="text-forest-700 font-medium">ماء</span><span class="text-forest-500">82.9%</span></div>
+                  <div class="h-2.5 rounded-full bg-sand-100 overflow-hidden"><div class="bar-fill hero-bar" data-w="82.9"></div></div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-2"><span class="text-forest-700 font-medium">SLES / Texapon</span><span class="text-forest-500">10%</span></div>
+                  <div class="h-2.5 rounded-full bg-sand-100 overflow-hidden"><div class="bar-fill hero-bar" data-w="62"></div></div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-2"><span class="text-forest-700 font-medium">Betaine</span><span class="text-forest-500">3%</span></div>
+                  <div class="h-2.5 rounded-full bg-sand-100 overflow-hidden"><div class="bar-fill hero-bar" data-w="30"></div></div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-2"><span class="text-forest-700 font-medium">Cocamide DEA</span><span class="text-forest-500">2%</span></div>
+                  <div class="h-2.5 rounded-full bg-sand-100 overflow-hidden"><div class="bar-fill hero-bar" data-w="22"></div></div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-2"><span class="text-forest-700 font-medium">ملح NaCl</span><span class="text-forest-500">1.5%</span></div>
+                  <div class="h-2.5 rounded-full bg-sand-100 overflow-hidden"><div class="bar-fill hero-bar gold" data-w="16"></div></div>
+                </div>
+              </div>
+
+              <div class="mt-6 flex items-center gap-3 rounded-2xl bg-forest-800 text-white p-4">
+                <svg viewBox="0 0 24 24" class="w-6 h-6 text-mint-300 shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 9v4M12 17h.01M10.3 3.9 2.6 17a2 2 0 0 0 1.7 3h15.4a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
+                <p class="text-sm text-white/85 leading-relaxed">أضف الملح تدريجياً مع التحريك المستمر للوصول إلى اللزوجة المطلوبة.</p>
+              </div>
+            </div>
+
+            <div class="float-slower absolute -bottom-8 -right-6 rounded-2xl bg-gold-400 text-forest-900 px-5 py-4 shadow-lift">
+              <p class="text-xs opacity-80">مكوّن رئيسي</p>
+              <p class="font-display text-lg" style="font-weight:800">SLES 70%</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MARQUEE ================= -->
+<section class="relative bg-forest-800 py-6 overflow-hidden border-y border-white/10">
+  <div class="marquee gap-10 items-center text-mint-200/80 text-sm sm:text-base whitespace-nowrap">
+    <span class="flex gap-10 items-center px-5">
+      <span>SLES</span><span class="text-gold-400">◆</span><span>Texapon N70</span><span class="text-gold-400">◆</span>
+      <span>Betaine</span><span class="text-gold-400">◆</span><span>Cocamide DEA</span><span class="text-gold-400">◆</span>
+      <span>Butyl Glycol</span><span class="text-gold-400">◆</span><span>Propylene Glycol</span><span class="text-gold-400">◆</span>
+      <span>حمض الستريك</span><span class="text-gold-400">◆</span><span>Isopropanol</span><span class="text-gold-400">◆</span>
+      <span>Cétiol C5</span><span class="text-gold-400">◆</span><span>Mono Ethylene Glycol</span><span class="text-gold-400">◆</span>
+    </span>
+    <span class="flex gap-10 items-center px-5" aria-hidden="true">
+      <span>SLES</span><span class="text-gold-400">◆</span><span>Texapon N70</span><span class="text-gold-400">◆</span>
+      <span>Betaine</span><span class="text-gold-400">◆</span><span>Cocamide DEA</span><span class="text-gold-400">◆</span>
+      <span>Butyl Glycol</span><span class="text-gold-400">◆</span><span>Propylene Glycol</span><span class="text-gold-400">◆</span>
+      <span>حمض الستريك</span><span class="text-gold-400">◆</span><span>Isopropanol</span><span class="text-gold-400">◆</span>
+      <span>Cétiol C5</span><span class="text-gold-400">◆</span><span>Mono Ethylene Glycol</span><span class="text-gold-400">◆</span>
+    </span>
+  </div>
+</section>
+
+<!-- ================= CATEGORIES ================= -->
+<section id="categories" class="relative py-24 sm:py-28 bg-sand-50">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+    <div class="max-w-3xl">
+      <p class="reveal text-clay-500 font-bold tracking-[.18em] text-xs">الأقسام الرئيسية</p>
+      <h2 class="reveal mt-4 font-display text-forest-800 text-[clamp(2rem,4.6vw,3.15rem)] leading-tight" style="--d:110ms;font-weight:900">
+        كل ما تحتاجه لصناعة منتجاتك
+        <span class="relative inline-block">
+          <span class="relative z-10">بخطوات واضحة</span>
+          <svg class="absolute -bottom-2 right-0 w-full h-4" viewBox="0 0 300 18" fill="none" preserveAspectRatio="none">
+            <path class="draw-path" d="M4 12C60 4 120 3 176 8c40 3.5 78 6 118 2" stroke="#E9B44C" stroke-width="6" stroke-linecap="round"/>
+          </svg>
+        </span>
+      </h2>
+      <p class="reveal mt-7 text-forest-800/70 text-lg leading-relaxed" style="--d:210ms">
+        صُمّمت هذه المجموعات لتكون مرجعاً سريعاً: اختر القسم، راجع النسب، ثم طبّق خطوات التحضير بالترتيب المذكور للحصول على نتيجة متجانسة ومستقرة.
+      </p>
+    </div>
+
+    <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+      <article class="reveal card sheen group relative rounded-[1.75rem] overflow-hidden bg-white border border-sand-200 shadow-soft">
+        <div class="h-44 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=80" alt="منظفات منزلية" class="w-full h-full object-cover transition-transform duration-[900ms] group-hover:scale-[1.09]" onerror="this.parentElement.classList.add('img-fallback');this.remove()">
+        </div>
+        <div class="p-6">
+          <div class="w-11 h-11 rounded-2xl bg-mint-200 text-forest-700 grid place-items-center -mt-12 relative z-10 shadow-soft">
+            <svg viewBox="0 0 24 24" class="w-5.5 h-5.5" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 10.5 12 4l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M9 21v-6h6v6"/></svg>
+          </div>
+          <h3 class="mt-4 text-xl font-display text-forest-800" style="font-weight:800">المنظفات المنزلية</h3>
+          <p class="mt-2 text-forest-800/65 text-sm leading-relaxed">أواني، أرضيات، زجاج، حمامات، مطهرات ومعادن.</p>
+          <a href="#recipes" data-filter="home" class="filter-link mt-4 inline-flex items-center gap-2 text-forest-700 font-bold text-sm group/link">
+            22 وصفة
+            <svg viewBox="0 0 24 24" class="w-4 h-4 transition-transform duration-500 group-hover/link:-translate-x-1.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="reveal card sheen group relative rounded-[1.75rem] overflow-hidden bg-white border border-sand-200 shadow-soft" style="--d:110ms">
+        <div class="h-44 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=900&q=80" alt="العناية بالسيارات" class="w-full h-full object-cover transition-transform duration-[900ms] group-hover:scale-[1.09]" onerror="this.parentElement.classList.add('img-fallback');this.remove()">
+        </div>
+        <div class="p-6">
+          <div class="w-11 h-11 rounded-2xl bg-gold-400/25 text-clay-600 grid place-items-center -mt-12 relative z-10 shadow-soft">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11l1.6-4.2A2 2 0 0 1 8.5 5.5h7a2 2 0 0 1 1.9 1.3L19 11"/><path d="M4 11h16a1 1 0 0 1 1 1v4h-2.2M3 16H2v-4a1 1 0 0 1 1-1"/><circle cx="7.5" cy="16.5" r="2"/><circle cx="16.5" cy="16.5" r="2"/></svg>
+          </div>
+          <h3 class="mt-4 text-xl font-display text-forest-800" style="font-weight:800">العناية بالسيارات</h3>
+          <p class="mt-2 text-forest-800/65 text-sm leading-relaxed">شامبو، زجاج، محركات، تابلوه، مبرّد وعطور.</p>
+          <a href="#recipes" data-filter="car" class="filter-link mt-4 inline-flex items-center gap-2 text-forest-700 font-bold text-sm group/link">
+            10 وصفات
+            <svg viewBox="0 0 24 24" class="w-4 h-4 transition-transform duration-500 group-hover/link:-translate-x-1.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="reveal card sheen relative rounded-[1.75rem] overflow-hidden bg-forest-800 text-white shadow-soft" style="--d:220ms">
+        <div class="absolute inset-0 opacity-25">
+          <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=900&q=80" alt="مختبر" class="w-full h-full object-cover" onerror="this.remove()">
+        </div>
+        <div class="relative p-7 h-full flex flex-col justify-between min-h-[320px]">
+          <div>
+            <div class="w-11 h-11 rounded-2xl bg-white/12 border border-white/20 grid place-items-center">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M9 3h6M10 3v5.2L5.6 16A3.2 3.2 0 0 0 8.5 20.6h7A3.2 3.2 0 0 0 18.4 16L14 8.2V3"/><path d="M7.6 14.4h8.8"/></svg>
+            </div>
+            <h3 class="mt-5 text-2xl font-display" style="font-weight:800">قاعدة المكوّنات</h3>
+            <p class="mt-3 text-white/72 text-sm leading-relaxed">
+              المواد الفعالة سطحياً، المذيبات، المثخنات والمواد الحافظة — مع شرح وظيفة كل منها داخل الوصفة.
+            </p>
+          </div>
+          <div class="mt-7 space-y-3">
+            <div>
+              <div class="flex justify-between text-xs mb-1.5"><span class="text-white/70">مواد منظّفة</span><span class="text-mint-300">45%</span></div>
+              <div class="h-1.5 rounded-full bg-white/12 overflow-hidden"><div class="bar-fill scroll-bar" data-w="45"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs mb-1.5"><span class="text-white/70">مذيبات ومذيبات مساعدة</span><span class="text-mint-300">30%</span></div>
+              <div class="h-1.5 rounded-full bg-white/12 overflow-hidden"><div class="bar-fill scroll-bar" data-w="30"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs mb-1.5"><span class="text-white/70">إضافات ومواد حافظة</span><span class="text-mint-300">25%</span></div>
+              <div class="h-1.5 rounded-full bg-white/12 overflow-hidden"><div class="bar-fill scroll-bar" data-w="25"></div></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="reveal card sheen relative rounded-[1.75rem] overflow-hidden bg-clay-500 text-white shadow-soft" style="--d:330ms">
+        <div class="p-7 h-full flex flex-col justify-between min-h-[320px]">
+          <div>
+            <div class="w-11 h-11 rounded-2xl bg-white/18 grid place-items-center">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 3 4 7v5c0 5 3.4 8.4 8 9 4.6-.6 8-4 8-9V7z"/><path d="m9 12 2 2 4-4"/></svg>
+            </div>
+            <h3 class="mt-5 text-2xl font-display" style="font-weight:800">السلامة أولاً</h3>
+            <p class="mt-3 text-white/85 text-sm leading-relaxed">
+              قفازات، نظارات واقية، تهوية جيدة، وعدم خلط المواد غير المتوافقة — خاصة مع الأحماض والقلويات.
+            </p>
+          </div>
+          <a href="#safety" class="mt-7 inline-flex items-center gap-2 rounded-full bg-white text-clay-600 px-5 py-3 text-sm font-bold w-fit hover:bg-white/90 transition-colors">
+            اقرأ الإرشادات
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= RECIPES ================= -->
+<section id="recipes" class="relative py-24 sm:py-28 bg-white">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
+      <div class="max-w-2xl">
+        <p class="reveal text-clay-500 font-bold tracking-[.18em] text-xs">مكتبة الوصفات</p>
+        <h2 class="reveal mt-4 font-display text-forest-800 text-[clamp(2rem,4.6vw,3.15rem)] leading-tight" style="--d:110ms;font-weight:900">
+          اختر وصفتك وابدأ التحضير
+        </h2>
+        <p class="reveal mt-5 text-forest-800/70 text-lg leading-relaxed" style="--d:190ms">
+          استخدم البحث أو الفلاتر للوصول السريع. اضغط على أي وصفة لعرض المكوّنات بالنسبة المئوية وخطوات التحضير كاملة.
+        </p>
+      </div>
+
+      <!-- Search -->
+      <div class="reveal w-full lg:w-96" style="--d:250ms">
+        <label for="searchInput" class="sr-only">ابحث عن وصفة</label>
+        <div class="relative">
+          <input id="searchInput" type="text" placeholder="ابحث… مثال: شامبو، زجاج، ملح"
+            class="w-full rounded-full border border-sand-200 bg-sand-50 px-6 py-4 pr-14 text-forest-800 placeholder:text-forest-800/40 focus:outline-none focus:ring-4 focus:ring-mint-200/60 focus:border-mint-400 transition-all">
+          <svg viewBox="0 0 24 24" class="w-5 h-5 absolute top-1/2 -translate-y-1/2 right-5 text-forest-800/45" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="mt-10 flex flex-wrap items-center gap-3">
+      <button class="pill active px-6 py-3 rounded-full bg-sand-100 text-forest-800 font-bold text-sm border border-sand-200" data-filter="all">كل الوصفات</button>
+      <button class="pill px-6 py-3 rounded-full bg-sand-100 text-forest-800 font-bold text-sm border border-sand-200" data-filter="home">المنظفات المنزلية</button>
+      <button class="pill px-6 py-3 rounded-full bg-sand-100 text-forest-800 font-bold text-sm border border-sand-200" data-filter="car">العناية بالسيارات</button>
+      <button class="pill px-6 py-3 rounded-full bg-sand-100 text-forest-800 font-bold text-sm border border-sand-200" data-filter="safe">بدون مواد حافظة قوية</button>
+    </div>
+
+    <p id="resultCount" class="mt-6 text-forest-800/55 text-sm"></p>
+
+    <!-- Grid -->
+    <div id="recipeGrid" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-7"></div>
+
+    <div id="emptyState" class="hidden text-center py-20">
+      <div class="mx-auto w-20 h-20 rounded-3xl bg-sand-100 grid place-items-center">
+        <svg viewBox="0 0 24 24" class="w-9 h-9 text-forest-800/40" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+      </div>
+      <h3 class="mt-5 text-xl font-display text-forest-800" style="font-weight:800">لا توجد نتائج مطابقة</h3>
+      <p class="mt-2 text-forest-800/60">جرّب كلمة بحث أخرى أو أعد ضبط الفلاتر.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= PROCESS ================= -->
+<section id="process" class="relative py-24 sm:py-28 bg-forest-900 overflow-hidden">
+  <div class="absolute inset-0 opacity-[.14]">
+    <img src="https://images.unsplash.com/photo-1563453392212-326f5e854473?auto=format&fit=crop&w=1600&q=80" alt="" class="w-full h-full object-cover" onerror="this.remove()">
+    <div class="absolute inset-0 bg-gradient-to-t from-forest-900 via-forest-900/85 to-forest-900"></div>
+  </div>
+  <div class="absolute -top-24 right-1/4 w-[420px] h-[420px] rounded-full bg-mint-400/12 blur-3xl"></div>
+
+  <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl">
+      <p class="reveal text-mint-300 font-bold tracking-[.18em] text-xs">منهجية العمل</p>
+      <h2 class="reveal mt-4 font-display text-white text-[clamp(2rem,4.6vw,3.15rem)] leading-tight" style="--d:110ms;font-weight:900">
+        أربع مراحل لنتيجة متجانسة في كل مرة
+      </h2>
+      <p class="reveal mt-6 text-white/70 text-lg leading-relaxed" style="--d:190ms">
+        الترتيب ليس تفصيلاً ثانوياً — إضافة المكوّنات بالترتيب الصحيح تمنع التكتّل، وتحافظ على استقرار القوام والنعومة.
+      </p>
+    </div>
+
+    <!-- Progress line -->
+    <div class="mt-16 relative">
+      <div class="hidden lg:block absolute top-[42px] right-[8%] left-[8%] h-[3px] bg-white/12 rounded-full overflow-hidden">
+        <div id="processLine" class="h-full w-0 rounded-full bg-gradient-to-l from-mint-400 to-gold-400 transition-[width] duration-300 ease-out"></div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="reveal relative">
+          <div class="w-[86px] h-[86px] rounded-3xl bg-white/[.07] border border-white/12 backdrop-blur grid place-items-center">
+            <span class="font-display text-3xl text-mint-300" style="font-weight:900">01</span>
+          </div>
+          <h3 class="mt-6 text-xl font-display text-white" style="font-weight:800">تجهيز المكوّنات</h3>
+          <p class="mt-3 text-white/65 leading-relaxed text-[15px]">وزن كل مادة على ميزان حسّاس، والتأكد من نظافة الأوعية والخلاطات قبل البدء.</p>
+        </div>
+
+        <div class="reveal relative" style="--d:130ms">
+          <div class="w-[86px] h-[86px] rounded-3xl bg-white/[.07] border border-white/12 backdrop-blur grid place-items-center">
+            <span class="font-display text-3xl text-mint-300" style="font-weight:900">02</span>
+          </div>
+          <h3 class="mt-6 text-xl font-display text-white" style="font-weight:800">الذوبان بالترتيب</h3>
+          <p class="mt-3 text-white/65 leading-relaxed text-[15px]">بدءاً من الماء، ثم المواد الفعالة سطحياً، ثم المذيبات المذابة مسبقاً في قليل من الماء.</p>
+        </div>
+
+        <div class="reveal relative" style="--d:260ms">
+          <div class="w-[86px] h-[86px] rounded-3xl bg-white/[.07] border border-white/12 backdrop-blur grid place-items-center">
+            <span class="font-display text-3xl text-mint-300" style="font-weight:900">03</span>
+          </div>
+          <h3 class="mt-6 text-xl font-display text-white" style="font-weight:800">ضبط اللزوجة</h3>
+          <p class="mt-3 text-white/65 leading-relaxed text-[15px]">إضافة الملح أو المثخن تدريجياً مع تحريك مستمر حتى الوصول إلى القوام المطلوب.</p>
+        </div>
+
+        <div class="reveal relative" style="--d:390ms">
+          <div class="w-[86px] h-[86px] rounded-3xl bg-mint-400 text-forest-900 grid place-items-center shadow-[0_22px_50px_-18px_rgba(79,209,176,.9)]">
+            <span class="font-display text-3xl" style="font-weight:900">04</span>
+          </div>
+          <h3 class="mt-6 text-xl font-display text-white" style="font-weight:800">التعبئة والتخزين</h3>
+          <p class="mt-3 text-white/65 leading-relaxed text-[15px]">تعبئة في عبوات محكمة، بعيداً عن الضوء والحرارة، مع وضع بطاقة التاريخ والمكوّنات.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SAFETY ================= -->
+<section id="safety" class="relative py-24 sm:py-28 bg-sand-50">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-14 items-center">
+
+      <div>
+        <p class="reveal text-clay-500 font-bold tracking-[.18em] text-xs">إرشادات مهمة</p>
+        <h2 class="reveal mt-4 font-display text-forest-800 text-[clamp(2rem,4.6vw,3.15rem)] leading-tight" style="--d:110ms;font-weight:900">
+          السلامة ليست اختيارية
+        </h2>
+        <p class="reveal mt-6 text-forest-800/70 text-lg leading-relaxed" style="--d:190ms">
+          معظم الوصفات تعتمد على مواد فعّالة سطحياً وأحماض وقلويات. اتباع الإجراءات التالية يحميك ويضمن جودة المنتج النهائي.
+        </p>
+
+        <div class="mt-9 space-y-5">
+          <div class="reveal-x flex gap-4 rounded-2xl bg-white border border-sand-200 p-5 shadow-soft">
+            <span class="shrink-0 w-11 h-11 rounded-2xl bg-clay-500/12 text-clay-600 grid place-items-center">
+              <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M12 3 4 7v5c0 5 3.4 8.4 8 9 4.6-.6 8-4 8-9V7z"/><path d="m9 12 2 2 4-4"/></svg>
+            </span>
+            <div>
+              <h4 class="font-display text-forest-800 text-lg" style="font-weight:800">معدات الوقاية</h4>
+              <p class="mt-1.5 text-forest-800/65 text-[15px] leading-relaxed">قفازات مقاومة، نظارات واقية، وكمامة عند التعامل مع الأحماض أو القلويات أو المساحيق.</p>
+            </div>
+          </div>
+
+          <div class="reveal-x flex gap-4 rounded-2xl bg-white border border-sand-200 p-5 shadow-soft" style="--d:120ms">
+            <span class="shrink-0 w-11 h-11 rounded-2xl bg-gold-400/18 text-gold-500 grid place-items-center">
+              <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M4 9h11a3 3 0 1 0-3-3"/><path d="M4 13h14a3 3 0 1 1-3 3"/><path d="M4 17h7"/></svg>
+            </span>
+            <div>
+              <h4 class="font-display text-forest-800 text-lg" style="font-weight:800">التهوية الجيدة</h4>
+              <p class="mt-1.5 text-forest-800/65 text-[15px] leading-relaxed">حضّر في مكان مفتوح أو جيد التهوية، خاصة عند إذابة هيدروكسيد الصوديوم أو إضافة HCl.</p>
+            </div>
+          </div>
+
+          <div class="reveal-x flex gap-4 rounded-2xl bg-forest-800 text-white p-5 shadow-soft" style="--d:240ms">
+            <span class="shrink-0 w-11 h-11 rounded-2xl bg-white/12 text-mint-300 grid place-items-center">
+              <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 2.6 17a2 2 0 0 0 1.7 3h15.4a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
+            </span>
+            <div>
+              <h4 class="font-display text-lg" style="font-weight:800">ممنوعات المزج</h4>
+              <p class="mt-1.5 text-white/72 text-[15px] leading-relaxed">لا تخلط المبيض (NaOCl) مع الأحماض أو الأمونيا أو العطور الكحولية — التفاعل ينتج غازات سامة.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image + notes -->
+      <div class="relative">
+        <div class="reveal relative rounded-[2rem] overflow-hidden shadow-lift">
+          <img src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?auto=format&fit=crop&w=1100&q=80"
+               alt="تحضير وخلط المواد" class="w-full h-[520px] object-cover"
+               onerror="this.parentElement.classList.add('img-fallback');this.style.height='520px';this.remove()">
+          <div class="absolute inset-0 bg-gradient-to-t from-forest-900/85 via-forest-900/15 to-transparent"></div>
+          <div class="absolute bottom-0 inset-x-0 p-8">
+            <div class="rounded-2xl bg-white/12 backdrop-blur-md border border-white/20 p-5">
+              <p class="text-white/85 leading-relaxed text-[15px]">
+                «دقة القياس والترتيب الصحيح للمكوّنات هما الفارق بين منتج احترافي ومنتج غير مستقر.»
+              </p>
+              <div class="mt-4 flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-mint-400"></div>
+                <div>
+                  <p class="text-white font-bold text-sm">فريق التوثيق</p>
+                  <p class="text-white/60 text-xs">إرشادات التحضير والتخزين</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="float-slower absolute -top-6 -left-4 sm:-left-8 rounded-2xl bg-gold-400 text-forest-900 px-6 py-5 shadow-lift">
+          <p class="text-xs opacity-75">مدة الصلاحية النموذجية</p>
+          <p class="font-display text-2xl" style="font-weight:900">12 – 18 شهراً</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATS BAND ================= -->
+<section class="relative py-16 bg-white border-y border-sand-200">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-10">
+      <div class="reveal text-center">
+        <div class="font-display text-4xl sm:text-5xl text-forest-800" style="font-weight:900"><span class="counter" data-target="32">0</span>+</div>
+        <div class="mt-2 text-forest-800/60">وصفة موثّقة</div>
+      </div>
+      <div class="reveal text-center" style="--d:110ms">
+        <div class="font-display text-4xl sm:text-5xl text-forest-800" style="font-weight:900"><span class="counter" data-target="180">0</span>+</div>
+        <div class="mt-2 text-forest-800/60">مكوّن وخطوة</div>
+      </div>
+      <div class="reveal text-center" style="--d:220ms">
+        <div class="font-display text-4xl sm:text-5xl text-forest-800" style="font-weight:900"><span class="counter" data-target="6">0</span></div>
+        <div class="mt-2 text-forest-800/60">إرشادات سلامة</div>
+      </div>
+      <div class="reveal text-center" style="--d:330ms">
+        <div class="font-display text-4xl sm:text-5xl text-forest-800" style="font-weight:900"><span class="counter" data-target="24">0</span>/7</div>
+        <div class="mt-2 text-forest-800/60">مرجع متاح دائماً</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section id="faq" class="relative py-24 sm:py-28 bg-sand-50 overflow-hidden">
+  <div class="absolute -bottom-32 -right-24 w-[520px] h-[520px] rounded-full bg-mint-200/35 blur-3xl"></div>
+
+  <div class="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <p class="reveal text-clay-500 font-bold tracking-[.18em] text-xs">أسئلة شائعة</p>
+      <h2 class="reveal mt-4 font-display text-forest-800 text-[clamp(2rem,4.6vw,3.15rem)] leading-tight" style="--d:110ms;font-weight:900">
+        إجابات سريعة قبل أن تبدأ
+      </h2>
+    </div>
+
+    <div class="mt-12 space-y-4">
+
+      <div class="acc-item open reveal rounded-2xl bg-white border border-sand-200 shadow-soft overflow-hidden">
+        <button class="acc-btn w-full flex items-center justify-between gap-5 p-6 text-right">
+          <span class="font-display text-forest-800 text-lg sm:text-xl" style="font-weight:800">هل النسب المئوية تعني الوزن أم الحجم؟</span>
+          <span class="acc-icon shrink-0 w-9 h-9 rounded-full bg-mint-200 text-forest-700 grid place-items-center">
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </button>
+        <div class="acc-body"><div class="acc-inner"><p class="px-6 pb-6 text-forest-800/70 leading-relaxed">
+          النسب في هذه الوصفات محسوبة بالوزن (w/w) وليست بالحجم. لذلك يُنصح باستخدام ميزان حسّاس بدقة 0.1 غرام، خاصة للمواد مثل Formol والمواد الحافظة التي تُستخدم بنسب صغيرة جداً.
+        </p></div></div>
+      </div>
+
+      <div class="acc-item reveal rounded-2xl bg-white border border-sand-200 shadow-soft overflow-hidden" style="--d:100ms">
+        <button class="acc-btn w-full flex items-center justify-between gap-5 p-6 text-right">
+          <span class="font-display text-forest-800 text-lg sm:text-xl" style="font-weight:800">كيف أضبط لزوجة السائل بعد التحضير؟</span>
+          <span class="acc-icon shrink-0 w-9 h-9 rounded-full bg-mint-200 text-forest-700 grid place-items-center">
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </button>
+        <div class="acc-body"><div class="acc-inner"><p class="px-6 pb-6 text-forest-800/70 leading-relaxed">
+          أضف محلول الملح (NaCl مذاب في قليل من الماء) بقطرات مع التحريك المستمر، وانتظر دقائق بين كل إضافة. الإفراط في الملح قد يؤدي إلى انفصال الطبقات أو جفاف السائل.
+        </p></div></div>
+      </div>
+
+      <div class="acc-item reveal rounded-2xl bg-white border border-sand-200 shadow-soft overflow-hidden" style="--d:180ms">
+        <button class="acc-btn w-full flex items-center justify-between gap-5 p-6 text-right">
+          <span class="font-display text-forest-800 text-lg sm:text-xl" style="font-weight:800">هل يمكن استبدال بعض المكوّنات؟</span>
+          <span class="acc-icon shrink-0 w-9 h-9 rounded-full bg-mint-200 text-forest-700 grid place-items-center">
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </button>
+        <div class="acc-body"><div class="acc-inner"><p class="px-6 pb-6 text-forest-800/70 leading-relaxed">
+          يمكن استبدال SLES بـ Texapon (كلاهما لوريل إيثر سلفات الصوديوم) مع تعديل النسبة حسب التركيز (مثلاً N70 بتركيز 70%). أما المذيبات مثل Butyl Glycol وIsopropanol فلها وظائف مختلفة ويُفضّل عدم استبدالها مباشرة.
+        </p></div></div>
+      </div>
+
+      <div class="acc-item reveal rounded-2xl bg-white border border-sand-200 shadow-soft overflow-hidden" style="--d:260ms">
+        <button class="acc-btn w-full flex items-center justify-between gap-5 p-6 text-right">
+          <span class="font-display text-forest-800 text-lg sm:text-xl" style="font-weight:800">ما أفضل طريقة للتخزين؟</span>
+          <span class="acc-icon shrink-0 w-9 h-9 rounded-full bg-mint-200 text-forest-700 grid place-items-center">
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </button>
+        <div class="acc-body"><div class="acc-inner"><p class="px-6 pb-6 text-forest-800/70 leading-relaxed">
+          عبوات بلاستيكية محكمة الإغلاق (HDPE)، في مكان بارد وجاف بعيداً عن أشعة الشمس المباشرة. المنتجات التي تحتوي على مبيض أو كحول يجب أن تكون في عبوات معتمة، مع وضع ملصق يوضح تاريخ التحضير.
+        </p></div></div>
+      </div>
+
+      <div class="acc-item reveal rounded-2xl bg-white border border-sand-200 shadow-soft overflow-hidden" style="--d:340ms">
+        <button class="acc-btn w-full flex items-center justify-between gap-5 p-6 text-right">
+          <span class="font-display text-forest-800 text-lg sm:text-xl" style="font-weight:800">ماذا لو ظهرت رغوة زائدة أو قوام غير مستقر؟</span>
+          <span class="acc-icon shrink-0 w-9 h-9 rounded-full bg-mint-200 text-forest-700 grid place-items-center">
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </button>
+        <div class="acc-body"><div class="acc-inner"><p class="px-6 pb-6 text-forest-800/70 leading-relaxed">
+          عادةً يكون السبب تحريكاً سريعاً جداً أو إضافة الملح مبكراً. اترك الخليط يرتاح 12-24 ساعة، ثم أعد التحريك ببطء. في حالة انفصال الطبقات، أضف 0.2% - 0.5% Cocamide DEA كمثبت للرغوة.
+        </p></div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="relative py-24 bg-forest-800 overflow-hidden">
+  <div class="absolute inset-0 opacity-25">
+    <img src="https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?auto=format&fit=crop&w=1600&q=80" alt="" class="w-full h-full object-cover" onerror="this.remove()">
+    <div class="absolute inset-0 bg-gradient-to-l from-forest-800 via-forest-800/92 to-forest-800/75"></div>
+  </div>
+  <div class="absolute -top-20 left-10 w-96 h-96 rounded-full bg-mint-400/18 blur-3xl"></div>
+
+  <div class="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+    <h2 class="reveal font-display text-white text-[clamp(2rem,5vw,3.35rem)] leading-tight" style="font-weight:900">
+      جاهز لتحضير أول وصفة؟
+    </h2>
+    <p class="reveal mt-6 text-white/72 text-lg sm:text-xl leading-relaxed max-w-2xl mx-auto" style="--d:130ms">
+      احفظ هذه الصفحة كمرجع سريع، وابدأ بوصفة بسيطة مثل سائل غسل الأواني الاقتصادية قبل الانتقال إلى الوصفات الأكثر تقدماً.
+    </p>
+
+    <form id="ctaForm" class="reveal mt-10 flex flex-col sm:flex-row gap-4 max-w-xl mx-auto" style="--d:230ms">
+      <label for="emailInput" class="sr-only">البريد الإلكتروني</label>
+      <input id="emailInput" type="email" required placeholder="أدخل بريدك الإلكتروني"
+             class="flex-1 rounded-full px-7 py-4 bg-white/95 text-forest-800 placeholder:text-forest-800/45 focus:outline-none focus:ring-4 focus:ring-mint-300/50">
+      <button type="submit" class="btn-magnetic magnetic rounded-full bg-mint-400 text-forest-900 px-9 py-4 font-bold text-lg hover:bg-mint-300 shadow-[0_22px_50px_-18px_rgba(79,209,176,.9)]">
+        احصل على الدليل
+      </button>
+    </form>
+    <p id="formMsg" class="mt-4 text-mint-300 font-medium opacity-0 transition-opacity duration-500">تم التسجيل بنجاح — شكراً لك!</p>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-forest-900 text-white/70 pt-20 pb-10">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid gap-12 lg:grid-cols-4">
+
+      <div class="lg:col-span-2">
+        <div class="flex items-center gap-3">
+          <span class="w-11 h-11 rounded-2xl bg-gradient-to-br from-forest-600 to-mint-400 grid place-items-center">
+            <svg viewBox="0 0 24 24" class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M9 3h6M10 3v5.2L5.6 16A3.2 3.2 0 0 0 8.5 20.6h7A3.2 3.2 0 0 0 18.4 16L14 8.2V3"/><path d="M7.6 14.4h8.8"/></svg>
+          </span>
+          <div>
+            <p class="font-display text-white text-xl" style="font-weight:900">مختبر الوصفات</p>
+            <p class="text-xs text-white/50">دليل تحضير المنظفات والعناية بالسيارات</p>
+          </div>
+        </div>
+        <p class="mt-6 leading-relaxed max-w-md">
+          مرجع تقني مبسّط يجمع وصفات التحضير بنسب مئوية دقيقة، مع إرشادات السلامة والتخزين لكل منتج.
+          المعلومات هنا لأغراض تعليمية وتطبيقية.
+        </p>
+        <div class="mt-6 flex items-center gap-3">
+          <a href="#recipes" class="w-10 h-10 rounded-full border border-white/15 grid place-items-center hover:bg-white/10 hover:border-mint-300/50 transition-all duration-300" aria-label="الوصفات">
+            <svg viewBox="0 0 24 24" class="w-4.5 h-4.5" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h6"/></svg>
+          </a>
+          <a href="#safety" class="w-10 h-10 rounded-full border border-white/15 grid place-items-center hover:bg-white/10 hover:border-mint-300/50 transition-all duration-300" aria-label="السلامة">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M12 3 4 7v5c0 5 3.4 8.4 8 9 4.6-.6 8-4 8-9V7z"/></svg>
+          </a>
+          <a href="#faq" class="w-10 h-10 rounded-full border border-white/15 grid place-items-center hover:bg-white/10 hover:border-mint-300/50 transition-all duration-300" aria-label="أسئلة">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.2 2.4c-.7.3-1.2.9-1.2 1.6v.5"/><path d="M12 17h.01"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="text-white font-display text-lg" style="font-weight:800">روابط سريعة</h4>
+        <ul class="mt-5 space-y-3">
+          <li><a href="#home" class="hover:text-mint-300 transition-colors">الرئيسية</a></li>
+          <li><a href="#categories" class="hover:text-mint-300 transition-colors">الأقسام</a></li>
+          <li><a href="#recipes" class="hover:text-mint-300 transition-colors">مكتبة الوصفات</a></li>
+          <li><a href="#process" class="hover:text-mint-300 transition-colors">منهجية العمل</a></li>
+          <li><a href="#safety" class="hover:text-mint-300 transition-colors">إرشادات السلامة</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-white font-display text-lg" style="font-weight:800">أبرز الوصفات</h4>
+        <ul class="mt-5 space-y-3">
+          <li><a href="#recipes" class="hover:text-mint-300 transition-colors">سائل غسل الأواني</a></li>
+          <li><a href="#recipes" class="hover:text-mint-300 transition-colors">منظف الزجاج والمرايا</a></li>
+          <li><a href="#recipes" class="hover:text-mint-300 transition-colors">شامبو السيارات</a></li>
+          <li><a href="#recipes" class="hover:text-mint-300 transition-colors">مبرّد محرك السيارة</a></li>
+          <li><a href="#recipes" class="hover:text-mint-300 transition-colors">جل تنظيف المراحيض</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="mt-14 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
+      <p>© <span id="year">2024</span> مختبر الوصفات. جميع الحقوق محفوظة.</p>
+      <div class="flex items-center gap-6">
+        <a href="#" class="hover:text-mint-300 transition-colors">سياسة الخصوصية</a>
+        <a href="#" class="hover:text-mint-300 transition-colors">شروط الاستخدام</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= MODAL ================= -->
+<div id="recipeModal" class="modal-backdrop fixed inset-0 z-[100] bg-forest-900/70 backdrop-blur-sm p-4 sm:p-8 overflow-y-auto">
+  <div class="modal-panel relative mx-auto max-w-3xl bg-white rounded-[1.75rem] shadow-lift overflow-hidden my-auto">
+    <button id="modalClose" class="absolute top-4 left-4 z-10 w-10 h-10 rounded-full bg-white/90 border border-sand-200 grid place-items-center text-forest-800 hover:bg-sand-100 transition-colors" aria-label="إغلاق">
+      <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6 18 18M18 6 6 18"/></svg>
+    </button>
+
+    <div class="relative bg-forest-800 px-7 sm:px-10 py-9">
+      <div class="absolute inset-0 opacity-25">
+        <div class="w-full h-full bg-[radial-gradient(circle_at_20%_20%,rgba(79,209,176,.55),transparent_60%)]"></div>
+      </div>
+      <div class="relative">
+        <span id="modalTag" class="inline-block rounded-full bg-white/12 border border-white/20 text-mint-200 text-xs px-4 py-1.5 font-medium"></span>
+        <h3 id="modalTitle" class="mt-4 text-white font-display text-2xl sm:text-3xl leading-snug" style="font-weight:900"></h3>
+      </div>
+    </div>
+
+    <div class="px-7 sm:px-10 py-9 thin-scroll">
+      <!-- Ingredients -->
+      <h4 class="flex items-center gap-3 text-forest-800 font-display text-xl" style="font-weight:800">
+        <span class="w-9 h-9 rounded-xl bg-mint-200 text-forest-700 grid place-items-center">
+          <svg viewBox="0 0 24 24" class="w-4.5 h-4.5" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+        </span>
+        المكوّنات
+      </h4>
+      <div id="modalIngredients" class="mt-5 space-y-3.5"></div>
+
+      <!-- Steps -->
+      <h4 class="mt-10 flex items-center gap-3 text-forest-800 font-display text-xl" style="font-weight:800">
+        <span class="w-9 h-9 rounded-xl bg-gold-400/25 text-clay-600 grid place-items-center">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v4M12 21v-2"/><circle cx="12" cy="13" r="5"/><path d="M9 13h6"/></svg>
+        </span>
+        طريقة التحضير
+      </h4>
+      <ol id="modalSteps" class="mt-6 space-y-5"></ol>
+
+      <div id="modalWarn" class="mt-9 hidden rounded-2xl border border-clay-500/25 bg-clay-500/[.08] p-5">
+        <div class="flex items-start gap-3">
+          <svg viewBox="0 0 24 24" class="w-6 h-6 text-clay-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 2.6 17a2 2 0 0 0 1.7 3h15.4a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
+          <div>
+            <p class="font-bold text-clay-600">تنبيه السلامة</p>
+            <p id="modalWarnText" class="mt-1.5 text-forest-800/75 leading-relaxed text-[15px]"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ================= RECIPE DATA ================= */
+  const recipes = [
+    { n:1, t:"سائل غسل الأواني (اقتصادي)", c:"home", k:"أواني",
+      i:[["SLES / Texapon",7],["Cocamide DEA",2],["ملح طعام NaCl",2],["Formol",0.2],["عطر",0.3],["ماء",88.4]],
+      s:["ضع كمية الماء في وعاء نظيف.","أضف SLES أو Texapon مع التحريك المستمر حتى الذوبان التام.","أضف Cocamide DEA وحرك جيداً.","أضف ملح الطعام تدريجياً مع التحريك حتى الحصول على القوام المطلوب.","أضف Formol ثم العطر واللون (اختياري).","أكمل الماء إلى 100% وحرك حتى التجانس.","عبّئ في عبوات مناسبة."] },
+
+    { n:2, t:"سائل غسل الأواني (جودة أعلى)", c:"home", k:"أواني",
+      i:[["SLES / Texapon",10],["Betaine",3],["Cocamide DEA",2],["ملح NaCl",1.5],["Formol",0.2],["عطر",0.3],["ماء",82.9]],
+      s:["ضع الماء في وعاء نظيف.","أضف SLES أو Texapon مع التحريك المستمر.","أضف Betaine ثم Cocamide DEA مع التحريك.","أضف ملح الطعام تدريجياً مع التحريك حتى الحصول على اللزوجة المطلوبة.","أضف Formol ثم العطر واللون.","أكمل الماء إلى 100% وحرك جيداً.","عبّئ في عبوات محكمة."] },
+
+    { n:3, t:"صابون سائل لليدين (اقتصادي)", c:"home", k:"عناية",
+      i:[["SLES / Texapon",8],["Betaine",2],["ملح NaCl",1],["Formol",0.2],["عطر",0.3],["ماء",88.4]],
+      s:["ضع الماء في وعاء.","أضف SLES أو Texapon وحرك حتى الذوبان.","أضف Betaine وحرك جيداً.","أضف الملح تدريجياً لضبط اللزوجة.","أضف Formol ثم العطر واللون.","أكمل الماء إلى 100% وحرك.","عبّئ في عبوات."] },
+
+    { n:4, t:"مزيل دهون الفرن", c:"home", k:"مطبخ", warn:"هيدروكسيد الصوديوم مادة أكّالة — استخدم قفازات ونظارات واقية، وأذبه في الماء وليس العكس، في مكان جيد التهوية.",
+      i:[["هيدروكسيد الصوديوم NaOH",2],["SLES / Texapon",3],["Betaine",1],["Butyl Glycol",2],["Formol",0.2],["عطر",0.2],["ماء",91.5]],
+      s:["تحذير: ارتدِ قفازات ونظارات واقية، وتأكد من التهوية الجيدة.","ضع الماء في وعاء مقاوم للقلويات.","أذب NaOH في الماء بحذر شديد (يحدث تفاعل طارد للحرارة).","أضف SLES أو Texapon مع التحريك.","أضف Betaine ثم Butyl Glycol.","أضف Formol ثم العطر.","أكمل الماء إلى 100% وحرك.","عبّئ في عبوات بلاستيكية محكمة."] },
+
+    { n:5, t:"مبيض ومطهر (جافيل اقتصادي)", c:"home", k:"مطهرات", warn:"لا تخلط هيبوكلوريت الصوديوم مع الأحماض أو الأمونيا أو العطور الكحولية إطلاقاً — النتيجة غازات سامة.",
+      i:[["هيبوكلوريت الصوديوم NaOCl",15.5],["ماء",84.5]],
+      s:["تحذير: لا تخلط مع الأحماض أو العطور.","ضع الماء في وعاء بلاستيكي.","أضف NaOCl تدريجياً مع التحريك الهادئ.","أكمل الماء إلى 100%.","عبّئ في عبوات معتمة محكمة الإغلاق.","خزّن بعيداً عن الضوء والحرارة."] },
+
+    { n:6, t:"سائل غسل الملابس (مرسيليا)", c:"home", k:"غسيل",
+      i:[["SLES",8],["Betaine",1.5],["Cocamide DEA",1.5],["ملح NaCl",1],["Formol",0.2],["عطر مرسيليا",0.3],["ماء",87.4]],
+      s:["ضع الماء في وعاء.","أضف SLES وحرك حتى الذوبان.","أضف Betaine ثم Cocamide DEA مع التحريك.","أضف الملح تدريجياً لضبط اللزوجة.","أضف Formol ثم عطر مرسيليا.","أكمل الماء إلى 100% وحرك.","عبّئ في عبوات."] },
+
+    { n:7, t:"معطر الأرضيات «صانيبو»", c:"home", k:"أرضيات",
+      i:[["SLES / Texapon",3],["Betaine",1],["ملح NaCl",1],["Formol",0.2],["عطر",0.5],["ماء",94.2]],
+      s:["ضع الماء في وعاء.","أضف SLES أو Texapon وحرك.","أضف Betaine وحرك.","أضف الملح تدريجياً.","أضف Formol ثم العطر.","أكمل الماء إلى 100%.","عبّئ في عبوات."] },
+
+    { n:8, t:"منظف الأرضيات متعدد الاستعمالات", c:"home", k:"أرضيات",
+      i:[["SLES",6],["Betaine",1],["Butyl Glycol",1],["ملح NaCl",0.5],["Formol",0.2],["عطر",0.3],["ماء",90.9]],
+      s:["ضع الماء في وعاء.","أضف SLES وحرك.","أضف Betaine ثم Butyl Glycol.","أضف الملح تدريجياً.","أضف Formol ثم العطر.","أكمل الماء إلى 100%.","عبّئ في عبوات."] },
+
+    { n:9, t:"منظف الزجاج والمرايا", c:"home", k:"زجاج",
+      i:[["ماء",80],["إيثانول / إيزوبروبانول",15],["SLES / Betaine",0.5],["Butyl Glycol",1],["Formol",0.2],["عطر",0.2],["ملون",0.1]],
+      s:["اخلط الماء مع الكحول في وعاء.","أضف SLES أو Betaine وحرك.","أضف Butyl Glycol.","أضف Formol ثم العطر واللون.","أكمل الماء إلى 100%.","عبّئ في بخاخ."] },
+
+    { n:10, t:"منظف الحمام والمراحيض (مزيل تكلسات)", c:"home", k:"حمام",
+      i:[["حمض الستريك",3],["SLES",2],["Betaine",1],["Butyl Glycol",1],["Formol",0.2],["عطر",0.3],["ماء",92.4]],
+      s:["أذب حمض الستريك في قليل من الماء.","أضف SLES وحرك.","أضف Betaine ثم Butyl Glycol.","أضف Formol ثم العطر.","أكمل الماء إلى 100%.","عبّئ في بخاخ."] },
+
+    { n:11, t:"سائل غسيل الأواني بدون حمض السلفونيك", c:"home", k:"أواني",
+      i:[["SLES",2],["Cocamide DEA",0.5],["Butyl Glycol",1],["ملح NaCl",0.5],["Formol",0.2],["عطر",0.3],["ماء",95.4]],
+      s:["ضع الماء في وعاء.","أضف SLES وحرك.","أضف Cocamide DEA ثم Butyl Glycol.","أضف الملح تدريجياً.","أضف Formol ثم العطر.","أكمل الماء إلى 100%.","عبّئ في عبوات."] },
+
+    { n:12, t:"منظف قوي للإسمنت والشوائب", c:"home", k:"متخصص", warn:"حمض الهيدروكلوريك أكّال وينتج أبخرة سامة — معدات وقاية كاملة، تهوية قوية، ولا يُخلط مع المبيض (الكلور).",
+      i:[["حمض الهيدروكلوريك HCl",15],["SLES / Texapon",1.5],["ماء",83.5]],
+      s:["تحذير شديد: ارتدِ معدات وقاية كاملة، وتأكد من التهوية.","ضع الماء في وعاء مقاوم للأحماض.","أضف HCl بحذر شديد (يحدث تفاعل طارد للحرارة).","أضف SLES أو Texapon مع التحريك.","أكمل الماء إلى 100%.","عبّئ في عبوات بلاستيكية محكمة.","لا تخلط مع الكلور."] },
+
+    { n:13, t:"جل تنظيف المراحيض", c:"home", k:"حمام",
+      i:[["حمض اللاكتيك / الستريك",3],["SLES",2],["Betaine",1],["مادة مثخنة Xanthan / CMC",0.5],["Butyl Glycol",1],["Formol",0.2],["عطر",0.2],["ماء",92]],
+      s:["أذب الحمض في قليل من الماء.","أضف SLES وحرك.","أضف Betaine ثم Butyl Glycol.","أذب المادة المثخنة في قليل من الماء وأضفها للخليط مع التحريك المستمر حتى الحصول على قوام الجل.","أضف Formol ثم العطر.","أكمل الماء إلى 100%.","عبّئ في عبوات مناسبة."] },
+
+    { n:14, t:"مزيل بقع قبل الغسيل", c:"home", k:"غسيل",
+      i:[["SLES / Texapon",5],["Betaine",1],["Butyl Glycol",2],["إيثانول",5],["Formol",0.2],["عطر",0.3],["ماء",86.3]],
+      s:["اخلط الماء مع الإيثانول.","أضف SLES أو Texapon وحرك.","أضف Betaine ثم Butyl Glycol.","أضف Formol ثم العطر.","أكمل الماء إلى 100%.","عبّئ في بخاخ."] },
+
+    { n:15, t:"ملمع الخشب", c:"home", k:"متخصص", warn:"التربنتين سريع الاشتعال — تحضير بعيداً عن اللهب أو مصادر الشرر، مع تهوية جيدة.",
+      i:[["زيت البرافين الخفيف",60],["شمع العسل / شمع الكرنوبا",10],["تربنتين",20],["عطر خشبي",0.5],["مضاد أكسدة",0.5],["زيوت داعمة",9]],
+      s:["أذب الشمع في زيت البرافين على حمام مائي دافئ.","أضف التربنتين تدريجياً مع التحريك.","أضف العطر ومضاد الأكسدة.","اترك المزيج ليبرد ثم عبّئ في عبوات مناسبة."] },
+
+    { n:16, t:"منظف الأحذية الجلدية", c:"home", k:"متخصص",
+      i:[["SLES",2],["ملح NaCl",0.5],["Butyl Glycol",1],["Formol",0.2],["عطر",0.3],["ماء",96]],
+      s:["ضع الماء في وعاء.","أضف SLES وحرك.","أضف الملح ثم Butyl Glycol.","أضف Formol ثم العطر.","أكمل الماء إلى 100%.","عبّئ في بخاخ."] },
+
+    { n:17, t:"منظف الحمام اليومي", c:"home", k:"حمام",
+      i:[["SLES / Texapon",3],["Betaine",1],["Butyl Glycol",1],["ملح NaCl",0.5],["عطر",0.3],["Formol",0.2],["ماء",93.9]],
+      s:["ضع الماء في وعاء.","أضف SLES أو Texapon وحرك.","أضف Betaine ثم Butyl Glycol.","أضف الملح تدريجياً.","أضف Formol ثم العطر.","أكمل الماء إلى 100%.","عبّئ في بخاخ."] },
+
+    { n:18, t:"بخاخ طارد الحشرات المنزلية", c:"home", k:"متخصص",
+      i:[["SLES",1],["إيثانول",8],["زيت طارد (سترونيلا / ليمون جراس)",1.5],["Formol",0.2],["عطر",0.4],["ماء",88.8]],
+      s:["اخلط الماء مع الإيثانول.","أضف SLES وحرك.","أضف الزيت الطارد.","أضف Formol ثم العطر.","أكمل الماء إلى 100%.","عبّئ في بخاخ."] },
+
+    { n:19, t:"مزيل الروائح للقمامة", c:"home", k:"متخصص",
+      i:[["SLES",1],["Betaine",0.5],["إيثانول",5],["زيت عطري (ليمون / برتقال)",0.8],["مادة حافظة",0.2],["ماء",92.5]],
+      s:["اخلط الماء مع الإيثانول.","أضف SLES و Betaine.","أضف الزيت العطري.","أضف المادة الحافظة.","أكمل الماء إلى 100%.","عبّئ في بخاخ."] },
+
+    { n:20, t:"منظف الأحواض والمغاسل", c:"home", k:"حمام",
+      i:[["SLES",4],["Betaine",1],["ملح NaCl",1],["Butyl Glycol",1],["Formol",0.2],["عطر",0.3],["ماء",92.4]],
+      s:["ضع الماء في وعاء.","أضف SLES وحرك.","أضف Betaine ثم Butyl Glycol.","أضف الملح تدريجياً.","أضف Formol ثم العطر.","أكمل الماء إلى 100%.","عبّئ في عبوات."] },
+
+    { n:21, t:"منظف الأحذية الرياضية والقماشية", c:"home", k:"متخصص",
+      i:[["SLES",3],["Betaine",1],["إيثانول",5],["Butyl Glycol",1],["ملح NaCl",0.5],["Formol",0.2],["عطر",0.3],["ماء",88.9]],
+      s:["اخلط الماء مع الإيثانول.","أضف SLES وحرك.","أضف Betaine ثم Butyl Glycol.","أضف الملح تدريجياً.","أضف Formol ثم العطر.","أكمل الماء إلى 100%.","عبّئ في بخاخ."] },
+
+    { n:22, t:"منظف المعادن والتلميع", c:"home", k:"متخصص",
+      i:[["حمض الستريك / اللاكتيك",2],["SLES",2],["Betaine",1],["Butyl Glycol",1],["ملح NaCl",0.5],["Formol",0.2],["عطر",0.2],["ماء",93]],
+      s:["أذب الحمض في قليل من الماء.","أضف SLES وحرك.","أضف Betaine ثم Butyl Glycol.","أضف الملح تدريجياً.","أضف Formol ثم العطر.","أكمل الماء إلى 100%.","عبّئ في عبوات."] },
+
+    { n:23, t:"شامبو السيارات", c:"car", k:"خارجي",
+      i:[["Texapon N70",8],["CDE",2],["Propylene Glycol",2],["حمض الستريك",0.5],["Formol",0.2],["عطر",0.5],["ماء",86.8]],
+      s:["ضع الماء في وعاء.","أضف Texapon N70 مع التحريك حتى الذوبان.","أضف CDE وحرك.","أضف Propylene Glycol.","أذب حمض الستريك في قليل من الماء وأضفه لضبط pH.","أضف Formol ثم العطر.","أكمل الماء إلى 100%.","عبّئ في عبوات."] },
+
+    { n:24, t:"منتج تنظيف زجاج السيارات", c:"car", k:"زجاج",
+      i:[["Isopropanol",10],["Propylene Glycol",5],["Texapon N70",2],["حمض الستريك",0.3],["Formol",0.2],["ماء",82.5]],
+      s:["اخلط الماء مع Isopropanol.","أضف Texapon N70 وحرك.","أضف Propylene Glycol.","أذب حمض الستريك في قليل من الماء وأضفه.","أضف Formol.","أكمل الماء إلى 100%.","عبّئ في بخاخ."] },
+
+    { n:25, t:"منتج تلميع لوحة القيادة (تابلوه)", c:"car", k:"داخلي",
+      i:[["Cétiol C5",10],["Isopropanol",7],["Propylene Glycol",5],["Glycerine",3],["Formol",0.5],["ماء",74.5]],
+      s:["اخلط الماء مع Isopropanol.","أضف Cétiol C5 وحرك.","أضف Propylene Glycol ثم Glycerine.","أضف Formol.","أكمل الماء إلى 100%.","عبّئ في بخاخ."] },
+
+    { n:26, t:"منتج تنظيف المحرك من الزيوت والشحوم", c:"car", k:"محرك",
+      i:[["Butyl Glycol",10],["Texapon N70",8],["Propylene Glycol",5],["Cétiol C5",3],["Formol",0.2],["ماء",73.8]],
+      s:["ضع الماء في وعاء.","أضف Texapon N70 مع التحريك.","أضف Butyl Glycol ثم Propylene Glycol.","أضف Cétiol C5.","أضف Formol.","أكمل الماء إلى 100%.","عبّئ في عبوات."] },
+
+    { n:27, t:"منتج «La Mousse» لتنظيف السيارات", c:"car", k:"خارجي",
+      i:[["Texapon N70",10],["CDE",3],["Propylene Glycol",2],["حمض الستريك",0.5],["Formol",0.3],["عطر",0.1],["ماء",83.9]],
+      s:["ضع الماء في وعاء.","أضف Texapon N70 مع التحريك.","أضف CDE ثم Propylene Glycol.","أذب حمض الستريك في قليل من الماء وأضفه.","أضف Formol ثم العطر.","أكمل الماء إلى 100%.","عبّئ في عبوات رغوية."] },
+
+    { n:28, t:"منتج مبرّد محرك السيارة", c:"car", k:"محرك", warn:"Mono Ethylene Glycol سام عند البلع — يُخزَّن بعيداً عن متناول الأطفال والحيوانات الأليفة، ويُستخدم الماء المقطر فقط.",
+      i:[["Mono Ethylene Glycol (MEG)",50],["ماء مقطر",48],["Inhibiteur de Corrosion",1.5],["Anti-Foaming Agent",0.3],["ملون",0.2],["إضافات مساعدة",0]],
+      s:["اخلط MEG مع الماء المقطر.","أضف Inhibiteur de Corrosion مع التحريك.","أضف Anti-Foaming Agent.","أضف الملون.","حرك جيداً حتى التجانس.","عبّئ في عبوات مناسبة."] },
+
+    { n:29, t:"منتج مزيل الضباب من الزجاج الداخلي", c:"car", k:"زجاج",
+      i:[["Isopropanol",20],["Propylene Glycol",5],["Formol",0.5],["ملون",0.2],["ماء مقطر",74.3]],
+      s:["اخلط الماء مع Isopropanol.","أضف Propylene Glycol.","أضف Formol.","أضف الملون.","أكمل الماء إلى 100%.","عبّئ في بخاخ."] },
+
+    { n:30, t:"منتج عطر السيارات", c:"car", k:"داخلي",
+      i:[["Propylene Glycol",10],["زيت عطري",5],["Formol",0.5],["ماء مقطر",84.5]],
+      s:["اخلط Propylene Glycol مع الزيت العطري.","أضف الماء المقطر تدريجياً مع التحريك.","أضف Formol.","حرك جيداً.","عبّئ في بخاخ."] },
+
+    { n:31, t:"منتج تنظيف وتجديد عجلات السيارة", c:"car", k:"عجلات",
+      i:[["Texapon N70",7],["C.O.D",5],["Propylene Glycol",3],["حمض الستريك",1],["Formol",0.3],["ماء",83.7]],
+      s:["ضع الماء في وعاء.","أضف Texapon N70 مع التحريك.","أضف Propylene Glycol ثم C.O.D.","أذب حمض الستريك في قليل من الماء وأضفه.","أضف Formol.","أكمل الماء إلى 100%.","عبّئ في بخاخ."] },
+
+    { n:32, t:"سائل مساحات الزجاج", c:"car", k:"زجاج",
+      i:[["Isopropanol",20],["Propylene Glycol",5],["مادة فعالة سطحياً",1],["Formol",0.2],["عطر",0.2],["ماء مقطر",73.6]],
+      s:["اخلط الماء مع Isopropanol.","أضف المادة الفعالة سطحياً وحرك.","أضف Propylene Glycol.","أضف Formol ثم العطر.","أكمل الماء إلى 100%.","عبّئ في عبوات."] }
+  ];
+
+  /* ================= HEADER ================= */
+  const header = document.getElementById('header');
+  const headerInner = document.getElementById('headerInner');
+  const brandText = document.getElementById('brandText');
+  const brandSub = document.getElementById('brandSub');
+
+  function updateHeader() {
+    const scrolled = window.scrollY > 60;
+    if (scrolled) {
+      header.classList.add('bg-white/92', 'backdrop-blur-xl', 'shadow-[0_12px_40px_-18px_rgba(11,38,33,.35)]');
+      headerInner.classList.add('py-3');
+      headerInner.classList.remove('py-5');
+      brandText.classList.remove('text-white');
+      brandText.classList.add('text-forest-800');
+      brandSub.classList.remove('text-mint-200');
+      brandSub.classList.add('text-forest-600');
+      header.querySelectorAll('nav .nav-link').forEach(function (l) {
+        l.classList.remove('text-white/85', 'hover:text-white');
+        l.classList.add('text-forest-800/80', 'hover:text-forest-800');
+      });
+      const menuBtn = document.getElementById('menuBtn');
+      menuBtn.classList.remove('bg-white/15', 'border-white/25', 'text-white');
+      menuBtn.classList.add('bg-sand-100', 'border-sand-200', 'text-forest-800');
+    } else {
+      header.classList.remove('bg-white/92', 'backdrop-blur-xl', 'shadow-[0_12px_40px_-18px_rgba(11,38,33,.35)]');
+      headerInner.classList.remove('py-3');
+      headerInner.classList.add('py-5');
+      brandText.classList.add('text-white');
+      brandText.classList.remove('text-forest-800');
+      brandSub.classList.add('text-mint-200');
+      brandSub.classList.remove('text-forest-600');
+      header.querySelectorAll('nav .nav-link').forEach(function (l) {
+        l.classList.add('text-white/85', 'hover:text-white');
+        l.classList.remove('text-forest-800/80', 'hover:text-forest-800');
+      });
+      const menuBtn = document.getElementById('menuBtn');
+      menuBtn.classList.add('bg-white/15', 'border-white/25', 'text-white');
+      menuBtn.classList.remove('bg-sand-100', 'border-sand-200', 'text-forest-800');
+    }
+  }
+
+  /* ================= MOBILE MENU ================= */
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  let menuOpen = false;
+  function setMenu(open) {
+    menuOpen = open;
+    mobileMenu.style.maxHeight = open ? mobileMenu.scrollHeight + 'px' : '0px';
+  }
+  menuBtn.addEventListener('click', function () { setMenu(!menuOpen); });
+  document.querySelectorAll('.mobile-link').forEach(function (l) {
+    l.addEventListener('click', function () { setMenu(false); });
+  });
+
+  /* ================= SCROLL PROGRESS ================= */
+  const scrollProgress = document.getElementById('scrollProgress');
+
+  /* ================= BUBBLES ================= */
+  const bubbleField = document.getElementById('bubbleField');
+  if (bubbleField && !prefersReduced) {
+    const count = window.innerWidth < 640 ? 10 : 18;
+    for (let i = 0; i < count; i++) {
+      const b = document.createElement('div');
+      b.className = 'bubble';
+      const size = 10 + Math.random() * 52;
+      b.style.width = size + 'px';
+      b.style.height = size + 'px';
+      b.style.left = Math.random() * 100 + '%';
+      b.style.animationDuration = (13 + Math.random() * 18) + 's';
+      b.style.animationDelay = (-Math.random() * 22) + 's';
+      b.style.setProperty('--dx', (Math.random() * 120 - 60) + 'px');
+      bubbleField.appendChild(b);
+    }
+  }
+
+  /* ================= REVEAL OBSERVER ================= */
+  const revealObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+  function observeReveals() {
+    document.querySelectorAll('.reveal:not(.in), .reveal-x:not(.in)').forEach(function (el) {
+      revealObserver.observe(el);
+    });
+    document.querySelectorAll('.draw-path:not(.in)').forEach(function (el) {
+      revealObserver.observe(el);
+    });
+    document.querySelectorAll('.scroll-bar').forEach(function (bar) {
+      const obs = new IntersectionObserver(function (e) {
+        if (e[0].isIntersecting) {
+          bar.style.width = bar.dataset.w + '%';
+          obs.disconnect();
+        }
+      }, { threshold: 0.3 });
+      obs.observe(bar);
+    });
+  }
+
+  /* Hero bars */
+  setTimeout(function () {
+    document.querySelectorAll('.hero-bar').forEach(function (bar, idx) {
+      setTimeout(function () { bar.style.width = bar.dataset.w + '%'; }, 260 + idx * 130);
+    });
+  }, 120);
+
+  /* ================= COUNTERS ================= */
+  const counterObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = parseFloat(el.dataset.target) || 0;
+      const duration = 1500;
+      const startTime = performance.now();
+      function tick(now) {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(target * eased).toLocaleString('ar-EG');
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      if (prefersReduced) {
+        el.textContent = target.toLocaleString('ar-EG');
+      } else {
+        requestAnimationFrame(tick);
+      }
+      counterObserver.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.counter').forEach(function (c) { counterObserver.observe(c); });
+
+  /* ================= MAGNETIC BUTTONS ================= */
+  if (!prefersReduced && window.matchMedia('(pointer:fine)').matches) {
+    document.querySelectorAll('.magnetic').forEach(function (btn) {
+      btn.addEventListener('mousemove', function (e) {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = 'translate(' + (x * 0.16) + 'px,' + (y * 0.22) + 'px)';
+      });
+      btn.addEventListener('mouseleave', function () {
+        btn.style.transform = 'translate(0,0)';
+      });
+    });
+  }
+
+  /* ================= RECIPE GRID ================= */
+  const grid = document.getElementById('recipeGrid');
+  const resultCount = document.getElementById('resultCount');
+  const emptyState = document.getElementById('emptyState');
+  const searchInput = document.getElementById('searchInput');
+  let activeFilter = 'all';
+
+  function escapeHtml(str) {
+    return String(str).replace(/[&<>"']/g, function (m) {
+      return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[m];
+    });
+  }
+
+  function cardTemplate(recipe, index) {
+    const maxIng = Math.max.apply(null, recipe.i.map(function (x) { return x[1]; }).concat([1]));
+    const top = recipe.i.slice().sort(function (a, b) { return b[1] - a[1]; }).slice(0, 3);
+    const bars = top.map(function (item, i) {
+      return '<div>' +
+        '<div class="flex items-center justify-between text-xs mb-1.5">' +
+          '<span class="text-forest-800/70">' + escapeHtml(item[0]) + '</span>' +
+          '<span class="text-forest-600 font-bold">' + item[1] + '%</span>' +
+        '</div>' +
+        '<div class="h-1.5 rounded-full bg-sand-100 overflow-hidden">' +
+          '<div class="bar-fill card-bar" data-w="' + Math.max(6, Math.round((item[1] / maxIng) * 100)) + '" style="--d:' + (i * 110) + 'ms"></div>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+
+    return '' +
+    '<article class="recipe-card card sheen group relative rounded-[1.5rem] bg-white border border-sand-200 shadow-soft overflow-hidden flex flex-col" data-index="' + index + '" style="opacity:0;transform:translateY(26px)">' +
+      '<div class="flex items-start justify-between gap-4 p-6 pb-0">' +
+        '<div>' +
+          '<span class="inline-flex items-center gap-1.5 rounded-full ' + (recipe.c === 'car' ? 'bg-gold-400/18 text-clay-600' : 'bg-mint-200/70 text-forest-700') + ' px-3 py-1 text-[11px] font-bold">' +
+            (recipe.c === 'car' ? 'العناية بالسيارات' : 'منظفات منزلية') +
+            ' · ' + escapeHtml(recipe.k) +
+          '</span>' +
+          '<h3 class="mt-3 text-lg sm:text-xl font-display text-forest-800 leading-snug" style="font-weight:800">' + escapeHtml(recipe.t) + '</h3>' +
+        '</div>' +
+        '<span class="shrink-0 w-11 h-11 rounded-2xl bg-sand-100 text-forest-700 grid place-items-center font-display text-sm" style="font-weight:800">' +
+          String(recipe.n).padStart(2, '0') +
+        '</span>' +
+      '</div>' +
+
+      (recipe.warn ? '<div class="mx-6 mt-4 flex items-center gap-2 rounded-xl bg-clay-500/[.09] border border-clay-500/20 px-3 py-2 text-[11px] text-clay-600 font-medium">' +
+        '<svg viewBox="0 0 24 24" class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 2.6 17a2 2 0 0 0 1.7 3h15.4a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>' +
+        'يتطلب إجراءات سلامة خاصة</div>' : '') +
+
+      '<div class="px-6 pt-5 space-y-3.5">' + bars + '</div>' +
+
+      '<div class="mt-auto p-6 pt-6 flex items-center justify-between gap-3">' +
+        '<div class="flex items-center gap-1.5 text-xs text-forest-800/55">' +
+          '<svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>' +
+          recipe.s.length + ' خطوات' +
+        '</div>' +
+        '<button class="open-recipe inline-flex items-center gap-2 rounded-full bg-forest-800 text-white px-5 py-2.5 text-sm font-bold hover:bg-forest-700 transition-colors duration-300" data-index="' + index + '">' +
+          'عرض الوصفة' +
+          '<svg viewBox="0 0 24 24" class="w-4 h-4 transition-transform duration-500 group-hover:-translate-x-1" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>' +
+        '</button>' +
+      '</div>' +
+    '</article>';
+  }
+
+  function renderGrid() {
+    const query = (searchInput.value || '').trim().toLowerCase();
+    const filtered = recipes.filter(function (r) {
+      const matchesFilter =
+        activeFilter === 'all' ||
+        (activeFilter === 'home' && r.c === 'home') ||
+        (activeFilter === 'car' && r.c === 'car') ||
+        (activeFilter === 'safe' && !r.warn && (!r.i.some(function (x) { return /formol|هيدروكلوريك|هيبوكلوريت|تربنتين|MEG|Glycol \(MEG/i.test(x[0]); })));
+
+      const haystack = (r.t + ' ' + r.k + ' ' + r.i.map(function (x) { return x[0]; }).join(' ')).toLowerCase();
+      return matchesFilter && (!query || haystack.indexOf(query) !== -1);
+    });
+
+    grid.innerHTML = filtered.map(function (r) { return cardTemplate(r, recipes.indexOf(r)); }).join('');
+    resultCount.textContent = 'عدد النتائج: ' + filtered.length + ' وصفة';
+    emptyState.classList.toggle('hidden', filtered.length !== 0);
+
+    // staggered entrance
+    const cards = grid.querySelectorAll('.recipe-card');
+    cards.forEach(function (card, i) {
+      setTimeout(function () {
+        card.style.transition = 'opacity .65s cubic-bezier(.22,1,.36,1), transform .65s cubic-bezier(.22,1,.36,1)';
+        card.style.opacity = '1';
+        card.style.transform = 'none';
+      }, prefersReduced ? 0 : i * 70);
+    });
+
+    // animate bars when visible
+    grid.querySelectorAll('.card-bar').forEach(function (bar) {
+      const obs = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) {
+          bar.style.width = bar.dataset.w + '%';
+          obs.disconnect();
+        }
+      }, { threshold: 0.25 });
+      obs.observe(bar);
+    });
+
+    grid.querySelectorAll('.open-recipe').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        openModal(parseInt(btn.dataset.index, 10));
+      });
+    });
+  }
+
+  // Filter pills
+  document.querySelectorAll('.pill').forEach(function (pill) {
+    pill.addEventListener('click', function () {
+      document.querySelectorAll('.pill').forEach(function (p) { p.classList.remove('active'); });
+      pill.classList.add('active');
+      activeFilter = pill.dataset.filter;
+      renderGrid();
+    });
+  });
+
+  // Category quick links
+  document.querySelectorAll('.filter-link').forEach(function (link) {
+    link.addEventListener('click', function () {
+      const f = link.dataset.filter;
+      const target = document.querySelector('.pill[data-filter="' + f + '"]');
+      if (target) target.click();
+    });
+  });
+
+  let searchTimer;
+  searchInput.addEventListener('input', function () {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(renderGrid, 180);
+  });
+
+  /* ================= MODAL ================= */
+  const modal = document.getElementById('recipeModal');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalTag = document.getElementById('modalTag');
+  const modalIngredients = document.getElementById('modalIngredients');
+  const modalSteps = document.getElementById('modalSteps');
+  const modalWarn = document.getElementById('modalWarn');
+  const modalWarnText = document.getElementById('modalWarnText');
+
+  function openModal(index) {
+    const r = recipes[index];
+    if (!r) return;
+
+    modalTitle.textContent = r.t;
+    modalTag.textContent = (r.c === 'car' ? 'العناية بالسيارات' : 'منظفات منزلية') + ' · ' + r.k;
+
+    const maxIng = Math.max.apply(null, r.i.map(function (x) { return x[1]; }).concat([1]));
+    modalIngredients.innerHTML = r.i.map(function (item, i) {
+      return '<div>' +
+        '<div class="flex items-center justify-between mb-2">' +
+          '<span class="text-forest-800 font-medium">' + escapeHtml(item[0]) + '</span>' +
+          '<span class="text-forest-600 font-bold text-sm">' + item[1] + '%</span>' +
+        '</div>' +
+        '<div class="h-2.5 rounded-full bg-sand-100 overflow-hidden">' +
+          '<div class="bar-fill modal-bar" data-w="' + Math.max(5, Math.round((item[1] / maxIng) * 100)) + '" style="--d:' + (i * 90) + 'ms"></div>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+
+    modalSteps.innerHTML = r.s.map(function (step, i) {
+      return '<li class="step relative flex gap-4 group">' +
+        '<div class="relative shrink-0">' +
+          '<span class="step-dot relative z-10 w-9 h-9 rounded-full bg-mint-200 text-forest-800 grid place-items-center font-display text-sm" style="font-weight:800">' + (i + 1) + '</span>' +
+          (i < r.s.length - 1 ? '<span class="absolute top-10 right-1/2 translate-x-1/2 w-[2px] h-[calc(100%-8px)] bg-sand-200"></span>' : '') +
+        '</div>' +
+        '<p class="pt-1.5 text-forest-800/78 leading-relaxed">' + escapeHtml(step) + '</p>' +
+      '</li>';
+    }).join('');
+
+    if (r.warn) {
+      modalWarn.classList.remove('hidden');
+      modalWarnText.textContent = r.warn;
+    } else {
+      modalWarn.classList.add('hidden');
+    }
+
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+
+    requestAnimationFrame(function () {
+      setTimeout(function () {
+        modal.querySelectorAll('.modal-bar').forEach(function (bar) {
+          bar.style.width = bar.dataset.w + '%';
+        });
+      }, 120);
+    });
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('modalClose').addEventListener('click', closeModal);
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) closeModal();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  /* ================= ACCORDION ================= */
+  document.querySelectorAll('.acc-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      const item = btn.closest('.acc-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.acc-item').forEach(function (i) { i.classList.remove('open'); });
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  /* ================= CTA FORM ================= */
+  const ctaForm = document.getElementById('ctaForm');
+  const formMsg = document.getElementById('formMsg');
+  ctaForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    formMsg.style.opacity = '1';
+    ctaForm.reset();
+    setTimeout(function () { formMsg.style.opacity = '0'; }, 4200);
+  });
+
+  /* ================= SCROLL EFFECTS ================= */
+  const processSection = document.getElementById('process');
+  const processLine = document.getElementById('processLine');
+  let ticking = false;
+
+  function onScroll() {
+    const scrollY = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    scrollProgress.style.width = (docHeight > 0 ? (scrollY / docHeight) * 100 : 0) + '%';
+
+    updateHeader();
+
+    if (processSection && processLine) {
+      const rect = processSection.getBoundingClientRect();
+      const total = rect.height + window.innerHeight * 0.5;
+      const passed = Math.min(Math.max(window.innerHeight * 0.75 - rect.top, 0), total);
+      processLine.style.width = Math.min(100, (passed / total) * 118) + '%';
+    }
+
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', function () {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(onScroll);
+    }
+  }, { passive: true });
+
+  window.addEventListener('resize', function () {
+    if (menuOpen) setMenu(true);
+  });
+
+  /* ================= INIT ================= */
+  document.getElementById('year').textContent = new Date().getFullYear();
+  renderGrid();
+  observeReveals();
+  onScroll();
+
+  // Re-observe dynamically added reveal elements periodically (safety)
+  setTimeout(observeReveals, 500);
+
+})();
+</script>
+
+</body>
+</html>
