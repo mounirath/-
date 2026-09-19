@@ -1,663 +1,1293 @@
-<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>مختبر الوصفات | منظفات + عناية سيارات</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<script>
-tailwind.config = { theme:{ extend:{ fontFamily:{ cairo:['Cairo','sans-serif'] }, colors:{ ink:'#0B1220', tealx:'#14b8a6', gold:'#f59e0b' } } } }
-</script>
-<style>
-*{font-family:'Cairo',sans-serif}
-::-webkit-scrollbar{width:10px;height:10px}
-::-webkit-scrollbar-track{background:#0b1220}
-::-webkit-scrollbar-thumb{background:linear-gradient(#14b8a6,#0ea5e9);border-radius:20px}
-body{background:#070D1A;color:#e6eef7;overflow-x:hidden}
-.blob{position:fixed;border-radius:50%;filter:blur(90px);opacity:.35;pointer-events:none;z-index:0;animation:float 12s ease-in-out infinite}
-@keyframes float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-40px) scale(1.08)}}
-.glass{background:rgba(255,255,255,.06);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.1)}
-.glass2{background:rgba(13,22,38,.85);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.08)}
-.card-hover{transition:.35s cubic-bezier(.2,.9,.3,1.2)}
-.card-hover:hover{transform:translateY(-8px) scale(1.01);box-shadow:0 25px 60px -12px rgba(20,184,166,.35);border-color:rgba(20,184,166,.6)}
-.pct-bar{height:8px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden}
-.pct-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#14b8a6,#22d3ee,#a78bfa);transition:width 1s ease}
-.step-dot{width:38px;height:38px;flex-shrink:0;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:900;background:linear-gradient(135deg,#14b8a6,#0ea5e9);color:#fff;box-shadow:0 8px 20px rgba(20,184,166,.4)}
-.tab-btn.active{background:linear-gradient(135deg,#14b8a6,#0ea5e9);color:#fff !important;border-color:transparent !important;box-shadow:0 10px 25px rgba(20,184,166,.4)}
-.filter-pill.active{background:linear-gradient(135deg,#f59e0b,#ef4444);color:#fff !important;border-color:transparent;box-shadow:0 10px 25px rgba(245,158,11,.35)}
-.modal-bg{background:rgba(3,7,18,.8);backdrop-filter:blur(8px)}
-.bubble{position:absolute;bottom:-20px;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.7),rgba(20,184,166,.2));border:1px solid rgba(255,255,255,.25);animation:rise linear infinite;pointer-events:none}
-@keyframes rise{to{transform:translateY(-110vh);opacity:0}}
-.shake{animation:shake .4s}
-@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
-.code-box{letter-spacing:.35em;font-family:monospace}
-input,select,textarea{color-scheme:dark}
-.field{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:.8rem 1rem;width:100%;outline:none;transition:.25s;color:#fff}
-.field:focus{border-color:#14b8a6;box-shadow:0 0 0 4px rgba(20,184,166,.15);background:rgba(255,255,255,.09)}
-.field option{background:#0f172a}
-.btn-grad{background:linear-gradient(135deg,#14b8a6 0%,#0ea5e9 50%,#6366f1 100%);transition:.3s}
-.btn-grad:hover{transform:translateY(-2px);box-shadow:0 15px 35px rgba(20,184,166,.45);filter:brightness(1.1)}
-.btn-gold{background:linear-gradient(135deg,#f59e0b,#ef4444);transition:.3s}
-.btn-gold:hover{transform:translateY(-2px);box-shadow:0 15px 35px rgba(245,158,11,.4)}
-.toast-in{animation:toastIn .4s cubic-bezier(.2,.9,.3,1.2)}
-@keyframes toastIn{from{transform:translateY(20px) scale(.9);opacity:0}to{transform:translateY(0) scale(1);opacity:1}}
-.video-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:18px}
-.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
-.flask{animation:flaskFloat 4s ease-in-out infinite}
-@keyframes flaskFloat{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-14px) rotate(2deg)}}
-.marquee{display:flex;gap:1rem;animation:scrollX 22s linear infinite;width:max-content}
-@keyframes scrollX{to{transform:translateX(50%)}}
-.print-area@media print{body *{display:none}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>وصفات المنظفات والعناية بالسيارات</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        }
+        
+        .card-gradient {
+            background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #e94560 0%, #c23152 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.4);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(15, 52, 96, 0.4);
+        }
+        
+        .recipe-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .recipe-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .slide-up {
+            animation: slideUp 0.5s ease-out forwards;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(100px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .pulse-glow {
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(233, 69, 96, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(233, 69, 96, 0.6); }
+        }
+        
+        .modal-overlay {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+        }
+        
+        .input-field {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .input-field:focus {
+            border-color: #e94560;
+            box-shadow: 0 0 20px rgba(233, 69, 96, 0.2);
+            outline: none;
+        }
+        
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .tab-active {
+            background: linear-gradient(135deg, #e94560 0%, #c23152 100%);
+            color: white;
+        }
+        
+        .category-icon {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 24px;
+        }
+        
+        .floating-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .floating-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .notification {
+            animation: slideIn 0.5s ease-out forwards;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+        
+        .code-display {
+            font-family: 'Courier New', monospace;
+            letter-spacing: 3px;
+            font-size: 1.5rem;
+            background: rgba(233, 69, 96, 0.1);
+            border: 2px dashed rgba(233, 69, 96, 0.5);
+            padding: 15px 30px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .subscription-badge {
+            background: linear-gradient(135deg, #ffd700 0%, #ff8c00 100%);
+            color: #1a1a2e;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+    </style>
 </head>
-<body class="font-cairo">
-
-<div class="blob w-[500px] h-[500px] bg-teal-500 -top-40 -left-40"></div>
-<div class="blob w-[450px] h-[450px] bg-indigo-600 top-[40%] -right-40" style="animation-delay:-4s"></div>
-<div class="blob w-[400px] h-[400px] bg-amber-500 bottom-0 left-[30%]" style="animation-delay:-8s;opacity:.18"></div>
-<div id="bubbles" class="fixed inset-0 pointer-events-none z-0 overflow-hidden"></div>
-
-<!-- ================= LOCK SCREEN ================= -->
-<div id="lockScreen" class="min-h-screen relative z-10 flex items-center justify-center p-4">
-<div class="w-full max-w-6xl grid lg:grid-cols-2 gap-6 items-stretch">
-<!-- Branding -->
-<div class="glass rounded-[28px] p-8 lg:p-12 relative overflow-hidden flex flex-col justify-between">
-<div class="absolute inset-0 opacity-20" style="background:radial-gradient(circle at 80% 20%, #14b8a6 0%, transparent 50%),radial-gradient(circle at 20% 80%, #6366f1 0%, transparent 50%)"></div>
-<div class="relative">
-<div class="flex items-center gap-3 mb-6">
-<div class="w-14 h-14 rounded-2xl btn-grad flex items-center justify-center text-2xl shadow-lg"><i class="fa-solid fa-flask-vial"></i></div>
-<div><h1 class="text-2xl font-black">مختبر <span class="text-teal-300">الوصفات</span> الكيميائية</h1><p class="text-sm text-slate-300">32 وصفة احترافية • منظفات + سيارات • نسب دقيقة 100%</p></div>
-</div>
-<div class="flex justify-center my-6 flask text-[110px] leading-none">🧪</div>
-<h2 class="text-3xl lg:text-4xl font-black leading-tight mb-3">اصنع منتجك الخاص <br><span class="bg-gradient-to-l from-teal-300 via-cyan-300 to-indigo-300 bg-clip-text text-transparent">بمعايير المصانع الكبرى</span></h2>
-<p class="text-slate-300 leading-relaxed">منصة عربية متكاملة: كل الوصفات بالنسب المئوية، خطوات تحضير، حاسبة كميات ذكية، فيديوهات يوتيوب مدمجة، ونظام أكواد اشتراك بإدارة الأدمن.</p>
-<div class="grid grid-cols-3 gap-3 mt-6">
-<div class="glass rounded-2xl p-3 text-center"><div class="text-2xl font-black text-teal-300">32</div><div class="text-xs text-slate-300">وصفة كاملة</div></div>
-<div class="glass rounded-2xl p-3 text-center"><div class="text-2xl font-black text-amber-300">22+10</div><div class="text-xs text-slate-300">منزلي / سيارات</div></div>
-<div class="glass rounded-2xl p-3 text-center"><div class="text-2xl font-black text-indigo-300">100%</div><div class="text-xs text-slate-300">نسب مضبوطة</div></div>
-</div>
-<div class="mt-6 overflow-hidden rounded-2xl glass p-3"><div class="marquee text-xs text-slate-200">
-<span class="px-4 py-1.5 rounded-full bg-white/10 whitespace-nowrap">🧴 سائل الأواني الاقتصادي</span><span class="px-4 py-1.5 rounded-full bg-white/10 whitespace-nowrap">🚗 شامبو السيارات La Mousse</span><span class="px-4 py-1.5 rounded-full bg-white/10 whitespace-nowrap">🧽 مزيل دهون الفرن</span><span class="px-4 py-1.5 rounded-full bg-white/10 whitespace-nowrap">🫧 جافيل مطهر</span><span class="px-4 py-1.5 rounded-full bg-white/10 whitespace-nowrap">🪟 منظف الزجاج</span><span class="px-4 py-1.5 rounded-full bg-white/10 whitespace-nowrap">🧴 سائل الأواني الاقتصادي</span><span class="px-4 py-1.5 rounded-full bg-white/10 whitespace-nowrap">🚗 شامبو السيارات La Mousse</span>
-</div></div>
-</div>
-</div>
-<!-- Login -->
-<div class="glass2 rounded-[28px] p-8 lg:p-10 shadow-2xl">
-<div class="flex gap-2 bg-white/5 p-1.5 rounded-2xl mb-6">
-<button id="tabUser" onclick="switchLockTab('user')" class="flex-1 py-3 rounded-xl font-bold text-sm bg-gradient-to-l from-teal-500 to-sky-500 text-white shadow"><i class="fa-solid fa-user-lock ml-2"></i> دخول المستخدم</button>
-<button id="tabAdmin" onclick="switchLockTab('admin')" class="flex-1 py-3 rounded-xl font-bold text-sm text-slate-300"><i class="fa-solid fa-user-shield ml-2"></i> دخول الأدمن</button>
-</div>
-<div id="paneUser">
-<div class="text-center mb-6"><div class="w-16 h-16 mx-auto rounded-2xl bg-teal-500/15 border border-teal-400/30 flex items-center justify-center text-3xl mb-3">🔑</div>
-<h3 class="text-xl font-black">أدخل كود الاشتراك</h3><p class="text-sm text-slate-400 mt-1">يتكون الكود من 8 حروف لاتينية وأرقام — احصل عليه من الأدمن</p></div>
-<label class="text-xs font-bold text-slate-300">كود الدخول</label>
-<input id="userCode" maxlength="8" placeholder="MOU2026A" class="field code-box text-center text-2xl font-black mt-2 uppercase tracking-widest" oninput="this.value=this.value.toUpperCase().replace(/[^A-Z0-9]/g,'')">
-<button onclick="loginUser()" class="btn-grad w-full mt-4 py-4 rounded-2xl font-black text-lg"><i class="fa-solid fa-right-to-bracket ml-2"></i> فتح المختبر</button>
-<button onclick="demoLogin()" class="w-full mt-3 py-3 rounded-2xl font-bold text-sm bg-white/5 border border-white/10 hover:bg-white/10 transition"><i class="fa-solid fa-wand-magic-sparkles ml-2 text-amber-300"></i> دخول تجريبي سريع (بدون كود)</button>
-<div class="mt-5 p-4 rounded-2xl bg-amber-500/10 border border-amber-400/20 text-sm">
-<div class="font-bold text-amber-300 mb-1"><i class="fa-solid fa-circle-info ml-1"></i> للتجربة الآن استخدم:</div>
-<div class="flex items-center justify-between gap-2 flex-wrap"><code class="bg-black/40 px-3 py-1.5 rounded-lg font-mono font-black text-teal-300 tracking-widest">DEMO2026</code><button onclick="fillDemo()" class="text-xs bg-white/10 px-3 py-1.5 rounded-lg hover:bg-white/20">نسخ تلقائي</button></div>
-</div>
-</div>
-<div id="paneAdmin" class="hidden">
-<div class="text-center mb-6"><div class="w-16 h-16 mx-auto rounded-2xl bg-indigo-500/15 border border-indigo-400/30 flex items-center justify-center text-3xl mb-3">🛡️</div>
-<h3 class="text-xl font-black">بوابة الإدارة السرية</h3><p class="text-sm text-slate-400 mt-1">مخصصة للمالك فقط — تحكم كامل بالأكواد والوصفات</p></div>
-<label class="text-xs font-bold text-slate-300">الرقم السري للأدمن</label>
-<input id="adminSecret" type="password" placeholder="••••••••••" class="field text-center mt-2" style="letter-spacing:.2em">
-<button onclick="loginAdmin()" class="w-full mt-4 py-4 rounded-2xl font-black text-lg text-white" style="background:linear-gradient(135deg,#7c3aed,#db2777)"><i class="fa-solid fa-crown ml-2"></i> دخول لوحة الأدمن</button>
-<p class="text-[11px] text-slate-500 mt-3 text-center">تلميح للمالك: الرمز هو <span class="text-slate-300 font-mono" dir="ltr">mounirath1977@</span></p>
-<div class="mt-4 p-4 rounded-2xl bg-white/[.04] border border-white/10 text-xs leading-relaxed text-slate-300">
-<b class="text-white">صلاحيات الأدمن:</b> توليد أكواد 8 خانات • تفعيل/إيقاف الاشتراك • إضافة وتعديل وحذف الوصفات • إرفاق فيديو يوتيوب يُشغَّل داخل التطبيق.
-</div>
-</div>
-<div class="mt-6 flex items-center justify-center gap-4 text-[11px] text-slate-500"><span><i class="fa-solid fa-lock ml-1"></i> تشفير محلي آمن</span><span><i class="fa-solid fa-database ml-1"></i> حفظ تلقائي</span><span><i class="fa-solid fa-mobile-screen ml-1"></i> متجاوب 100%</span></div>
-</div>
-</div>
-</div>
-
-<!-- ================= USER APP ================= -->
-<div id="mainApp" class="hidden relative z-10">
-<nav class="sticky top-0 z-40 glass2 border-b border-white/10">
-<div class="max-w-7xl mx-auto px-4 py-3 flex items-center gap-3 flex-wrap">
-<div class="flex items-center gap-3">
-<div class="w-11 h-11 rounded-xl btn-grad flex items-center justify-center text-xl"><i class="fa-solid fa-flask-vial"></i></div>
-<div><div class="font-black leading-none">مختبر الوصفات</div><div class="text-[11px] text-teal-300 font-bold">LAB • 32 FORMULAS</div></div>
-</div>
-<div class="flex-1 min-w-[200px] relative">
-<i class="fa-solid fa-magnifying-glass absolute right-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
-<input id="search" oninput="renderGrid()" placeholder="ابحث عن وصفة... (جافيل، شامبو، زجاج...)" class="field !py-2.5 !pr-11 !rounded-xl text-sm">
-</div>
-<div class="flex items-center gap-2">
-<button onclick="toggleFavFilter()" id="favBtn" class="px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-sm font-bold hover:bg-white/10"><i class="fa-solid fa-heart text-rose-400 ml-1"></i> المفضلة <span id="favCount" class="bg-rose-500 text-white text-[11px] px-1.5 rounded-md">0</span></button>
-<button onclick="openAdminFromUser()" class="px-4 py-2.5 rounded-xl text-sm font-bold text-white" style="background:linear-gradient(135deg,#7c3aed,#db2777)"><i class="fa-solid fa-user-shield ml-1"></i> أدمن</button>
-<button onclick="logout()" class="px-4 py-2.5 rounded-xl bg-red-500/15 border border-red-400/30 text-red-300 text-sm font-bold hover:bg-red-500/25"><i class="fa-solid fa-right-from-bracket ml-1"></i> خروج</button>
-</div>
-</div>
-</nav>
-
-<header class="max-w-7xl mx-auto px-4 pt-8 pb-4">
-<div class="glass rounded-[26px] p-7 lg:p-10 relative overflow-hidden">
-<div class="absolute -left-20 -top-20 w-72 h-72 rounded-full bg-teal-500/20 blur-3xl"></div>
-<div class="absolute -right-10 -bottom-20 w-72 h-72 rounded-full bg-indigo-500/20 blur-3xl"></div>
-<div class="relative grid lg:grid-cols-[1fr_320px] gap-8 items-center">
-<div>
-<div class="inline-flex items-center gap-2 bg-teal-500/15 border border-teal-400/30 text-teal-200 text-xs font-bold px-4 py-1.5 rounded-full mb-4"><span class="w-2 h-2 rounded-full bg-teal-300 animate-pulse"></span> تم التحقق من اشتراكك بنجاح • <span id="sessionCode" class="font-mono" dir="ltr"></span></div>
-<h1 class="text-3xl lg:text-5xl font-black leading-tight">كل وصفات <span class="bg-gradient-to-l from-amber-300 to-rose-400 bg-clip-text text-transparent">المنظفات</span> والسيارات<br>بنسب المصانع الدقيقة</h1>
-<p class="text-slate-300 mt-3 leading-relaxed">اختر أي وصفة لعرض المكونات بالنسب المئوية، خطوات التحضير، التحذيرات، حاسبة الكمية لأي حجم دفعة، وفيديو الشرح من يوتيوب مباشرة.</p>
-<div class="flex flex-wrap gap-2 mt-5" id="catPills"></div>
-</div>
-<div class="grid grid-cols-2 gap-3">
-<div class="rounded-2xl overflow-hidden border border-white/10 h-36"><img src="https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=600&q=80&auto=format&fit=crop" class="w-full h-full object-cover" alt=""></div>
-<div class="rounded-2xl overflow-hidden border border-white/10 h-36 mt-6"><img src="https://images.unsplash.com/photo-1607860108855-64acf2078b60?w=600&q=80&auto=format&fit=crop" class="w-full h-full object-cover" alt=""></div>
-<div class="rounded-2xl overflow-hidden border border-white/10 h-36 -mt-6"><img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=600&q=80&auto=format&fit=crop" class="w-full h-full object-cover" alt=""></div>
-<div class="rounded-2xl overflow-hidden border border-white/10 h-36"><img src="https://images.unsplash.com/photo-1563453392212-326f5e854473?w=600&q=80&auto=format&fit=crop" class="w-full h-full object-cover" alt=""></div>
-</div>
-</div>
-<div class="relative grid grid-cols-2 lg:grid-cols-4 gap-3 mt-6">
-<div class="glass rounded-2xl p-4 text-center"><div class="text-2xl font-black text-teal-300" id="stTotal">32</div><div class="text-xs text-slate-300">إجمالي الوصفات</div></div>
-<div class="glass rounded-2xl p-4 text-center"><div class="text-2xl font-black text-amber-300" id="stHome">22</div><div class="text-xs text-slate-300">منظفات منزلية</div></div>
-<div class="glass rounded-2xl p-4 text-center"><div class="text-2xl font-black text-sky-300" id="stCar">10</div><div class="text-xs text-slate-300">عناية سيارات</div></div>
-<div class="glass rounded-2xl p-4 text-center"><div class="text-2xl font-black text-rose-300">18 <small class="text-xs">شهر</small></div><div class="text-xs text-slate-300">مدة الصلاحية</div></div>
-</div>
-</div>
-</header>
-
-<main class="max-w-7xl mx-auto px-4 pb-10">
-<div class="flex items-center justify-between mt-6 mb-4 flex-wrap gap-3">
-<h2 class="text-xl font-black"><i class="fa-solid fa-layer-group ml-2 text-teal-300"></i> تصفح الوصفات <span id="resCount" class="text-sm font-bold text-slate-400"></span></h2>
-<div class="flex gap-2 text-xs">
-<button onclick="setSort('id')" class="px-3 py-2 rounded-lg bg-white/5 border border-white/10 font-bold">الأحدث</button>
-<button onclick="setSort('alpha')" class="px-3 py-2 rounded-lg bg-white/5 border border-white/10 font-bold">أبجدي</button>
-</div>
-</div>
-<div id="grid" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"></div>
-
-<div class="glass rounded-[26px] p-7 mt-10">
-<h3 class="text-lg font-black mb-4"><i class="fa-solid fa-triangle-exclamation text-amber-300 ml-2"></i> ملاحظات هامة لجميع الوصفات</h3>
-<div class="grid md:grid-cols-3 gap-4 text-sm leading-relaxed">
-<div class="bg-white/[.04] border border-white/10 rounded-2xl p-4"><b class="text-teal-300">⚖️ دقة القياس:</b><br><span class="text-slate-300">استخدم ميزانًا حساسًا والتزم بالنسب المئوية والترتيب المذكور لضمان التجانس.</span></div>
-<div class="bg-white/[.04] border border-white/10 rounded-2xl p-4"><b class="text-rose-300">🦺 السلامة أولًا:</b><br><span class="text-slate-300">قفازات + نظارات + كمامة عند التعامل مع الأحماض والقلويات، وتهوية جيدة دائمًا.</span></div>
-<div class="bg-white/[.04] border border-white/10 rounded-2xl p-4"><b class="text-sky-300">📦 التخزين:</b><br><span class="text-slate-300">مكان بارد وجاف بعيدًا عن الشمس. الصلاحية 12–18 شهرًا. لا تخلط الكلور مع الأحماض أبدًا.</span></div>
-</div>
-</div>
-<footer class="text-center text-xs text-slate-500 mt-8 pb-6">مختبر الوصفات © 2026 • صُنع بإتقان للمصنّعين العرب • جميع النسب محسوبة على أساس 100%</footer>
-</main>
-</div>
-
-<!-- ================= ADMIN APP ================= -->
-<div id="adminApp" class="hidden relative z-10">
-<nav class="sticky top-0 z-40 glass2 border-b border-fuchsia-500/20">
-<div class="max-w-7xl mx-auto px-4 py-3 flex items-center gap-3 flex-wrap">
-<div class="flex items-center gap-3">
-<div class="w-11 h-11 rounded-xl flex items-center justify-center text-xl text-white" style="background:linear-gradient(135deg,#7c3aed,#db2777)"><i class="fa-solid fa-crown"></i></div>
-<div><div class="font-black leading-none">لوحة تحكم الأدمن</div><div class="text-[11px] text-fuchsia-300 font-bold">ADMIN • FULL CONTROL</div></div>
-</div>
-<div class="flex-1"></div>
-<button onclick="showAdminTab('codes')" class="px-4 py-2.5 rounded-xl text-sm font-bold bg-white/5 border border-white/10">🎟️ الأكواد</button>
-<button onclick="showAdminTab('recipes')" class="px-4 py-2.5 rounded-xl text-sm font-bold bg-white/5 border border-white/10">🧪 الوصفات</button>
-<button onclick="backToUser()" class="px-4 py-2.5 rounded-xl text-sm font-bold btn-grad text-white">👁️ عرض كزائر</button>
-<button onclick="logout()" class="px-4 py-2.5 rounded-xl bg-red-500/15 border border-red-400/30 text-red-300 text-sm font-bold">خروج</button>
-</div>
-</nav>
-<div class="max-w-7xl mx-auto px-4 py-6">
-<div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-<div class="glass rounded-2xl p-5"><div class="text-xs text-slate-400 font-bold">أكواد نشطة</div><div class="text-3xl font-black text-teal-300" id="aActive">0</div></div>
-<div class="glass rounded-2xl p-5"><div class="text-xs text-slate-400 font-bold">إجمالي الأكواد</div><div class="text-3xl font-black text-sky-300" id="aTotal">0</div></div>
-<div class="glass rounded-2xl p-5"><div class="text-xs text-slate-400 font-bold">الوصفات</div><div class="text-3xl font-black text-amber-300" id="aRecipes">0</div></div>
-<div class="glass rounded-2xl p-5"><div class="text-xs text-slate-400 font-bold">فيديوهات مرفقة</div><div class="text-3xl font-black text-fuchsia-300" id="aVideos">0</div></div>
-</div>
-
-<!-- CODES -->
-<div id="admCodes">
-<div class="grid lg:grid-cols-[380px_1fr] gap-5">
-<div class="glass2 rounded-3xl p-6 h-fit">
-<h3 class="font-black text-lg mb-1"><i class="fa-solid fa-key ml-2 text-amber-300"></i> مولّد الأكواد (8 خانات)</h3>
-<p class="text-xs text-slate-400 mb-4">حروف لاتينية كبيرة + أرقام • مثال: <span class="font-mono text-teal-300" dir="ltr">X7K9P2MA</span></p>
-<div class="bg-black/40 border-2 border-dashed border-teal-400/40 rounded-2xl p-5 text-center mb-4">
-<div id="genPreview" class="text-3xl font-black font-mono tracking-[.25em] text-teal-300" dir="ltr">--------</div>
-<button onclick="previewCode()" class="mt-3 text-xs bg-white/10 px-4 py-2 rounded-xl font-bold hover:bg-white/20"><i class="fa-solid fa-dice ml-1"></i> توليد عشوائي</button>
-</div>
-<label class="text-xs font-bold text-slate-300">ملاحظة / اسم العميل</label>
-<input id="codeNote" class="field mt-1 mb-3 text-sm" placeholder="مثال: عميل - محمد (صالون)">
-<div class="grid grid-cols-2 gap-3 mb-4">
-<div><label class="text-xs font-bold text-slate-300">صلاحية (يوم)</label><input id="codeDays" type="number" value="365" class="field mt-1 text-sm"></div>
-<div><label class="text-xs font-bold text-slate-300">عدد الأكواد</label><input id="codeBulk" type="number" value="1" min="1" max="20" class="field mt-1 text-sm"></div>
-</div>
-<button onclick="createCodes()" class="btn-gold w-full py-3.5 rounded-2xl font-black"><i class="fa-solid fa-plus ml-2"></i> إنشاء وحفظ الكود</button>
-<div class="mt-4 text-[11px] text-slate-400 bg-white/[.03] border border-white/10 rounded-xl p-3">💡 بعد الإنشاء انسخ الكود وأرسله للمستخدم، سيُطلب منه إدخاله في واجهة الدخول.</div>
-</div>
-<div class="glass2 rounded-3xl p-6">
-<div class="flex items-center gap-3 mb-4 flex-wrap">
-<h3 class="font-black text-lg">🎟️ إدارة الاشتراكات</h3><div class="flex-1"></div>
-<input id="codeSearch" oninput="renderCodes()" placeholder="بحث بكود أو اسم..." class="field !w-56 !py-2 text-sm">
-<button onclick="exportCodes()" class="text-xs bg-white/10 px-3 py-2 rounded-xl font-bold"><i class="fa-solid fa-download ml-1"></i> تصدير</button>
-</div>
-<div id="codesList" class="space-y-3 max-h-[600px] overflow-y-auto pl-1"></div>
-</div>
-</div>
-</div>
-
-<!-- RECIPES ADMIN -->
-<div id="admRecipes" class="hidden">
-<div class="glass2 rounded-3xl p-6">
-<div class="flex items-center gap-3 mb-4 flex-wrap">
-<h3 class="font-black text-lg">🧪 إدارة الوصفات</h3><div class="flex-1"></div>
-<input id="admSearch" oninput="renderAdminRecipes()" placeholder="بحث في الوصفات..." class="field !w-56 !py-2 text-sm">
-<button onclick="openEditor(null)" class="btn-grad px-5 py-2.5 rounded-xl font-black text-sm text-white"><i class="fa-solid fa-plus ml-1"></i> وصفة جديدة</button>
-</div>
-<div id="admRecList" class="space-y-3"></div>
-</div>
-</div>
-</div>
-</div>
-
-<!-- ================= RECIPE MODAL ================= -->
-<div id="recipeModal" class="hidden fixed inset-0 z-50 modal-bg p-3 lg:p-6 overflow-y-auto">
-<div class="max-w-4xl mx-auto glass2 rounded-[26px] overflow-hidden shadow-2xl">
-<div id="modalBody"></div>
-</div>
-</div>
-
-<!-- ================= EDITOR MODAL ================= -->
-<div id="editorModal" class="hidden fixed inset-0 z-50 modal-bg p-3 overflow-y-auto">
-<div class="max-w-3xl mx-auto glass2 rounded-[26px] p-6 lg:p-8">
-<h3 class="font-black text-xl mb-4" id="edTitle">➕ وصفة جديدة</h3>
-<div class="grid md:grid-cols-2 gap-3">
-<div><label class="text-xs font-bold">اسم الوصفة *</label><input id="fTitle" class="field mt-1 text-sm"></div>
-<div><label class="text-xs font-bold">القسم</label><select id="fCat" class="field mt-1 text-sm"><option value="home">🏠 منظفات منزلية</option><option value="car">🚗 عناية سيارات</option></select></div>
-</div>
-<div class="grid md:grid-cols-2 gap-3 mt-3">
-<div><label class="text-xs font-bold">شارة (اقتصادي / جودة أعلى...)</label><input id="fBadge" class="field mt-1 text-sm" placeholder="اقتصادي"></div>
-<div><label class="text-xs font-bold">🎬 رابط يوتيوب (يُشغَّل داخل التطبيق)</label><input id="fVideo" class="field mt-1 text-sm" placeholder="https://youtube.com/watch?v=..." dir="ltr"></div>
-</div>
-<div class="mt-3"><label class="text-xs font-bold">وصف مختصر</label><input id="fDesc" class="field mt-1 text-sm" placeholder="وصف تسويقي قصير..."></div>
-<div class="mt-3"><label class="text-xs font-bold">⚠️ تحذير سلامة (اختياري)</label><input id="fWarn" class="field mt-1 text-sm" placeholder="ارتدِ قفازات..."></div>
-<div class="mt-3"><label class="text-xs font-bold">🧬 المكونات (سطر لكل مكون بصيغة: الاسم | النسبة)</label><textarea id="fIng" rows="6" class="field mt-1 text-sm font-mono" placeholder="SLES أو Texapon | 7&#10;Cocamide DEA | 2&#10;ملح NaCl | 2"></textarea></div>
-<div class="mt-3"><label class="text-xs font-bold">📝 خطوات التحضير (سطر لكل خطوة)</label><textarea id="fSteps" rows="6" class="field mt-1 text-sm" placeholder="ضع الماء في وعاء نظيف&#10;أضف SLES مع التحريك..."></textarea></div>
-<div class="flex gap-3 mt-5">
-<button onclick="saveEditor()" class="btn-grad flex-1 py-3.5 rounded-2xl font-black text-white">💾 حفظ الوصفة</button>
-<button onclick="closeEditor()" class="px-6 py-3.5 rounded-2xl bg-white/10 font-bold">إلغاء</button>
-</div>
-</div>
-</div>
-
-<div id="toasts" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-[100] space-y-2 w-[92%] max-w-md"></div>
-
-<script>
-/* ============ DATA ============ */
-const ADMIN_SECRET = "mounirath1977@";
-const HOME_IMGS = [
-"https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=700&q=80&auto=format&fit=crop",
-"https://images.unsplash.com/photo-1563453392212-326f5e854473?w=700&q=80&auto=format&fit=crop",
-"https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=700&q=80&auto=format&fit=crop",
-"https://images.unsplash.com/photo-1528740561666-dc2479dc08ab?w=700&q=80&auto=format&fit=crop"];
-const CAR_IMGS = [
-"https://images.unsplash.com/photo-1607860108855-64acf2078b60?w=700&q=80&auto=format&fit=crop",
-"https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=700&q=80&auto=format&fit=crop",
-"https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=700&q=80&auto=format&fit=crop",
-"https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=700&q=80&auto=format&fit=crop"];
-
-const DEFAULT_RECIPES = [
-{id:1,cat:"home",badge:"اقتصادي ⭐",title:"سائل غسل الأواني (اقتصادي)",desc:"رغوة وفيرة وقوة تنظيف ممتازة بتكلفة منخفضة للمشاريع الصغيرة.",warn:"",video:"https://www.youtube.com/watch?v=sQ22pm5lDMY",ing:[["SLES أو Texapon",7],["Cocamide DEA",2],["ملح طعام NaCl",2],["Formol",0.2],["عطر",0.3],["ماء",88.4]],steps:["ضع كمية الماء في وعاء نظيف.","أضف SLES أو Texapon مع التحريك المستمر حتى الذوبان التام.","أضف Cocamide DEA وحرك جيداً.","أضف ملح الطعام تدريجياً مع التحريك حتى الحصول على القوام المطلوب.","أضف Formol ثم العطر واللون (اختياري).","أكمل الماء إلى 100% وحرك حتى التجانس.","عبئ في عبوات مناسبة."]},
-{id:2,cat:"home",badge:"جودة أعلى 💎",title:"سائل غسل الأواني (جودة أعلى)",desc:"تركيبة فاخرة برغوة كثيفة ولطف على اليدين مع Betaine.",warn:"",video:"",ing:[["SLES أو Texapon",10],["Betaine",3],["Cocamide DEA",2],["ملح NaCl",1.5],["Formol",0.2],["عطر",0.3],["ماء",82.9]],steps:["ضع الماء في وعاء نظيف.","أضف SLES أو Texapon مع التحريك المستمر.","أضف Betaine ثم Cocamide DEA مع التحريك.","أضف ملح الطعام تدريجياً حتى اللزوجة المطلوبة.","أضف Formol ثم العطر واللون.","أكمل الماء إلى 100% وحرك جيداً.","عبئ في عبوات محكمة."]},
-{id:3,cat:"home",badge:"لطيف 🧴",title:"صابون سائل لليدين (اقتصادي)",desc:"نعومة ورائحة منعشة مع رغوة ناعمة لليدين.",warn:"",video:"",ing:[["SLES أو Texapon",8],["Betaine",2],["ملح NaCl",1],["Formol",0.2],["عطر",0.3],["ماء",88.4]],steps:["ضع الماء في وعاء.","أضف SLES أو Texapon وحرك حتى الذوبان.","أضف Betaine وحرك جيداً.","أضف الملح تدريجياً لضبط اللزوجة.","أضف Formol ثم العطر واللون.","أكمل الماء إلى 100% وحرك.","عبئ في عبوات."]},
-{id:4,cat:"home",badge:"قوي ⚡",title:"مزيل دهون الفرن",desc:"يذيب الشحوم المحترقة والدهون المتراكمة في دقائق.",warn:"تحذير: ارتدِ قفازات ونظارات واقية وتأكد من التهوية الجيدة. مادة كاوية — تُحفظ بعيداً عن الأطفال.",video:"",ing:[["هيدروكسيد الصوديوم NaOH",2],["SLES أو Texapon",3],["Betaine",1],["Butyl Glycol",2],["Formol",0.2],["عطر",0.2],["ماء",91.5]],steps:["تحذير: ارتدِ قفازات ونظارات وتأكد من التهوية.","ضع الماء في وعاء مقاوم للقلويات.","أذب NaOH في الماء بحذر شديد (تفاعل طارد للحرارة).","أضف SLES أو Texapon مع التحريك.","أضف Betaine ثم Butyl Glycol.","أضف Formol ثم العطر.","أكمل الماء إلى 100% وعبئ في بلاستيك محكم."]},
-{id:5,cat:"home",badge:"مطهر 🛡️",title:"مبيض ومطهر (جافيل اقتصادي)",desc:"تعقيم وتبييض فعال للأسطح والأرضيات والحمامات.",warn:"تحذير: لا تخلط مع الأحماض أو العطور أبداً (غازات سامة). يُخزن بعيداً عن الضوء والحرارة.",video:"",ing:[["هيبوكلوريت الصوديوم NaOCl",15.5],["ماء",84]],steps:["تحذير: لا تخلط مع الأحماض أو العطور.","ضع الماء في وعاء بلاستيكي.","أضف NaOCl تدريجياً مع التحريك الهادئ.","أكمل الماء إلى 100%.","عبئ في عبوات معتمة محكمة.","خزن بعيداً عن الضوء والحرارة."]},
-{id:6,cat:"home",badge:"مرسيليا 🫧",title:"سائل غسل الملابس (مرسيليا)",desc:"عطر مرسيليا الفرنسي الأصيل مع نظافة عميقة للأقمشة.",warn:"",video:"",ing:[["SLES",8],["Betaine",1.5],["Cocamide DEA",1.5],["ملح NaCl",1],["Formol",0.2],["عطر مرسيليا",0.3],["ماء",87.4]],steps:["ضع الماء في وعاء.","أضف SLES وحرك حتى الذوبان.","أضف Betaine ثم Cocamide DEA مع التحريك.","أضف الملح تدريجياً لضبط اللزوجة.","أضف Formol ثم عطر مرسيليا.","أكمل الماء إلى 100% وعبئ."]},
-{id:7,cat:"home",badge:"معطر 🌸",title:"معطر الأرضيات صانيبو",desc:"انتعاش يدوم وعطر فواح يملأ المكان.",warn:"",video:"",ing:[["SLES أو Texapon",3],["Betaine",1],["ملح NaCl",1],["Formol",0.2],["عطر",0.5],["ماء",94.2]],steps:["ضع الماء في وعاء.","أضف SLES أو Texapon وحرك.","أضف Betaine وحرك.","أضف الملح تدريجياً.","أضف Formol ثم العطر.","أكمل الماء إلى 100% وعبئ."]},
-{id:8,cat:"home",badge:"متعدد ✨",title:"منظف الأرضيات متعدد الاستعمالات",desc:"لمعان ونظافة لجميع الأرضيات والأسطح.",warn:"",video:"",ing:[["SLES",6],["Betaine",1],["Butyl Glycol",1],["ملح NaCl",0.5],["Formol",0.2],["عطر",0.3],["ماء",90.9]],steps:["ضع الماء في وعاء.","أضف SLES وحرك.","أضف Betaine ثم Butyl Glycol.","أضف الملح تدريجياً.","أضف Formol ثم العطر.","أكمل الماء إلى 100% وعبئ."]},
-{id:9,cat:"home",badge:"زجاج 🪟",title:"منظف الزجاج والمرايا",desc:"لمعان بدون آثار — يجف بسرعة ولا يترك خطوطاً.",warn:"",video:"",ing:[["ماء",80],["إيثانول / إيزوبروبانول",15],["SLES أو Betaine",0.5],["Butyl Glycol",1],["Formol",0.2],["عطر",0.2],["ملون",0.1]],steps:["اخلط الماء مع الكحول في وعاء.","أضف SLES أو Betaine وحرك.","أضف Butyl Glycol.","أضف Formol ثم العطر واللون.","أكمل الماء إلى 100%.","عبئ في بخاخ."]},
-{id:10,cat:"home",badge:"تكلسات 🚿",title:"منظف الحمام والمراحيض",desc:"يزيل التكلسات والاصفرار والروائح الكريهة.",warn:"",video:"",ing:[["حمض الستريك",3],["SLES",2],["Betaine",1],["Butyl Glycol",1],["Formol",0.2],["عطر",0.3],["ماء",92.4]],steps:["أذب حمض الستريك في قليل من الماء.","أضف SLES وحرك.","أضف Betaine ثم Butyl Glycol.","أضف Formol ثم العطر.","أكمل الماء إلى 100%.","عبئ في بخاخ."]},
-{id:11,cat:"home",badge:"لطيف 🌱",title:"سائل الأواني بدون سلفونيك",desc:"تركيبة خفيفة بديلة بدون حمض السلفونيك.",warn:"",video:"",ing:[["SLES",2],["Cocamide DEA",0.5],["Butyl Glycol",1],["ملح NaCl",0.5],["Formol",0.2],["عطر",0.3],["ماء",95.4]],steps:["ضع الماء في وعاء.","أضف SLES وحرك.","أضف Cocamide DEA ثم Butyl Glycol.","أضف الملح تدريجياً.","أضف Formol ثم العطر.","أكمل الماء إلى 100% وعبئ."]},
-{id:12,cat:"home",badge:"صناعي ☠️",title:"منظف قوي للإسمنت والشوائب",desc:"حمضي مركز لإزالة الإسمنت والصدأ والترسبات الصعبة.",warn:"تحذير شديد: معدات وقاية كاملة + تهوية. لا تخلط مع الكلور أبداً (غاز قاتل). يُضاف الحمض للماء وليس العكس.",video:"",ing:[["حمض الهيدروكلوريك HCl",15],["SLES أو Texapon",1.5],["ماء",83.5]],steps:["تحذير شديد: وقاية كاملة وتهوية.","ضع الماء في وعاء مقاوم للأحماض.","أضف HCl بحذر شديد.","أضف SLES مع التحريك.","أكمل الماء إلى 100%.","عبئ في بلاستيك محكم. لا تخلط مع الكلور."]},
-{id:13,cat:"home",badge:"جل 🧫",title:"جل تنظيف المراحيض",desc:"جل لاصق يلتصق بالجدران لتنظيف عميق وتعقيم.",warn:"",video:"",ing:[["حمض اللاكتيك/الستريك",3],["SLES",2],["Betaine",1],["مثخن Xanthan/CMC",0.5],["Butyl Glycol",1],["Formol",0.2],["عطر",0.2],["ماء",92]],steps:["أذب الحمض في قليل من الماء.","أضف SLES وحرك.","أضف Betaine ثم Butyl Glycol.","أذب المثخن في الماء وأضفه مع التحريك حتى قوام الجل.","أضف Formol ثم العطر.","أكمل الماء وعبئ."]},
-{id:14,cat:"home",badge:"بقع 🎯",title:"مزيل بقع قبل الغسيل",desc:"رش قبل الغسيل على البقع الصعبة: زيت، حبر، طعام.",warn:"",video:"",ing:[["SLES أو Texapon",5],["Betaine",1],["Butyl Glycol",2],["إيثانول",5],["Formol",0.2],["عطر",0.3],["ماء",86.3]],steps:["اخلط الماء مع الإيثانول.","أضف SLES وحرك.","أضف Betaine ثم Butyl Glycol.","أضف Formol ثم العطر.","أكمل الماء وعبئ في بخاخ."]},
-{id:15,cat:"home",badge:"خشب 🪵",title:"ملمع الخشب",desc:"يغذي الخشب ويعيد لمعانه الطبيعي برائحة فاخرة.",warn:"يُحفظ بعيداً عن النار (يحتوي تربنتين).",video:"",ing:[["زيت البرافين الخفيف",60],["شمع العسل/كرنوبا",10],["تربنتين",20],["عطر خشبي",0.5],["مضاد أكسدة",0.5],["إكمال زيتي",9]],steps:["أذب الشمع في زيت البرافين على حمام مائي دافئ.","أضف التربنتين تدريجياً مع التحريك.","أضف العطر ومضاد الأكسدة.","اتركه يبرد ثم عبئ."]},
-{id:16,cat:"home",badge:"جلد 👞",title:"منظف الأحذية الجلدية",desc:"ينظف ويحافظ على الجلد الطبيعي.",warn:"",video:"",ing:[["SLES",2],["ملح NaCl",0.5],["Butyl Glycol",1],["Formol",0.2],["عطر",0.3],["ماء",96]],steps:["ضع الماء في وعاء.","أضف SLES وحرك.","أضف الملح ثم Butyl Glycol.","أضف Formol ثم العطر.","أكمل الماء وعبئ في بخاخ."]},
-{id:17,cat:"home",badge:"يومي 🚿",title:"منظف الحمام اليومي",desc:"استخدام يومي سريع بدون فرك قوي.",warn:"",video:"",ing:[["SLES أو Texapon",3],["Betaine",1],["Butyl Glycol",1],["ملح NaCl",0.5],["عطر",0.3],["Formol",0.2],["ماء",93.9]],steps:["ضع الماء في وعاء.","أضف SLES وحرك.","أضف Betaine ثم Butyl Glycol.","أضف الملح تدريجياً.","أضف Formol ثم العطر.","أكمل الماء وعبئ في بخاخ."]},
-{id:18,cat:"home",badge:"حشرات 🦟",title:"بخاخ طارد الحشرات المنزلية",desc:"بزيوت السترونيلا والليمون — آمن ومنعش.",warn:"",video:"",ing:[["SLES",1],["ماء",88.8],["إيثانول",8],["زيت طارد سترونيلا",1.5],["Formol",0.2],["عطر",0.4]],steps:["اخلط الماء مع الإيثانول.","أضف SLES وحرك.","أضف الزيت الطارد.","أضف Formol ثم العطر.","أكمل الماء وعبئ في بخاخ."]},
-{id:19,cat:"home",badge:"روائح 🍋",title:"مزيل الروائح للقمامة",desc:"يقضي على روائح القمامة بزيوت الليمون والبرتقال.",warn:"",video:"",ing:[["SLES",1],["Betaine",0.5],["ماء",93],["إيثانول",5],["زيت عطري ليمون",0.8],["مادة حافظة",0.2]],steps:["اخلط الماء مع الإيثانول.","أضف SLES و Betaine.","أضف الزيت العطري.","أضف المادة الحافظة.","أكمل الماء وعبئ في بخاخ."]},
-{id:20,cat:"home",badge:"أحواض 🚰",title:"منظف الأحواض والمغاسل",desc:"يلمع الستانلس والسيراميك ويزيل البقع.",warn:"",video:"",ing:[["SLES",4],["Betaine",1],["ملح NaCl",1],["Butyl Glycol",1],["Formol",0.2],["عطر",0.3],["ماء",92.4]],steps:["ضع الماء في وعاء.","أضف SLES وحرك.","أضف Betaine ثم Butyl Glycol.","أضف الملح تدريجياً.","أضف Formol ثم العطر.","أكمل الماء وعبئ."]},
-{id:21,cat:"home",badge:"رياضي 👟",title:"منظف الأحذية الرياضية والقماشية",desc:"رغوة سريعة تنظف القماش والشبك بدون ضرر.",warn:"",video:"",ing:[["SLES",3],["Betaine",1],["إيثانول",5],["Butyl Glycol",1],["ملح NaCl",0.5],["Formol",0.2],["عطر",0.3],["ماء",88.9]],steps:["اخلط الماء مع الإيثانول.","أضف SLES وحرك.","أضف Betaine ثم Butyl Glycol.","أضف الملح تدريجياً.","أضف Formol ثم العطر.","أكمل الماء وعبئ في بخاخ."]},
-{id:22,cat:"home",badge:"معادن 🔩",title:"منظف المعادن والتلميع",desc:"يلمع النحاس والستانلس ويزيل الأكسدة.",warn:"",video:"",ing:[["حمض الستريك/اللاكتيك",2],["SLES",2],["Betaine",1],["Butyl Glycol",1],["ملح NaCl",0.5],["Formol",0.2],["عطر",0.2],["ماء",93]],steps:["أذب الحمض في قليل من الماء.","أضف SLES وحرك.","أضف Betaine ثم Butyl Glycol.","أضف الملح تدريجياً.","أضف Formol ثم العطر.","أكمل الماء وعبئ."]},
-{id:23,cat:"car",badge:"شامبو 🚗",title:"شامبو السيارات",desc:"رغوة غنية تحمي الطلاء وتعطي لمعاناً.",warn:"",video:"https://www.youtube.com/watch?v=2g811Eo7K8U",ing:[["Texapon N70",8],["CDE",2],["Propylene Glycol",2],["حمض الستريك",0.5],["Formol",0.2],["عطر",0.5],["ماء",86.8]],steps:["ضع الماء في وعاء.","أضف Texapon N70 مع التحريك حتى الذوبان.","أضف CDE وحرك.","أضف Propylene Glycol.","أذب حمض الستريك وأضفه لضبط pH.","أضف Formol ثم العطر.","أكمل الماء وعبئ."]},
-{id:24,cat:"car",badge:"زجاج 🚙",title:"منظف زجاج السيارات",desc:"وضوح تام بدون ضباب أو خطوط.",warn:"",video:"",ing:[["Isopropanol",10],["Propylene Glycol",5],["Texapon N70",2],["حمض الستريك",0.3],["Formol",0.2],["ماء",82.5]],steps:["اخلط الماء مع Isopropanol.","أضف Texapon وحرك.","أضف Propylene Glycol.","أذب حمض الستريك وأضفه.","أضف Formol.","أكمل الماء وعبئ في بخاخ."]},
-{id:25,cat:"car",badge:"تابلوه ✨",title:"ملمع لوحة القيادة (تابلوه)",desc:"لمعة ساتان + حماية من التشقق والغبار.",warn:"",video:"",ing:[["Propylene Glycol",5],["Cétiol C5",10],["Isopropanol",7],["Glycerine",3],["Formol",0.5],["ماء",74.5]],steps:["اخلط الماء مع Isopropanol.","أضف Cétiol C5 وحرك.","أضف Propylene Glycol ثم Glycerine.","أضف Formol.","أكمل الماء وعبئ في بخاخ."]},
-{id:26,cat:"car",badge:"محرك 🔧",title:"منظف المحرك من الزيوت والشحوم",desc:"يذيب الشحوم الثقيلة عن المحرك بأمان.",warn:"يُستخدم على محرك بارد مع حماية الأجزاء الكهربائية.",video:"",ing:[["Butyl Glycol",10],["Texapon N70",8],["Propylene Glycol",5],["Cétiol C5",3],["Formol",0.2],["ماء",73.8]],steps:["ضع الماء في وعاء.","أضف Texapon مع التحريك.","أضف Butyl Glycol ثم Propylene Glycol.","أضف Cétiol C5.","أضف Formol.","أكمل الماء وعبئ."]},
-{id:27,cat:"car",badge:"La Mousse 🫧",title:"منتج La Mousse للسيارات",desc:"رغوة ثلجية كثيفة للغسيل الاحترافي.",warn:"",video:"",ing:[["Texapon N70",10],["CDE",3],["Propylene Glycol",2],["حمض الستريك",0.5],["Formol",0.3],["عطر",0.1],["ماء",83.9]],steps:["ضع الماء في وعاء.","أضف Texapon مع التحريك.","أضف CDE ثم Propylene Glycol.","أذب حمض الستريك وأضفه.","أضف Formol ثم العطر.","أكمل الماء وعبئ في عبوات رغوية."]},
-{id:28,cat:"car",badge:"تبريد ❄️",title:"مبرد محرك السيارة",desc:"حماية من التجمد والغليان والتآكل.",warn:"سام — يُحفظ بعيداً عن الأطفال والحيوانات.",video:"",ing:[["Mono Ethylene Glycol MEG",50],["ماء مقطر",48],["مانع تآكل",1.5],["مانع رغوة",0.3],["ملون",0.2]],steps:["اخلط MEG مع الماء المقطر.","أضف مانع التآكل مع التحريك.","أضف مانع الرغوة.","أضف الملون.","حرك حتى التجانس وعبئ."]},
-{id:29,cat:"car",badge:"ضباب 🌫️",title:"مزيل الضباب من الزجاج الداخلي",desc:"رؤية واضحة في الشتاء والرطوبة.",warn:"",video:"",ing:[["Isopropanol",20],["Propylene Glycol",5],["ماء مقطر",73],["Formol",0.5],["ملون",0.2]],steps:["اخلط الماء مع Isopropanol.","أضف Propylene Glycol.","أضف Formol.","أضف الملون.","أكمل الماء وعبئ في بخاخ."]},
-{id:30,cat:"car",badge:"عطر 🌺",title:"عطر السيارات",desc:"ثبات عالٍ ورائحة فاخرة تدوم أسابيع.",warn:"",video:"",ing:[["Propylene Glycol",10],["زيت عطري",5],["ماء مقطر",85],["Formol",0.5]],steps:["اخلط Propylene Glycol مع الزيت العطري.","أضف الماء المقطر تدريجياً مع التحريك.","أضف Formol.","حرك جيداً وعبئ في بخاخ."]},
-{id:31,cat:"car",badge:"عجلات 🛞",title:"تنظيف وتجديد عجلات السيارة",desc:"يزيل غبار الفرامل ويعيد سواد الإطارات.",warn:"",video:"",ing:[["Texapon N70",7],["Propylene Glycol",3],["C.O.D",5],["حمض الستريك",1],["Formol",0.3],["ماء",83.7]],steps:["ضع الماء في وعاء.","أضف Texapon مع التحريك.","أضف Propylene Glycol ثم C.O.D.","أذب حمض الستريك وأضفه.","أضف Formol.","أكمل الماء وعبئ في بخاخ."]},
-{id:32,cat:"car",badge:"مساحات 💧",title:"سائل مساحات الزجاج",desc:"تنظيف سريع مع كل مسحة بدون آثار.",warn:"",video:"",ing:[["ماء مقطر",70],["Isopropanol",20],["مادة فعالة سطحياً",1],["Propylene Glycol",5],["Formol",0.2],["عطر",0.2]],steps:["اخلط الماء مع Isopropanol.","أضف المادة الفعالة وحرك.","أضف Propylene Glycol.","أضف Formol ثم العطر.","أكمل الماء وعبئ."]}
-];
-
-/* ============ STATE ============ */
-let recipes = [];
-let codes = [];
-let favs = JSON.parse(localStorage.getItem('chem_favs')||'[]');
-let curFilter = 'all', favOnly=false, sortMode='id', currentRecipe=null, calcQty=1000, detailTab='ing', editingId=null;
-
-function loadAll(){
-  try{ recipes = JSON.parse(localStorage.getItem('chem_recipes_v1')) || null; }catch(e){ recipes=null; }
-  if(!recipes || !recipes.length){ recipes = JSON.parse(JSON.stringify(DEFAULT_RECIPES)); saveRecipes(); }
-  try{ codes = JSON.parse(localStorage.getItem('chem_codes_v1')) || null; }catch(e){ codes=null; }
-  if(!codes){ codes = [
-    {code:"DEMO2026",note:"كود تجريبي عام",active:true,created:Date.now(),expires:Date.now()+365*864e5,uses:0},
-    {code:"MOUNIR77",note:"المالك",active:true,created:Date.now(),expires:Date.now()+730*864e5,uses:0}
-  ]; saveCodes(); }
-}
-function saveRecipes(){ localStorage.setItem('chem_recipes_v1', JSON.stringify(recipes)); }
-function saveCodes(){ localStorage.setItem('chem_codes_v1', JSON.stringify(codes)); }
-
-/* ============ UI HELPERS ============ */
-function toast(msg,type='ok'){
-  const c = type==='ok'?'border-teal-400/40':'border-red-400/40';
-  const ic = type==='ok'?'<i class="fa-solid fa-circle-check text-teal-300"></i>':'<i class="fa-solid fa-circle-exclamation text-red-300"></i>';
-  const el=document.createElement('div');
-  el.className=`toast-in glass2 ${c} border rounded-2xl px-4 py-3 text-sm font-bold flex items-center gap-2 shadow-2xl`;
-  el.innerHTML=`${ic}<span>${msg}</span>`;
-  document.getElementById('toasts').appendChild(el);
-  setTimeout(()=>{el.style.opacity='0';el.style.transition='.4s';setTimeout(()=>el.remove(),400)},2600);
-}
-function bubbles(){
-  const w=document.getElementById('bubbles');
-  for(let i=0;i<18;i++){const b=document.createElement('div');b.className='bubble';
-  const s=6+Math.random()*22;b.style.width=b.style.height=s+'px';
-  b.style.left=Math.random()*100+'vw';b.style.animationDuration=(7+Math.random()*9)+'s';b.style.animationDelay=(Math.random()*8)+'s';w.appendChild(b);}
-}
-function ytId(url){
-  if(!url) return null;
-  const m = url.match(/(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/)([A-Za-z0-9_-]{6,})/);
-  return m?m[1]:null;
-}
-function imgFor(r,i){
-  if(r.img) return r.img;
-  return r.cat==='home'?HOME_IMGS[(r.id||i)%HOME_IMGS.length]:CAR_IMGS[(r.id||i)%CAR_IMGS.length];
-}
-
-/* ============ LOCK / AUTH ============ */
-function switchLockTab(t){
-  const u=document.getElementById('tabUser'),a=document.getElementById('tabAdmin');
-  const pu=document.getElementById('paneUser'),pa=document.getElementById('paneAdmin');
-  if(t==='user'){u.className="flex-1 py-3 rounded-xl font-bold text-sm bg-gradient-to-l from-teal-500 to-sky-500 text-white shadow";a.className="flex-1 py-3 rounded-xl font-bold text-sm text-slate-300";pu.classList.remove('hidden');pa.classList.add('hidden');}
-  else{a.className="flex-1 py-3 rounded-xl font-bold text-sm text-white shadow";a.style.background="linear-gradient(135deg,#7c3aed,#db2777)";u.className="flex-1 py-3 rounded-xl font-bold text-sm text-slate-300";u.style.background="";pa.classList.remove('hidden');pu.classList.add('hidden');}
-}
-function fillDemo(){document.getElementById('userCode').value='DEMO2026';toast('تم إدخال الكود التجريبي');}
-function demoLogin(){
-  localStorage.setItem('chem_session_v1',JSON.stringify({role:'user',code:'DEMO',at:Date.now()}));
-  enterUser('DEMO');
-}
-function loginUser(){
-  const inp=document.getElementById('userCode');
-  const v=(inp.value||'').trim().toUpperCase();
-  if(v.length!==8){inp.classList.add('shake');setTimeout(()=>inp.classList.remove('shake'),500);toast('الكود يجب أن يكون 8 خانات','err');return;}
-  const f=codes.find(c=>c.code===v);
-  if(!f){toast('كود غير صالح — تحقق أو اطلبه من الأدمن','err');return;}
-  if(!f.active){toast('هذا الكود موقوف — تواصل مع الأدمن','err');return;}
-  if(f.expires && Date.now()>f.expires){toast('انتهت صلاحية هذا الكود','err');return;}
-  f.uses=(f.uses||0)+1; saveCodes();
-  localStorage.setItem('chem_session_v1',JSON.stringify({role:'user',code:v,at:Date.now()}));
-  enterUser(v);
-}
-function loginAdmin(){
-  const v=document.getElementById('adminSecret').value;
-  if(v===ADMIN_SECRET){
-    localStorage.setItem('chem_session_v1',JSON.stringify({role:'admin',code:'ADMIN',at:Date.now()}));
-    enterAdmin();
-    toast('مرحباً بعودتك أيها الأدمن 👑');
-  } else { toast('الرقم السري غير صحيح','err'); }
-}
-function enterUser(code){
-  document.getElementById('lockScreen').classList.add('hidden');
-  document.getElementById('adminApp').classList.add('hidden');
-  document.getElementById('mainApp').classList.remove('hidden');
-  document.getElementById('sessionCode').textContent=code;
-  renderAll(); window.scrollTo(0,0);
-}
-function enterAdmin(){
-  document.getElementById('lockScreen').classList.add('hidden');
-  document.getElementById('mainApp').classList.add('hidden');
-  document.getElementById('adminApp').classList.remove('hidden');
-  renderAdmin(); window.scrollTo(0,0);
-}
-function openAdminFromUser(){ switchLockTab('admin'); document.getElementById('lockScreen').classList.remove('hidden'); document.getElementById('mainApp').classList.add('hidden'); window.scrollTo(0,0); }
-function backToUser(){ const s=JSON.parse(localStorage.getItem('chem_session_v1')||'{}'); enterUser(s.code||'ADMIN-VIEW'); }
-function logout(){ localStorage.removeItem('chem_session_v1'); location.reload(); }
-function checkSession(){
-  const s=JSON.parse(localStorage.getItem('chem_session_v1')||'null');
-  if(!s) return;
-  if(s.role==='admin') enterAdmin(); else enterUser(s.code);
-}
-
-/* ============ USER GRID ============ */
-function renderAll(){ renderPills(); renderGrid(); document.getElementById('favCount').textContent=favs.length;
-  document.getElementById('stTotal').textContent=recipes.length;
-  document.getElementById('stHome').textContent=recipes.filter(r=>r.cat==='home').length;
-  document.getElementById('stCar').textContent=recipes.filter(r=>r.cat==='car').length;
-}
-function renderPills(){
-  const h=recipes.filter(r=>r.cat==='home').length, c=recipes.filter(r=>r.cat==='car').length;
-  const pills=[{k:'all',t:`الكل (${recipes.length})`,i:'fa-border-all'},{k:'home',t:`🏠 منزلية (${h})`,i:'fa-house'},{k:'car',t:`🚗 سيارات (${c})`,i:'fa-car'}];
-  document.getElementById('catPills').innerHTML=pills.map(p=>`<button onclick="setFilter('${p.k}')" class="filter-pill ${curFilter===p.k?'active':''} px-5 py-2.5 rounded-full text-sm font-bold bg-white/5 border border-white/15 text-slate-200 hover:bg-white/10 transition"><i class="fa-solid ${p.i} ml-1"></i>${p.t}</button>`).join('');
-}
-function setFilter(k){curFilter=k;renderPills();renderGrid();}
-function toggleFavFilter(){favOnly=!favOnly;document.getElementById('favBtn').style.borderColor=favOnly?'#fb7185':'';renderGrid();}
-function setSort(s){sortMode=s;renderGrid();}
-function toggleFav(id,ev){ev.stopPropagation();const i=favs.indexOf(id);if(i>=0)favs.splice(i,1);else favs.push(id);localStorage.setItem('chem_favs',JSON.stringify(favs));renderAll();}
-function renderGrid(){
-  const q=(document.getElementById('search').value||'').trim();
-  let list=[...recipes];
-  if(curFilter!=='all') list=list.filter(r=>r.cat===curFilter);
-  if(favOnly) list=list.filter(r=>favs.includes(r.id));
-  if(q) list=list.filter(r=>(r.title+r.desc+(r.badge||'')).includes(q));
-  if(sortMode==='alpha') list.sort((a,b)=>a.title.localeCompare(b.title,'ar')); else list.sort((a,b)=>a.id-b.id);
-  document.getElementById('resCount').textContent=`— ${list.length} نتيجة`;
-  const g=document.getElementById('grid');
-  if(!list.length){g.innerHTML=`<div class="col-span-full glass rounded-3xl p-12 text-center"><div class="text-5xl mb-3">🔍</div><div class="font-black">لا توجد نتائج</div><p class="text-sm text-slate-400">جرّب كلمة أخرى أو غيّر القسم</p></div>`;return;}
-  g.innerHTML=list.map((r,idx)=>{
-    const isF=favs.includes(r.id);
-    const tot=r.ing.reduce((s,x)=>s+(+x[1]||0),0);
-    const catT=r.cat==='home'?'منزلية':'سيارات';
-    const catC=r.cat==='home'?'bg-teal-500/20 text-teal-200 border-teal-400/30':'bg-sky-500/20 text-sky-200 border-sky-400/30';
-    const vid=ytId(r.video);
-    return `<article onclick="openRecipe(${r.id})" class="card-hover glass rounded-3xl overflow-hidden cursor-pointer border border-white/10 flex flex-col">
-    <div class="relative h-44 overflow-hidden">
-      <img src="${imgFor(r,idx)}" class="w-full h-full object-cover" loading="lazy">
-      <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(7,13,26,.9),transparent 60%)"></div>
-      <div class="absolute top-3 right-3 flex gap-2">
-        <span class="text-[11px] font-black px-3 py-1 rounded-full border ${catC}">${catT}</span>
-        ${r.warn?'<span class="text-[11px] font-black px-3 py-1 rounded-full bg-red-500/25 text-red-200 border border-red-400/40">⚠️ حذر</span>':''}
-      </div>
-      <button onclick="toggleFav(${r.id},event)" class="absolute top-3 left-3 w-9 h-9 rounded-xl glass flex items-center justify-center ${isF?'text-rose-400':'text-slate-300'}"><i class="fa-${isF?'solid':'regular'} fa-heart"></i></button>
-      <div class="absolute bottom-3 right-3 left-3 flex items-end justify-between gap-2">
-        <span class="text-[11px] font-black px-3 py-1 rounded-full btn-gold text-white">#${r.id} • ${r.badge||'مميز'}</span>
-        ${vid?'<span class="text-[11px] font-black px-3 py-1 rounded-full bg-red-600 text-white"><i class="fa-solid fa-play ml-1"></i> فيديو</span>':''}
-      </div>
+<body class="gradient-bg min-h-screen text-white">
+    
+    <!-- Access Code Screen -->
+    <div id="accessScreen" class="min-h-screen flex items-center justify-center p-4">
+        <div class="card-gradient rounded-3xl p-8 md:p-12 max-w-md w-full text-center fade-in">
+            <div class="mb-8">
+                <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-red-500 to-pink-600 flex items-center justify-center text-3xl pulse-glow">
+                    🔐
+                </div>
+                <h1 class="text-2xl md:text-3xl font-bold mb-2">مرحباً بك</h1>
+                <p class="text-gray-400 text-sm">أدخل رمز الوصول للمتابعة</p>
+            </div>
+            <div class="space-y-4">
+                <input type="text" id="accessCode" placeholder="أدخل رمز الوصول" 
+                    class="input-field w-full px-6 py-4 rounded-xl text-center text-lg text-white placeholder-gray-500">
+                <button onclick="verifyAccess()" class="btn-primary w-full py-4 rounded-xl text-white font-bold text-lg">
+                    دخول
+                </button>
+                <p id="accessError" class="text-red-400 text-sm hidden">رمز الوصول غير صحيح</p>
+            </div>
+            <div class="mt-8 text-gray-500 text-xs">
+                <p>وصفات المنظفات المنزلية والعناية بالسيارات</p>
+            </div>
+        </div>
     </div>
-    <div class="p-5 flex-1 flex flex-col">
-      <h3 class="font-black leading-snug mb-1">${r.title}</h3>
-      <p class="text-xs text-slate-400 leading-relaxed line-clamp-2 mb-3">${r.desc||''}</p>
-      <div class="flex items-center gap-2 text-[11px] text-slate-300 mb-2"><span>المجموع: <b class="${Math.abs(tot-100)<0.6?'text-teal-300':'text-amber-300'}">${tot.toFixed(1)}%</b></span><span>•</span><span>${r.ing.length} مكونات</span><span>•</span><span>${r.steps.length} خطوات</span></div>
-      <div class="pct-bar mb-4"><div class="pct-fill" style="width:${Math.min(tot,100)}%"></div></div>
-      <div class="mt-auto flex gap-2">
-        <button class="btn-grad flex-1 py-2.5 rounded-xl text-sm font-black text-white">عرض الوصفة <i class="fa-solid fa-arrow-left mr-1"></i></button>
-        <button onclick="event.stopPropagation();quickCalc(${r.id})" class="px-3 py-2.5 rounded-xl bg-white/10 border border-white/10 text-sm" title="حاسبة سريعة"><i class="fa-solid fa-calculator text-amber-300"></i></button>
-      </div>
-    </div></article>`;
-  }).join('');
-}
 
-/* ============ RECIPE DETAIL ============ */
-function openRecipe(id){
-  currentRecipe=recipes.find(r=>r.id===id); if(!currentRecipe) return;
-  calcQty=1000; detailTab='ing';
-  document.getElementById('recipeModal').classList.remove('hidden');
-  document.body.style.overflow='hidden';
-  renderModal();
-}
-function closeRecipe(){document.getElementById('recipeModal').classList.add('hidden');document.body.style.overflow='';}
-function setDetailTab(t){detailTab=t;renderModal();}
-function quickCalc(id){openRecipe(id);detailTab='calc';renderModal();}
-function renderModal(){
-  const r=currentRecipe; const vid=ytId(r.video);
-  const tot=r.ing.reduce((s,x)=>s+(+x[1]||0),0);
-  const maxP=Math.max(...r.ing.map(x=>+x[1]||0));
-  let body='';
-  if(detailTab==='ing'){
-    body=`<div class="overflow-x-auto"><table class="w-full text-sm">
-    <thead><tr class="text-slate-400 text-xs"><th class="text-right py-2">المكون</th><th class="py-2 w-24">النسبة</th><th class="py-2 w-40">التمثيل</th></tr></thead><tbody>`+
-    r.ing.map((x,i)=>{const p=+x[1]||0;return `<tr class="border-t border-white/10"><td class="py-3 font-bold"><span class="inline-flex w-6 h-6 rounded-lg bg-white/10 text-[11px] items-center justify-center ml-2">${i+1}</span>${x[0]}</td><td class="text-center"><span class="bg-teal-500/15 border border-teal-400/30 text-teal-200 font-black px-3 py-1 rounded-lg text-xs" dir="ltr">${p}%</span></td><td><div class="pct-bar"><div class="pct-fill" style="width:${(p/maxP*100).toFixed(1)}%"></div></div></td></tr>`}).join('')+
-    `</tbody></table></div>
-    <div class="mt-4 flex items-center justify-between text-sm bg-white/[.04] border border-white/10 rounded-2xl p-4"><span>المجموع الكلي (يجب ≈ 100%)</span><b class="${Math.abs(tot-100)<0.6?'text-teal-300':'text-amber-300'}" dir="ltr">${tot.toFixed(2)}%</b></div>`;
-  } else if(detailTab==='steps'){
-    body=`<div class="space-y-3">`+r.steps.map((s,i)=>`<div class="flex gap-3 bg-white/[.04] border border-white/10 rounded-2xl p-4"><div class="step-dot">${i+1}</div><p class="text-sm leading-relaxed pt-1.5">${s}</p></div>`).join('')+`</div>`;
-  } else if(detailTab==='video'){
-    body= vid?`<div class="video-wrap border border-white/10"><iframe src="https://www.youtube.com/embed/${vid}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><a href="${r.video}" target="_blank" class="inline-flex mt-3 text-xs font-bold text-red-300 bg-red-500/10 border border-red-400/20 px-4 py-2 rounded-xl"><i class="fa-brands fa-youtube ml-2 text-lg"></i> فتح في يوتيوب</a>`
-    :`<div class="text-center py-12"><div class="text-6xl mb-3">🎬</div><div class="font-black">لا يوجد فيديو مرفق بعد</div><p class="text-sm text-slate-400">يمكن للأدمن إضافة رابط يوتيوب من لوحة التحكم وسيظهر هنا مع تشغيل مباشر.</p></div>`;
-  } else if(detailTab==='calc'){
-    const rows=r.ing.map(x=>{const g=(calcQty*(+x[1]||0)/100);return `<tr class="border-t border-white/10"><td class="py-2.5 font-bold text-sm">${x[0]}</td><td class="text-center text-xs text-slate-300" dir="ltr">${x[1]}%</td><td class="text-center"><b class="text-teal-300" dir="ltr">${g>=1000?(g/1000).toFixed(3)+' كغ':g.toFixed(1)+' غ'}</b></td></tr>`}).join('');
-    body=`<div class="bg-gradient-to-l from-teal-500/15 to-indigo-500/15 border border-teal-400/20 rounded-2xl p-5 mb-4">
-    <label class="font-black text-sm">⚖️ حجم الدفعة الإجمالي (غرام)</label>
-    <div class="flex gap-3 mt-3 items-center flex-wrap"><input type="range" min="100" max="20000" step="100" value="${calcQty}" oninput="calcQty=this.value;document.getElementById('calcNum').value=this.value;renderModalCalcOnly()" class="flex-1 accent-teal-400">
-    <div class="flex items-center gap-2"><input id="calcNum" type="number" value="${calcQty}" oninput="calcQty=+this.value||0;renderModalCalcOnly()" class="field !w-32 !py-2 text-center font-black" dir="ltr"><span class="text-xs font-bold">غ</span></div></div>
-    <div class="flex gap-2 mt-3 flex-wrap">${[500,1000,5000,10000].map(v=>`<button onclick="calcQty=${v};renderModal()" class="text-xs font-black px-4 py-2 rounded-xl ${calcQty==v?'btn-grad text-white':'bg-white/10 border border-white/10'}">${v>=1000?(v/1000)+' كغ':v+' غ'}</button>`).join('')}</div></div>
-    <div id="calcTable" class="overflow-x-auto"><table class="w-full"><thead><tr class="text-xs text-slate-400"><th class="text-right py-2">المكون</th><th>النسبة</th><th>الكمية لـ <span dir="ltr">${calcQty}غ</span></th></tr></thead><tbody>${rows}</tbody></table></div>
-    <button onclick="printRecipe()" class="mt-4 w-full py-3 rounded-2xl bg-white/5 border border-white/10 font-bold text-sm"><i class="fa-solid fa-print ml-2"></i> طباعة / حفظ PDF للوصفة</button>`;
-  }
-  document.getElementById('modalBody').innerHTML=`
-  <div class="relative h-56 overflow-hidden">
-    <img src="${imgFor(r,0)}" class="w-full h-full object-cover">
-    <div class="absolute inset-0" style="background:linear-gradient(to top,#0d1626 5%,rgba(13,22,38,.3))"></div>
-    <button onclick="closeRecipe()" class="absolute top-4 left-4 w-10 h-10 rounded-xl bg-black/50 border border-white/20 flex items-center justify-center hover:bg-black/80"><i class="fa-solid fa-xmark"></i></button>
-    <div class="absolute bottom-4 right-5 left-5">
-      <div class="flex gap-2 mb-2 flex-wrap"><span class="text-[11px] font-black px-3 py-1 rounded-full ${r.cat==='home'?'bg-teal-500 text-white':'bg-sky-500 text-white'}">${r.cat==='home'?'🏠 منظفات منزلية':'🚗 عناية سيارات'}</span><span class="text-[11px] font-black px-3 py-1 rounded-full btn-gold text-white">${r.badge||'مميز'}</span></div>
-      <h2 class="text-2xl font-black">${r.title}</h2><p class="text-sm text-slate-300">${r.desc||''}</p>
+    <!-- Main App -->
+    <div id="mainApp" class="hidden">
+        <!-- Header -->
+        <header class="glass-effect sticky top-0 z-50 px-4 py-3">
+            <div class="max-w-7xl mx-auto flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-red-500 to-pink-600 flex items-center justify-center text-lg">
+                        🧪
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-lg">الوصفات الكيميائية</h1>
+                        <p class="text-xs text-gray-400">منظفات منزلية وعناية بالسيارات</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span id="userCode" class="text-xs text-gray-400 bg-white/5 px-3 py-1 rounded-full"></span>
+                    <button onclick="logout()" class="text-gray-400 hover:text-white transition-colors text-sm">
+                        خروج
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Category Tabs -->
+        <div class="max-w-7xl mx-auto px-4 py-6">
+            <div class="flex gap-3 overflow-x-auto scrollbar-hide pb-2">
+                <button onclick="switchCategory('all')" id="tab-all" class="tab-active px-6 py-3 rounded-xl font-bold text-sm whitespace-nowrap transition-all">
+                    الكل
+                </button>
+                <button onclick="switchCategory('cleaning')" id="tab-cleaning" class="px-6 py-3 rounded-xl font-bold text-sm whitespace-nowrap bg-white/5 hover:bg-white/10 transition-all">
+                    🏠 المنظفات المنزلية
+                </button>
+                <button onclick="switchCategory('car')" id="tab-car" class="px-6 py-3 rounded-xl font-bold text-sm whitespace-nowrap bg-white/5 hover:bg-white/10 transition-all">
+                    🚗 العناية بالسيارات
+                </button>
+            </div>
+        </div>
+
+        <!-- Recipes Grid -->
+        <div class="max-w-7xl mx-auto px-4 pb-20">
+            <div id="recipesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Recipes will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Floating Admin Button (Hidden) -->
+        <div class="floating-btn bg-white/5 hover:bg-white/10" onclick="handleAdminClick()" title="">
+            <span class="text-gray-600 text-xs">⚙️</span>
+        </div>
     </div>
-  </div>
-  ${r.warn?`<div class="mx-5 mt-4 bg-red-500/10 border border-red-400/30 rounded-2xl p-4 text-sm flex gap-3"><i class="fa-solid fa-triangle-exclamation text-red-300 text-xl mt-0.5"></i><div><b class="text-red-200">تحذير سلامة:</b><br><span class="text-red-100/90">${r.warn}</span></div></div>`:''}
-  <div class="p-5">
-    <div class="flex gap-2 bg-white/5 p-1.5 rounded-2xl mb-5 overflow-x-auto">
-      ${[['ing','fa-flask','المكونات'],['steps','fa-list-ol','التحضير'],['video','fa-circle-play','الفيديو'],['calc','fa-calculator','الحاسبة']].map(t=>`<button onclick="setDetailTab('${t[0]}')" class="tab-btn ${detailTab===t[0]?'active':''} flex-1 whitespace-nowrap px-4 py-2.5 rounded-xl text-sm font-bold text-slate-300 border border-transparent"><i class="fa-solid ${t[1]} ml-1"></i>${t[2]}${t[0]==='video'&&vid?' 🔴':''}</button>`).join('')}
+
+    <!-- Recipe Detail Modal -->
+    <div id="recipeModal" class="fixed inset-0 z-50 hidden">
+        <div class="modal-overlay absolute inset-0" onclick="closeRecipeModal()"></div>
+        <div class="relative z-10 h-full overflow-y-auto p-4 flex items-start justify-center">
+            <div class="card-gradient rounded-3xl p-6 md:p-8 max-w-2xl w-full my-8 slide-up">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 id="modalTitle" class="text-xl md:text-2xl font-bold"></h2>
+                    <button onclick="closeRecipeModal()" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
+                        ✕
+                    </button>
+                </div>
+                <div id="modalContent"></div>
+            </div>
+        </div>
     </div>
-    ${body}
-  </div>`;
-}
-function renderModalCalcOnly(){ renderModal(); }
-function printRecipe(){
-  const r=currentRecipe; const w=window.open('','_blank');
-  w.document.write(`<html dir="rtl"><head><meta charset="utf-8"><title>${r.title}</title><style>body{font-family:Arial;padding:30px}table{width:100%;border-collapse:collapse}td,th{border:1px solid #ccc;padding:8px}h1{color:#0d9488}</style></head><body><h1>${r.title}</h1><p>${r.desc||''}</p><h3>المكونات (لدفعة ${calcQty}غ)</h3><table><tr><th>المكون</th><th>النسبة</th><th>الكمية</th></tr>${r.ing.map(x=>`<tr><td>${x[0]}</td><td>${x[1]}%</td><td>${(calcQty*x[1]/100).toFixed(1)} غ</td></tr>`).join('')}</table><h3>الخطوات</h3><ol>${r.steps.map(s=>`<li>${s}</li>`).join('')}</ol>${r.warn?`<p><b>تحذير:</b> ${r.warn}</p>`:''}</body></html>`);
-  w.document.close(); w.print();
-}
 
-/* ============ ADMIN ============ */
-function renderAdmin(){ showAdminTab('codes'); updateAdminStats(); renderCodes(); renderAdminRecipes(); }
-function showAdminTab(t){
-  document.getElementById('admCodes').classList.toggle('hidden',t!=='codes');
-  document.getElementById('admRecipes').classList.toggle('hidden',t!=='recipes');
-}
-function updateAdminStats(){
-  document.getElementById('aActive').textContent=codes.filter(c=>c.active && (!c.expires||Date.now()<c.expires)).length;
-  document.getElementById('aTotal').textContent=codes.length;
-  document.getElementById('aRecipes').textContent=recipes.length;
-  document.getElementById('aVideos').textContent=recipes.filter(r=>ytId(r.video)).length;
-}
-function randCode(){
-  const ch="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; let s="";
-  const a=new Uint8Array(8); crypto.getRandomValues(a);
-  for(let i=0;i<8;i++) s+=ch[a[i]%ch.length];
-  return s;
-}
-function previewCode(){ const c=randCode(); document.getElementById('genPreview').textContent=c; return c; }
-function createCodes(){
-  let n=Math.min(Math.max(+document.getElementById('codeBulk').value||1,1),20);
-  const note=document.getElementById('codeNote').value||'بدون اسم';
-  const days=+document.getElementById('codeDays').value||365;
-  for(let i=0;i<n;i++){
-    let c=randCode(); while(codes.some(x=>x.code===c)) c=randCode();
-    codes.unshift({code:c,note,active:true,created:Date.now(),expires:Date.now()+days*864e5,uses:0});
-    document.getElementById('genPreview').textContent=c;
-  }
-  document.getElementById('codeNote').value='';
-  saveCodes(); renderCodes(); updateAdminStats();
-  toast(`تم إنشاء ${n} كود بنجاح 🎉`);
-}
-function renderCodes(){
-  const q=(document.getElementById('codeSearch').value||'').toUpperCase();
-  let list=[...codes]; if(q) list=list.filter(c=>(c.code+c.note).toUpperCase().includes(q));
-  const el=document.getElementById('codesList');
-  if(!list.length){el.innerHTML=`<div class="text-center py-10 text-slate-400 text-sm">لا توجد أكواد مطابقة</div>`;return;}
-  el.innerHTML=list.map(c=>{
-    const exp=c.expires?new Date(c.expires).toLocaleDateString('ar'): '—';
-    const expired=c.expires&&Date.now()>c.expires;
-    return `<div class="bg-white/[.04] border ${c.active&&!expired?'border-teal-400/20':'border-red-400/20'} rounded-2xl p-4 flex items-center gap-3 flex-wrap">
-    <div class="w-11 h-11 rounded-xl flex items-center justify-center text-lg ${c.active&&!expired?'bg-teal-500/15 text-teal-300':'bg-red-500/15 text-red-300'}"><i class="fa-solid fa-ticket"></i></div>
-    <div class="flex-1 min-w-[160px]"><div class="font-mono font-black text-lg tracking-[.2em] ${c.active&&!expired?'text-teal-200':'text-slate-500 line-through'}" dir="ltr">${c.code}</div>
-    <div class="text-xs text-slate-400">${c.note} • استخدام: ${c.uses||0} • تنتهي: ${exp} ${expired?'<b class="text-red-300"> (منتهي)</b>':''}</div></div>
-    <div class="flex gap-2">
-      <button onclick="copyCode('${c.code}')" class="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/20" title="نسخ"><i class="fa-solid fa-copy text-xs"></i></button>
-      <button onclick="toggleCode('${c.code}')" class="px-3 h-9 rounded-xl text-xs font-black ${c.active?'bg-amber-500/20 text-amber-200 border border-amber-400/30':'bg-teal-500/20 text-teal-200 border border-teal-400/30'}">${c.active?'إيقاف':'تفعيل'}</button>
-      <button onclick="delCode('${c.code}')" class="w-9 h-9 rounded-xl bg-red-500/15 border border-red-400/30 text-red-300" title="حذف"><i class="fa-solid fa-trash text-xs"></i></button>
-    </div></div>`;
-  }).join('');
-}
-function copyCode(c){navigator.clipboard.writeText(c).then(()=>toast('تم نسخ الكود: '+c));}
-function toggleCode(c){const f=codes.find(x=>x.code===c);if(f){f.active=!f.active;saveCodes();renderCodes();updateAdminStats();toast(f.active?'تم تفعيل الاشتراك ✅':'تم إيقاف الاشتراك ⏸️');}}
-function delCode(c){if(!confirm('حذف الكود '+c+' ؟'))return;codes=codes.filter(x=>x.code!==c);saveCodes();renderCodes();updateAdminStats();}
-function exportCodes(){const t=codes.map(c=>`${c.code} | ${c.note} | ${c.active?'نشط':'موقوف'}`).join('\n');navigator.clipboard.writeText(t).then(()=>toast('تم نسخ قائمة الأكواد'));}
+    <!-- Admin Login Modal -->
+    <div id="adminLoginModal" class="fixed inset-0 z-50 hidden">
+        <div class="modal-overlay absolute inset-0" onclick="closeAdminLogin()"></div>
+        <div class="relative z-10 h-full overflow-y-auto p-4 flex items-center justify-center">
+            <div class="card-gradient rounded-3xl p-8 max-w-md w-full slide-up">
+                <div class="text-center mb-6">
+                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center text-2xl">
+                        👨‍💼
+                    </div>
+                    <h2 class="text-xl font-bold">دخول المسؤول</h2>
+                    <p class="text-gray-400 text-sm mt-1">أدخل كلمة المرور للوصول للوحة التحكم</p>
+                </div>
+                <div class="space-y-4">
+                    <input type="password" id="adminPassword" placeholder="كلمة المرور" 
+                        class="input-field w-full px-6 py-4 rounded-xl text-center text-white placeholder-gray-500">
+                    <button onclick="verifyAdmin()" class="btn-primary w-full py-4 rounded-xl text-white font-bold">
+                        دخول
+                    </button>
+                    <p id="adminError" class="text-red-400 text-sm text-center hidden">كلمة المرور غير صحيحة</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-function renderAdminRecipes(){
-  const q=(document.getElementById('admSearch').value||'').trim();
-  let list=[...recipes]; if(q) list=list.filter(r=>(r.title+r.badge).includes(q));
-  document.getElementById('admRecList').innerHTML=list.map(r=>`
-  <div class="bg-white/[.04] border border-white/10 rounded-2xl p-4 flex items-center gap-3 flex-wrap">
-    <img src="${imgFor(r,0)}" class="w-14 h-14 rounded-xl object-cover">
-    <div class="flex-1 min-w-[180px]"><div class="font-black text-sm">#${r.id} — ${r.title}</div><div class="text-[11px] text-slate-400">${r.cat==='home'?'🏠 منزلية':'🚗 سيارات'} • ${r.ing.length} مكونات ${ytId(r.video)?'• <span class="text-red-300">🎬 فيديو مرفق</span>':'• <span class="text-slate-500">بدون فيديو</span>'}</div></div>
-    <div class="flex gap-2">
-      ${ytId(r.video)?`<a href="${r.video}" target="_blank" class="w-9 h-9 rounded-xl bg-red-500/15 border border-red-400/30 flex items-center justify-center text-red-300" title="مشاهدة"><i class="fa-brands fa-youtube text-sm"></i></a>`:''}
-      <button onclick="openEditor(${r.id})" class="px-4 h-9 rounded-xl bg-sky-500/15 border border-sky-400/30 text-sky-200 text-xs font-black"><i class="fa-solid fa-pen ml-1"></i> تعديل</button>
-      <button onclick="delRecipe(${r.id})" class="w-9 h-9 rounded-xl bg-red-500/15 border border-red-400/30 text-red-300"><i class="fa-solid fa-trash text-xs"></i></button>
-    </div></div>`).join('');
-}
-function openEditor(id){
-  editingId=id;
-  document.getElementById('editorModal').classList.remove('hidden');
-  document.getElementById('edTitle').textContent=id?`✏️ تعديل وصفة #${id}`:'➕ وصفة جديدة';
-  if(id){const r=recipes.find(x=>x.id===id);
-    document.getElementById('fTitle').value=r.title;document.getElementById('fCat').value=r.cat;
-    document.getElementById('fBadge').value=r.badge||'';document.getElementById('fVideo').value=r.video||'';
-    document.getElementById('fDesc').value=r.desc||'';document.getElementById('fWarn').value=r.warn||'';
-    document.getElementById('fIng').value=r.ing.map(x=>`${x[0]} | ${x[1]}`).join('\n');
-    document.getElementById('fSteps').value=r.steps.join('\n');
-  } else {['fTitle','fBadge','fVideo','fDesc','fWarn','fIng','fSteps'].forEach(i=>document.getElementById(i).value='');document.getElementById('fCat').value='home';}
-}
-function closeEditor(){document.getElementById('editorModal').classList.add('hidden');editingId=null;}
-function saveEditor(){
-  const title=document.getElementById('fTitle').value.trim();
-  if(!title){toast('أدخل اسم الوصفة','err');return;}
-  const ing=document.getElementById('fIng').value.split('\n').map(l=>l.trim()).filter(Boolean).map(l=>{
-    const [n,p]=l.split('|').map(s=>(s||'').trim());return [n||'مكون',parseFloat((p||'0').replace(',','.'))||0];
-  });
-  if(!ing.length){toast('أضف مكوناً واحداً على الأقل','err');return;}
-  const steps=document.getElementById('fSteps').value.split('\n').map(s=>s.trim()).filter(Boolean);
-  if(!steps.length){toast('أضف خطوة واحدة على الأقل','err');return;}
-  const data={title,cat:document.getElementById('fCat').value,badge:document.getElementById('fBadge').value||'مميز',video:document.getElementById('fVideo').value.trim(),desc:document.getElementById('fDesc').value.trim(),warn:document.getElementById('fWarn').value.trim(),ing,steps};
-  if(editingId){const r=recipes.find(x=>x.id===editingId);Object.assign(r,data);toast('تم حفظ التعديلات ✅');}
-  else{const nid=Math.max(...recipes.map(r=>r.id),0)+1;recipes.push({id:nid,...data});toast('تمت إضافة الوصفة #'+nid+' 🎉');}
-  saveRecipes();closeEditor();renderAdminRecipes();updateAdminStats();
-}
-function delRecipe(id){if(!confirm('حذف الوصفة #'+id+' نهائياً؟'))return;recipes=recipes.filter(r=>r.id!==id);saveRecipes();renderAdminRecipes();updateAdminStats();toast('تم الحذف');}
+    <!-- Admin Panel -->
+    <div id="adminPanel" class="hidden min-h-screen">
+        <!-- Admin Header -->
+        <header class="glass-effect sticky top-0 z-50 px-4 py-3">
+            <div class="max-w-7xl mx-auto flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center text-lg">
+                        👨‍💼
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-lg">لوحة التحكم</h1>
+                        <p class="text-xs text-gray-400">إدارة الوصفات والاشتراكات</p>
+                    </div>
+                </div>
+                <button onclick="exitAdmin()" class="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 transition-colors text-sm">
+                    ← العودة للتطبيق
+                </button>
+            </div>
+        </header>
 
-/* ============ INIT ============ */
-loadAll(); bubbles(); previewCode();
-document.getElementById('userCode').addEventListener('keydown',e=>{if(e.key==='Enter')loginUser();});
-document.getElementById('adminSecret').addEventListener('keydown',e=>{if(e.key==='Enter')loginAdmin();});
-document.getElementById('recipeModal').addEventListener('click',e=>{if(e.target.id==='recipeModal')closeRecipe();});
-document.getElementById('editorModal').addEventListener('click',e=>{if(e.target.id==='editorModal')closeEditor();});
-checkSession();
-if(document.getElementById('mainApp').classList.contains('hidden')===false) renderAll();
-</script>
+        <!-- Admin Tabs -->
+        <div class="max-w-7xl mx-auto px-4 py-6">
+            <div class="flex gap-3 overflow-x-auto scrollbar-hide pb-2">
+                <button onclick="switchAdminTab('recipes')" id="admin-tab-recipes" class="tab-active px-6 py-3 rounded-xl font-bold text-sm whitespace-nowrap transition-all">
+                    📝 الوصفات
+                </button>
+                <button onclick="switchAdminTab('subscriptions')" id="admin-tab-subscriptions" class="px-6 py-3 rounded-xl font-bold text-sm whitespace-nowrap bg-white/5 hover:bg-white/10 transition-all">
+                    👥 الاشتراكات
+                </button>
+                <button onclick="switchAdminTab('generator')" id="admin-tab-generator" class="px-6 py-3 rounded-xl font-bold text-sm whitespace-nowrap bg-white/5 hover:bg-white/10 transition-all">
+                    🔑 مولد الأكواد
+                </button>
+            </div>
+        </div>
+
+        <!-- Admin Content -->
+        <div class="max-w-7xl mx-auto px-4 pb-20">
+            <!-- Recipes Management -->
+            <div id="admin-recipes" class="space-y-6">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-xl font-bold">إدارة الوصفات</h2>
+                    <button onclick="showAddRecipeForm()" class="btn-primary px-6 py-3 rounded-xl font-bold text-sm">
+                        + إضافة وصفة جديدة
+                    </button>
+                </div>
+                <div id="adminRecipesList" class="space-y-4">
+                    <!-- Admin recipes list -->
+                </div>
+            </div>
+
+            <!-- Subscriptions Management -->
+            <div id="admin-subscriptions" class="hidden space-y-6">
+                <h2 class="text-xl font-bold">إدارة الاشتراكات</h2>
+                <div id="subscriptionsList" class="space-y-4">
+                    <!-- Subscriptions list -->
+                </div>
+            </div>
+
+            <!-- Code Generator -->
+            <div id="admin-generator" class="hidden space-y-6">
+                <h2 class="text-xl font-bold">مولد أكواد الوصول</h2>
+                <div class="card-gradient rounded-2xl p-6">
+                    <p class="text-gray-400 mb-4">قم بتوليد أكواد وصول جديدة للمستخدمين</p>
+                    <div class="flex flex-col md:flex-row gap-4 items-center">
+                        <div class="code-display flex-1 w-full" id="generatedCode">--------</div>
+                        <button onclick="generateCode()" class="btn-primary px-8 py-4 rounded-xl font-bold whitespace-nowrap">
+                            🎲 توليد كود جديد
+                        </button>
+                    </div>
+                    <div class="mt-6 flex flex-col md:flex-row gap-4">
+                        <button onclick="saveGeneratedCode()" class="btn-secondary px-6 py-3 rounded-xl font-bold text-sm">
+                            💾 حفظ الكود
+                        </button>
+                        <button onclick="copyCode()" class="px-6 py-3 rounded-xl font-bold text-sm bg-white/10 hover:bg-white/20 transition-colors">
+                            📋 نسخ الكود
+                        </button>
+                    </div>
+                    <div class="mt-6">
+                        <h3 class="font-bold mb-3">الأكواد المولدة:</h3>
+                        <div id="generatedCodesList" class="space-y-2 max-h-60 overflow-y-auto">
+                            <!-- Generated codes -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Recipe Modal -->
+    <div id="recipeFormModal" class="fixed inset-0 z-50 hidden">
+        <div class="modal-overlay absolute inset-0" onclick="closeRecipeForm()"></div>
+        <div class="relative z-10 h-full overflow-y-auto p-4 flex items-start justify-center">
+            <div class="card-gradient rounded-3xl p-6 md:p-8 max-w-2xl w-full my-8 slide-up">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 id="recipeFormTitle" class="text-xl font-bold">إضافة وصفة جديدة</h2>
+                    <button onclick="closeRecipeForm()" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
+                        ✕
+                    </button>
+                </div>
+                <form id="recipeForm" class="space-y-4">
+                    <input type="hidden" id="recipeId">
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-1">اسم الوصفة</label>
+                        <input type="text" id="recipeName" class="input-field w-full px-4 py-3 rounded-xl text-white" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-1">القسم</label>
+                        <select id="recipeCategory" class="input-field w-full px-4 py-3 rounded-xl text-white">
+                            <option value="cleaning">المنظفات المنزلية</option>
+                            <option value="car">العناية بالسيارات</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-1">الوصف المختصر</label>
+                        <textarea id="recipeDescription" class="input-field w-full px-4 py-3 rounded-xl text-white h-20 resize-none"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-1">المكونات (كل مكون في سطر)</label>
+                        <textarea id="recipeIngredients" class="input-field w-full px-4 py-3 rounded-xl text-white h-32 resize-none" placeholder="المكون الأول - النسبة%&#10;المكون الثاني - النسبة%"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-1">طريقة التحضير (خطوات)</label>
+                        <textarea id="recipeSteps" class="input-field w-full px-4 py-3 rounded-xl text-white h-40 resize-none" placeholder="الخطوة 1&#10;الخطوة 2&#10;الخطوة 3"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-1">رابط فيديو يوتيوب (اختياري)</label>
+                        <input type="url" id="recipeVideo" class="input-field w-full px-4 py-3 rounded-xl text-white" placeholder="https://www.youtube.com/watch?v=...">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-1">تحذيرات (اختياري)</label>
+                        <textarea id="recipeWarnings" class="input-field w-full px-4 py-3 rounded-xl text-white h-20 resize-none" placeholder="تحذيرات خاصة بهذه الوصفة"></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary w-full py-4 rounded-xl text-white font-bold text-lg">
+                        💾 حفظ الوصفة
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notificationContainer" class="fixed top-4 left-4 z-[100] space-y-2"></div>
+
+    <script>
+        // ============ Supabase Configuration ============
+        // Replace with your actual Supabase credentials
+        const SUPABASE_URL = 'https://your-project.supabase.co';
+        const SUPABASE_KEY = 'your-anon-key';
+        
+        let supabase = null;
+        let useLocalStorage = true; // Fallback to localStorage if Supabase is not configured
+
+        try {
+            if (SUPABASE_URL !== 'https://your-project.supabase.co') {
+                supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+                useLocalStorage = false;
+            }
+        } catch (e) {
+            console.log('Using localStorage fallback');
+            useLocalStorage = true;
+        }
+
+        // ============ Data Store ============
+        const ADMIN_PASSWORD = 'mounirath1977@';
+        
+        let currentUser = null;
+        let isAdmin = false;
+        let currentCategory = 'all';
+        let currentAdminTab = 'recipes';
+
+        // Default recipes data
+        const defaultRecipes = [
+            {
+                id: 1,
+                name: 'منظف الأرضيات متعدد الاستخدامات',
+                category: 'cleaning',
+                description: 'منظف فعال للأرضيات بجميع أنواعها',
+                ingredients: [
+                    'ماء مقطر - 70%',
+                    'لاوريل إيثر سلفات الصوديوم (SLES) - 10%',
+                    'كوكاميدوبروبيل بيتائين - 5%',
+                    'عطر - 1%',
+                    'لون طعام - 0.5%',
+                    'مواد حافظة (بنزوات الصوديوم) - 0.3%',
+                    'ملح (لكلورة القوام) - حسب الحاجة'
+                ],
+                steps: [
+                    'أضف الماء المقطر في وعاء كبير',
+                    'أضف SLES تدريجياً مع التحريك المستمر',
+                    'أضف الكوكاميدوبروبيل بيتائين واخلط جيداً',
+                    'أضف العطر ولون الطعام',
+                    'أضف المواد الحافظة',
+                    'أضف الملح تدريجياً حتى الوصول للقوام المطلوب',
+                    'اترك المزيج يستقر لمدة 24 ساعة قبل التعبئة'
+                ],
+                video: '',
+                warnings: 'تجنب ملامسة العينين. يُحفظ بعيداً عن متناول الأطفال.'
+            },
+            {
+                id: 2,
+                name: 'منظف الزجاج والمرايا',
+                category: 'cleaning',
+                description: 'تركيبة فعالة لتنظيف الزجاج بدون خطوط',
+                ingredients: [
+                    'ماء مقطر - 85%',
+                    'كحول إيزوبروبيل - 10%',
+                    'أمونيا - 3%',
+                    'سرفاكتانت غير أيوني - 1.5%',
+                    'عطر - 0.5%'
+                ],
+                steps: [
+                    'اخلط الماء المقطر مع الكحول الإيزوبروبيل',
+                    'أضف الأمونيا بحذر مع التحريك',
+                    'أضف السرفاكتانت واخلط برفق',
+                    'أضف العطر',
+                    'صفِّ المحلول في زجاجة بخاخ',
+                    'رج الزجاجة قبل الاستخدام'
+                ],
+                video: '',
+                warnings: 'استخدم في مكان جيد التهوية. لا تخلط مع مواد تحتوي على الكلور.'
+            },
+            {
+                id: 3,
+                name: 'منظف الحمامات والمطابخ',
+                category: 'cleaning',
+                description: 'مزيل فعال للبقع الصعبة والترسبات',
+                ingredients: [
+                    'ماء مقطر - 60%',
+                    'حمض الهيدروكلوريك المخفف - 15%',
+                    'سرفاكتانت - 5%',
+                    'مثخن (زنتان gum) - 2%',
+                    'عطر - 1%',
+                    'لون - 0.5%',
+                    'مواد حافظة - 0.3%'
+                ],
+                steps: [
+                    'أضف الماء في وعاء مقاوم للأحماض',
+                    'أضف حمض الهيدروكلوريك ببطء شديد',
+                    'أضف السرفاكتانت مع التحريك المستمر',
+                    'أضف المثخن تدريجياً',
+                    'أضف العطر واللون',
+                    'أضف المواد الحافظة',
+                    'عبئ في عبوات مقاومة للأحماض'
+                ],
+                video: '',
+                warnings: '⚠️ خطير: ارتدِ قفازات ونظارات وكمامة. لا تخلط مع أي منتج آخر. استخدم في مكان جيد التهوية فقط.'
+            },
+            {
+                id: 4,
+                name: 'شامبو السيارات المركز',
+                category: 'car',
+                description: 'شامبو غني بالرغوة لتنظيف آمن لطلاء السيارة',
+                ingredients: [
+                    'ماء مقطر - 75%',
+                    'SLES - 12%',
+                    'كوكاميد ديثانول أمين (CDEA) - 5%',
+                    'كوكاميدوبروبيل بيتائين - 4%',
+                    'غليسرين - 2%',
+                    'عطر - 1%',
+                    'لون - 0.5%',
+                    'مواد حافظة - 0.3%'
+                ],
+                steps: [
+                    'سخن الماء قليلاً (30-40 درجة)',
+                    'أضف SLES تدريجياً مع التحريك البطيء',
+                    'أضف CDEA واخلط حتى التجانس',
+                    'أضف الكوكاميدوبروبيل بيتائين',
+                    'أضف الغليسرين',
+                    'أضف العطر واللون',
+                    'أضف المواد الحافظة',
+                    'اترك المزيج يستقر ثم عبئه'
+                ],
+                video: '',
+                warnings: 'pH المطلوب: 6.5-7.5. تأكد من معادلة الحموضة.'
+            },
+            {
+                id: 5,
+                name: 'ملمع إطارات السيارات',
+                category: 'car',
+                description: 'يعطي لمعاناً طويل الأمد للإطارات',
+                ingredients: [
+                    'ماء مقطر - 50%',
+                    'سيليكون إيمولشن - 25%',
+                    'غليسرين - 10%',
+                    'كحول إيزوبروبيل - 10%',
+                    'سرفاكتانت - 3%',
+                    'عطر - 1%',
+                    'مواد حافظة - 0.5%'
+                ],
+                steps: [
+                    'اخلط الماء مع الكحول الإيزوبروبيل',
+                    'أضف سيليكون إيمولشن تدريجياً',
+                    'أضف الغليسرين واخلط جيداً',
+                    'أضف السرفاكتانت',
+                    'أضف العطر والمواد الحافظة',
+                    'رج العبوة جيداً قبل كل استخدام',
+                    'طبق بقطعة إسفنج أو فرشاة على الإطارات النظيفة'
+                ],
+                video: '',
+                warnings: 'لا تستخدم على الأسطح المنزلقة. نظف الإطار قبل التطبيق.'
+            },
+            {
+                id: 6,
+                name: 'واقي ومعزز لمعة السيارة (واكس)',
+                category: 'car',
+                description: 'طبقة حماية ولمعان للهيكل الخارجي',
+                ingredients: [
+                    'شمع كارنوبا - 15%',
+                    'شمع عسل النحل - 5%',
+                    'زيت معدني خفيف - 30%',
+                    'نفثا بترولية - 40%',
+                    'عطر - 2%',
+                    'مواد حافظة - 1%',
+                    'سيليكون سائل - 7%'
+                ],
+                steps: [
+                    'أذب شمع الكارنوبا وشمع العسل في حمام مائي',
+                    'أضف الزيت المعدني تدريجياً مع التحريك',
+                    'أضف النفثا البترولية بحذر (بعيداً عن اللهب)',
+                    'أضف السيليكون السائل',
+                    'أضف العطر والمواد الحافظة',
+                    'اسكب في علب معدنية واتركه يبرد',
+                    'يستخدم بقطعة قماش ناعمة بحركات دائرية'
+                ],
+                video: '',
+                warnings: '⚠️ النفثا قابلة للاشتعال بشدة. اعمل بعيداً عن أي مصدر حرارة أو لهب. استخدم في مكان جيد التهوية.'
+            },
+            {
+                id: 7,
+                name: 'منظف المحرك الخارجي',
+                category: 'car',
+                description: 'يزيل الشحوم والأوساخ عن المحرك',
+                ingredients: [
+                    'ماء مقطر - 55%',
+                    'بوتاسيوم هيدروكسايد (KOH) - 3%',
+                    'سرفاكتانت قوي - 15%',
+                    'مذيبات (بوتيل جليكول) - 15%',
+                    'مثخن - 5%',
+                    'عطر - 1%',
+                    'مواد حافظة - 0.5%'
+                ],
+                steps: [
+                    'أضف الماء في وعاء مقاوم',
+                    'أضف هيدروكسيد البوتاسيوم ببطء (تفاعل طارد للحرارة)',
+                    'أضف السرفاكتانت القوي',
+                    'أضف البوتيل جليكول',
+                    'أضف المثخن',
+                    'أضف العطر والمواد الحافظة',
+                    'رش على المحرك البارد واتركه 5 دقائق ثم اشطف'
+                ],
+                video: '',
+                warnings: '⚠️ خطير: مادة كاوية. ارتدِ معدات حماية كاملة. لا تستخدم على محرك ساخن.'
+            },
+            {
+                id: 8,
+                name: 'معطر الجو المنزلي',
+                category: 'cleaning',
+                description: 'معطر جو برائحة منعشة تدوم طويلاً',
+                ingredients: [
+                    'ماء مقطر - 70%',
+                    'كحول إيثيلي - 20%',
+                    'زيت عطري مركز - 5%',
+                    'بولي سوربات 20 - 3%',
+                    'غليسرين - 1.5%',
+                    'مواد حافظة - 0.5%'
+                ],
+                steps: [
+                    'اخلط الكحول مع الزيت العطري جيداً',
+                    'أضف بولي سوربات 20 كمستحلب',
+                    'أضف الماء المقطر تدريجياً',
+                    'أضف الغليسرين',
+                    'أضف المواد الحافظة',
+                    'صفِّ في زجاجة بخاخ',
+                    'رج جيداً قبل كل استخدام'
+                ],
+                video: '',
+                warnings: 'قابل للاشتعال. لا ترش بالقرب من لهب مفتوح.'
+            },
+            {
+                id: 9,
+                name: 'سائل غسيل الأطباق',
+                category: 'cleaning',
+                description: 'سائل مركز فعال في إزالة الدهون',
+                ingredients: [
+                    'ماء مقطر - 65%',
+                    'SLES - 18%',
+                    'كوكاميد ديثانول أمين - 5%',
+                    'كوكاميدوبروبيل بيتائين - 6%',
+                    'ملح طعام - 3%',
+                    'عطر - 1%',
+                    'لون طعام - 0.5%',
+                    'مواد حافظة - 0.3%',
+                    'حمض الستريك (لتعديل pH) - حسب الحاجة'
+                ],
+                steps: [
+                    'أضف الماء في وعاء كبير',
+                    'أضف SLES تدريجياً مع التحريك البطيء لتجنب الرغوة',
+                    'أضف CDEA واخلط حتى التجانس',
+                    'أضف الكوكاميدوبروبيل بيتائين',
+                    'أضف الملح تدريجياً لتكثيف المزيج',
+                    'أضف العطر ولون الطعام',
+                    'أضف المواد الحافظة',
+                    'عدّل pH إلى 5.5-6.5 بحمض الستريك',
+                    'اترك يستقر 12 ساعة قبل التعبئة'
+                ],
+                video: '',
+                warnings: 'pH المثالي: 5.5-6.5. تأكد من معادلة الحموضة قبل الاستخدام.'
+            }
+        ];
+
+        // Initialize data
+        function initData() {
+            if (useLocalStorage) {
+                if (!localStorage.getItem('recipes')) {
+                    localStorage.setItem('recipes', JSON.stringify(defaultRecipes));
+                }
+                if (!localStorage.getItem('accessCodes')) {
+                    const defaultCodes = [
+                        { code: 'WELCOME1', active: true, created: new Date().toISOString(), used: false }
+                    ];
+                    localStorage.setItem('accessCodes', JSON.stringify(defaultCodes));
+                }
+                if (!localStorage.getItem('subscriptions')) {
+                    localStorage.setItem('subscriptions', JSON.stringify([]));
+                }
+            }
+        }
+
+        function getRecipes() {
+            if (useLocalStorage) {
+                return JSON.parse(localStorage.getItem('recipes') || '[]');
+            }
+            return [];
+        }
+
+        function saveRecipes(recipes) {
+            if (useLocalStorage) {
+                localStorage.setItem('recipes', JSON.stringify(recipes));
+            }
+        }
+
+        function getAccessCodes() {
+            if (useLocalStorage) {
+                return JSON.parse(localStorage.getItem('accessCodes') || '[]');
+            }
+            return [];
+        }
+
+        function saveAccessCodes(codes) {
+            if (useLocalStorage) {
+                localStorage.setItem('accessCodes', JSON.stringify(codes));
+            }
+        }
+
+        function getSubscriptions() {
+            if (useLocalStorage) {
+                return JSON.parse(localStorage.getItem('subscriptions') || '[]');
+            }
+            return [];
+        }
+
+        function saveSubscriptions(subs) {
+            if (useLocalStorage) {
+                localStorage.setItem('subscriptions', JSON.stringify(subs));
+            }
+        }
+
+        // ============ Access Control ============
+        function verifyAccess() {
+            const code = document.getElementById('accessCode').value.trim().toUpperCase();
+            const codes = getAccessCodes();
+            
+            const validCode = codes.find(c => c.code === code && c.active && !c.used);
+            
+            if (validCode || code === 'DEMO') {
+                currentUser = code;
+                if (validCode) {
+                    validCode.used = true;
+                    validCode.usedAt = new Date().toISOString();
+                    saveAccessCodes(codes);
+                    
+                    // Add subscription
+                    const subs = getSubscriptions();
+                    subs.push({
+                        code: code,
+                        activatedAt: new Date().toISOString(),
+                        status: 'active'
+                    });
+                    saveSubscriptions(subs);
+                }
+                
+                document.getElementById('accessScreen').classList.add('hidden');
+                document.getElementById('mainApp').classList.remove('hidden');
+                document.getElementById('userCode').textContent = `🔑 ${code}`;
+                loadRecipes();
+                showNotification('مرحباً بك! تم تسجيل الدخول بنجاح', 'success');
+            } else {
+                document.getElementById('accessError').classList.remove('hidden');
+                document.getElementById('accessCode').classList.add('border-red-500');
+                setTimeout(() => {
+                    document.getElementById('accessError').classList.add('hidden');
+                    document.getElementById('accessCode').classList.remove('border-red-500');
+                }, 3000);
+            }
+        }
+
+        function logout() {
+            currentUser = null;
+            isAdmin = false;
+            document.getElementById('mainApp').classList.add('hidden');
+            document.getElementById('adminPanel').classList.add('hidden');
+            document.getElementById('accessScreen').classList.remove('hidden');
+            document.getElementById('accessCode').value = '';
+        }
+
+        // ============ Admin Functions ============
+        let adminClickCount = 0;
+        let adminClickTimer = null;
+
+        function handleAdminClick() {
+            adminClickCount++;
+            if (adminClickTimer) clearTimeout(adminClickTimer);
+            
+            adminClickTimer = setTimeout(() => {
+                adminClickCount = 0;
+            }, 2000);
+
+            if (adminClickCount >= 5) {
+                adminClickCount = 0;
+                document.getElementById('adminLoginModal').classList.remove('hidden');
+            }
+        }
+
+        function verifyAdmin() {
+            const password = document.getElementById('adminPassword').value;
+            if (password === ADMIN_PASSWORD) {
+                isAdmin = true;
+                document.getElementById('adminLoginModal').classList.add('hidden');
+                document.getElementById('mainApp').classList.add('hidden');
+                document.getElementById('adminPanel').classList.remove('hidden');
+                document.getElementById('adminPassword').value = '';
+                loadAdminRecipes();
+                loadSubscriptions();
+                loadGeneratedCodes();
+                showNotification('مرحباً بك في لوحة التحكم', 'success');
+            } else {
+                document.getElementById('adminError').classList.remove('hidden');
+                setTimeout(() => {
+                    document.getElementById('adminError').classList.add('hidden');
+                }, 3000);
+            }
+        }
+
+        function closeAdminLogin() {
+            document.getElementById('adminLoginModal').classList.add('hidden');
+            document.getElementById('adminPassword').value = '';
+            document.getElementById('adminError').classList.add('hidden');
+        }
+
+        function exitAdmin() {
+            isAdmin = false;
+            document.getElementById('adminPanel').classList.add('hidden');
+            document.getElementById('mainApp').classList.remove('hidden');
+            loadRecipes();
+        }
+
+        // ============ Admin Tabs ============
+        function switchAdminTab(tab) {
+            currentAdminTab = tab;
+            document.querySelectorAll('[id^="admin-tab-"]').forEach(el => {
+                el.classList.remove('tab-active');
+                el.classList.add('bg-white/5');
+            });
+            document.getElementById(`admin-tab-${tab}`).classList.add('tab-active');
+            document.getElementById(`admin-tab-${tab}`).classList.remove('bg-white/5');
+            
+            document.getElementById('admin-recipes').classList.toggle('hidden', tab !== 'recipes');
+            document.getElementById('admin-subscriptions').classList.toggle('hidden', tab !== 'subscriptions');
+            document.getElementById('admin-generator').classList.toggle('hidden', tab !== 'generator');
+        }
+
+        // ============ Recipe Management ============
+        function loadRecipes() {
+            const recipes = getRecipes();
+            const grid = document.getElementById('recipesGrid');
+            
+            const filtered = currentCategory === 'all' 
+                ? recipes 
+                : recipes.filter(r => r.category === currentCategory);
+            
+            grid.innerHTML = filtered.map((recipe, index) => `
+                <div class="recipe-card card-gradient rounded-2xl p-6 cursor-pointer fade-in" 
+                     style="animation-delay: ${index * 0.1}s"
+                     onclick="openRecipeDetail(${recipe.id})">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="category-icon ${recipe.category === 'cleaning' ? 'bg-blue-500/20 text-blue-400' : 'bg-orange-500/20 text-orange-400'}">
+                            ${recipe.category === 'cleaning' ? '🏠' : '🚗'}
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">${recipe.name}</h3>
+                            <span class="text-xs text-gray-400">${recipe.category === 'cleaning' ? 'منظفات منزلية' : 'عناية بالسيارات'}</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-4">${recipe.description || ''}</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs text-gray-500">${recipe.ingredients ? recipe.ingredients.length : 0} مكونات</span>
+                        ${recipe.video ? '<span class="text-xs text-red-400">📹 فيديو متاح</span>' : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function switchCategory(category) {
+            currentCategory = category;
+            document.querySelectorAll('[id^="tab-"]').forEach(el => {
+                el.classList.remove('tab-active');
+                el.classList.add('bg-white/5');
+            });
+            document.getElementById(`tab-${category}`).classList.add('tab-active');
+            document.getElementById(`tab-${category}`).classList.remove('bg-white/5');
+            loadRecipes();
+        }
+
+        function openRecipeDetail(id) {
+            const recipes = getRecipes();
+            const recipe = recipes.find(r => r.id === id);
+            if (!recipe) return;
+
+            document.getElementById('modalTitle').textContent = recipe.name;
+            
+            let content = `
+                <div class="space-y-6">
+                    <p class="text-gray-300">${recipe.description || ''}</p>
+                    
+                    <div>
+                        <h3 class="font-bold text-lg mb-3 flex items-center gap-2">
+                            <span class="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center text-sm">🧪</span>
+                            المكونات
+                        </h3>
+                        <div class="space-y-2">
+                            ${(recipe.ingredients || []).map(ing => `
+                                <div class="flex items-center gap-3 bg-white/5 rounded-xl px-4 py-3">
+                                    <span class="w-2 h-2 rounded-full bg-red-400"></span>
+                                    <span class="text-sm">${ing}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="font-bold text-lg mb-3 flex items-center gap-2">
+                            <span class="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center text-sm">📋</span>
+                            طريقة التحضير
+                        </h3>
+                        <div class="space-y-3">
+                            ${(recipe.steps || []).map((step, i) => `
+                                <div class="flex gap-3">
+                                    <span class="w-7 h-7 rounded-full bg-gradient-to-br from-red-500 to-pink-600 flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">
+                                        ${i + 1}
+                                    </span>
+                                    <p class="text-sm text-gray-300 pt-1">${step}</p>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+            `;
+            
+            if (recipe.warnings) {
+                content += `
+                    <div class="bg-yellow-500/10 border border-yellow-500/30 rounded-xl p-4">
+                        <h4 class="font-bold text-yellow-400 mb-2 flex items-center gap-2">
+                            ⚠️ تحذيرات هامة
+                        </h4>
+                        <p class="text-sm text-yellow-200/80">${recipe.warnings}</p>
+                    </div>
+                `;
+            }
+            
+            if (recipe.video) {
+                const videoId = extractYouTubeId(recipe.video);
+                if (videoId) {
+                    content += `
+                        <div>
+                            <h3 class="font-bold text-lg mb-3 flex items-center gap-2">
+                                <span class="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center text-sm">📹</span>
+                                فيديو توضيحي
+                            </h3>
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/${videoId}" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+            
+            content += `</div>`;
+            
+            document.getElementById('modalContent').innerHTML = content;
+            document.getElementById('recipeModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeRecipeModal() {
+            document.getElementById('recipeModal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        function extractYouTubeId(url) {
+            if (!url) return null;
+            const patterns = [
+                /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/,
+                /youtube\.com\/shorts\/([^&\n?#]+)/
+            ];
+            for (const pattern of patterns) {
+                const match = url.match(pattern);
+                if (match) return match[1];
+            }
+            return null;
+        }
+
+        // ============ Admin Recipe Management ============
+        function loadAdminRecipes() {
+            const recipes = getRecipes();
+            const list = document.getElementById('adminRecipesList');
+            
+            list.innerHTML = recipes.map(recipe => `
+                <div class="card-gradient rounded-xl p-4 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <span class="text-2xl">${recipe.category === 'cleaning' ? '🏠' : '🚗'}</span>
+                        <div>
+                            <h4 class="font-bold">${recipe.name}</h4>
+                            <p class="text-xs text-gray-400">${recipe.category === 'cleaning' ? 'منظفات منزلية' : 'عناية بالسيارات'}</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="editRecipe(${recipe.id})" class="px-3 py-2 rounded-lg bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 transition-colors text-sm">
+                            ✏️ تعديل
+                        </button>
+                        <button onclick="deleteRecipe(${recipe.id})" class="px-3 py-2 rounded-lg bg-red-500/20 text-red-400 hover:bg-red-500/30 transition-colors text-sm">
+                            🗑️ حذف
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function showAddRecipeForm() {
+            document.getElementById('recipeFormTitle').textContent = 'إضافة وصفة جديدة';
+            document.getElementById('recipeId').value = '';
+            document.getElementById('recipeName').value = '';
+            document.getElementById('recipeCategory').value = 'cleaning';
+            document.getElementById('recipeDescription').value = '';
+            document.getElementById('recipeIngredients').value = '';
+            document.getElementById('recipeSteps').value = '';
+            document.getElementById('recipeVideo').value = '';
+            document.getElementById('recipeWarnings').value = '';
+            document.getElementById('recipeFormModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function editRecipe(id) {
+            const recipes = getRecipes();
+            const recipe = recipes.find(r => r.id === id);
+            if (!recipe) return;
+
+            document.getElementById('recipeFormTitle').textContent = 'تعديل الوصفة';
+            document.getElementById('recipeId').value = recipe.id;
+            document.getElementById('recipeName').value = recipe.name;
+            document.getElementById('recipeCategory').value = recipe.category;
+            document.getElementById('recipeDescription').value = recipe.description || '';
+            document.getElementById('recipeIngredients').value = (recipe.ingredients || []).join('\n');
+            document.getElementById('recipeSteps').value = (recipe.steps || []).join('\n');
+            document.getElementById('recipeVideo').value = recipe.video || '';
+            document.getElementById('recipeWarnings').value = recipe.warnings || '';
+            document.getElementById('recipeFormModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeRecipeForm() {
+            document.getElementById('recipeFormModal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        function deleteRecipe(id) {
+            if (!confirm('هل أنت متأكد من حذف هذه الوصفة؟')) return;
+            let recipes = getRecipes();
+            recipes = recipes.filter(r => r.id !== id);
+            saveRecipes(recipes);
+            loadAdminRecipes();
+            showNotification('تم حذف الوصفة بنجاح', 'success');
+        }
+
+        // Form submission
+        document.getElementById('recipeForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const id = document.getElementById('recipeId').value;
+            const recipe = {
+                id: id ? parseInt(id) : Date.now(),
+                name: document.getElementById('recipeName').value,
+                category: document.getElementById('recipeCategory').value,
+                description: document.getElementById('recipeDescription').value,
+                ingredients: document.getElementById('recipeIngredients').value.split('\n').filter(i => i.trim()),
+                steps: document.getElementById('recipeSteps').value.split('\n').filter(s => s.trim()),
+                video: document.getElementById('recipeVideo').value,
+                warnings: document.getElementById('recipeWarnings').value
+            };
+
+            let recipes = getRecipes();
+            if (id) {
+                const index = recipes.findIndex(r => r.id === parseInt(id));
+                if (index !== -1) recipes[index] = recipe;
+            } else {
+                recipes.push(recipe);
+            }
+
+            saveRecipes(recipes);
+            closeRecipeForm();
+            loadAdminRecipes();
+            showNotification(id ? 'تم تحديث الوصفة بنجاح' : 'تم إضافة الوصفة بنجاح', 'success');
+        });
+
+        // ============ Subscriptions Management ============
+        function loadSubscriptions() {
+            const subs = getSubscriptions();
+            const list = document.getElementById('subscriptionsList');
+            
+            if (subs.length === 0) {
+                list.innerHTML = '<p class="text-gray-400 text-center py-8">لا توجد اشتراكات حالياً</p>';
+                return;
+            }
+            
+            list.innerHTML = subs.map((sub, index) => `
+                <div class="card-gradient rounded-xl p-4 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-lg">🔑</span>
+                        <div>
+                            <h4 class="font-bold font-mono">${sub.code}</h4>
+                            <p class="text-xs text-gray-400">تفعيل: ${new Date(sub.activatedAt).toLocaleDateString('ar')}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="subscription-badge">${sub.status === 'active' ? 'نشط' : 'منتهي'}</span>
+                        <button onclick="toggleSubscription(${index})" class="px-3 py-2 rounded-lg bg-yellow-500/20 text-yellow-400 hover:bg-yellow-500/30 transition-colors text-sm">
+                            ${sub.status === 'active' ? '⏸️ إيقاف' : '▶️ تفعيل'}
+                        </button>
+                        <button onclick="deleteSubscription(${index})" class="px-3 py-2 rounded-lg bg-red-500/20 text-red-400 hover:bg-red-500/30 transition-colors text-sm">
+                            🗑️
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleSubscription(index) {
+            const subs = getSubscriptions();
+            subs[index].status = subs[index].status === 'active' ? 'inactive' : 'active';
+            saveSubscriptions(subs);
+            loadSubscriptions();
+            showNotification('تم تحديث حالة الاشتراك', 'success');
+        }
+
+        function deleteSubscription(index) {
+            if (!confirm('هل أنت متأكد من حذف هذا الاشتراك؟')) return;
+            const subs = getSubscriptions();
+            subs.splice(index, 1);
+            saveSubscriptions(subs);
+            loadSubscriptions();
+            showNotification('تم حذف الاشتراك', 'success');
+        }
+
+        // ============ Code Generator ============
+        function generateCode() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let code = '';
+            for (let i = 0; i < 8; i++) {
+                code += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            document.getElementById('generatedCode').textContent = code;
+        }
+
+        function saveGeneratedCode() {
+            const code = document.getElementById('generatedCode').textContent;
+            if (code === '--------') {
+                showNotification('قم بتوليد كود أولاً', 'error');
+                return;
+            }
+            
+            const codes = getAccessCodes();
+            if (codes.find(c => c.code === code)) {
+                showNotification('هذا الكود موجود مسبقاً، قم بتوليد كود جديد', 'error');
+                return;
+            }
+            
+            codes.push({
+                code: code,
+                active: true,
+                created: new Date().toISOString(),
+                used: false
+            });
+            saveAccessCodes(codes);
+            loadGeneratedCodes();
+            showNotification('تم حفظ الكود بنجاح', 'success');
+        }
+
+        function copyCode() {
+            const code = document.getElementById('generatedCode').textContent;
+            if (code === '--------') {
+                showNotification('قم بتوليد كود أولاً', 'error');
+                return;
+            }
+            navigator.clipboard.writeText(code).then(() => {
+                showNotification('تم نسخ الكود', 'success');
+            });
+        }
+
+        function loadGeneratedCodes() {
+            const codes = getAccessCodes();
+            const list = document.getElementById('generatedCodesList');
+            
+            if (codes.length === 0) {
+                list.innerHTML = '<p class="text-gray-400 text-sm">لا توجد أكواد مولدة</p>';
+                return;
+            }
+            
+            list.innerHTML = codes.map((code, index) => `
+                <div class="flex items-center justify-between bg-white/5 rounded-xl px-4 py-3">
+                    <div class="flex items-center gap-3">
+                        <span class="font-mono font-bold text-lg">${code.code}</span>
+                        <span class="text-xs ${code.used ? 'text-gray-500' : 'text-green-400'}">
+                            ${code.used ? '✅ مستخدم' : '🟢 متاح'}
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs text-gray-500">${new Date(code.created).toLocaleDateString('ar')}</span>
+                        <button onclick="deleteCode(${index})" class="text-red-400 hover:text-red-300 text-sm">🗑️</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function deleteCode(index) {
+            const codes = getAccessCodes();
+            codes.splice(index, 1);
+            saveAccessCodes(codes);
+            loadGeneratedCodes();
+            showNotification('تم حذف الكود', 'success');
+        }
+
+        // ============ Notifications ============
+        function showNotification(message, type = 'info') {
+            const container = document.getElementById('notificationContainer');
+            const colors = {
+                success: 'bg-green-500/90 border-green-400',
+                error: 'bg-red-500/90 border-red-400',
+                info: 'bg-blue-500/90 border-blue-400'
+            };
+            
+            const notification = document.createElement('div');
+            notification.className = `notification ${colors[type]} border rounded-xl px-6 py-3 text-white text-sm font-medium shadow-lg`;
+            notification.textContent = message;
+            container.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(-100%)';
+                notification.style.transition = 'all 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // ============ Keyboard Events ============
+        document.getElementById('accessCode').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') verifyAccess();
+        });
+
+        document.getElementById('adminPassword').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') verifyAdmin();
+        });
+
+        // ============ Initialize ============
+        initData();
+    </script>
 </body>
 </html>
